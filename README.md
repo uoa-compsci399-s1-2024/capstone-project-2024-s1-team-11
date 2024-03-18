@@ -6,7 +6,7 @@
 
 - Alyssa
 
-- Kelly (?)
+- Kelly
 
 - Helen Emmett (Team Leader)
 
