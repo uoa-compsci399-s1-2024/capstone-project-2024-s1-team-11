@@ -1,0 +1,20 @@
+{
+  "name": "server",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "test": "jest",
+    "server": "node server.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.18.3",
+    "pg": "^8.11.5",
+    "pg-hstore": "^2.3.4",
+    "prompt-sync": "^4.2.0",
+    "sequelize": "^6.37.2"
+  }
+}
