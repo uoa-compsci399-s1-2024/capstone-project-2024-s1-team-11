@@ -6,7 +6,7 @@
 
 - Kelly
 
-- Helen Emmett (Team Leader)
+- Helen
 
 - Aaron
 
