@@ -1,7 +1,7 @@
 const config = {
     "db_name": "maths_rocks",
     "username": "postgres",
-    "password": "Haha, I am not sharing my password with you :)"
+    "password": "25wham77"
 }
 
 module.exports = config;

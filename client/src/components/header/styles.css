@@ -1,0 +1,102 @@
+.header {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    background-color: var(--background);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid var(--text);
+    height: 80px;
+    z-index: 2;
+  }
+
+  .nav .active {
+    color: var(--green);
+  }
+  
+  .nav, .login-nav-btn {
+    width: 40%;
+  }
+  
+  .nav-icon {
+    position: relative;
+    float: left;
+    padding-left: 26px;
+    z-index: 3;
+  }
+  
+  .bar1, .bar2, .bar3 {
+    width: 35px;
+    height: 5px;
+    background-color: var(--text);
+    margin: 6px auto;
+    transition: 0.4s;
+  }
+  
+  .nav-icon .open .bar1 {
+    transform: translate(0, 11px) rotate(-45deg);
+  }
+  
+  .nav-icon .open .bar2 {
+    opacity: 0;
+  }
+  
+  .nav-icon .open .bar3 {
+    transform: translate(0, -11px) rotate(45deg);
+  }
+  
+  .nav ul {
+    display: none;
+    position: absolute;
+    top: 0;
+    width: 100%;
+    height: 100vh;
+    background: var(--background);
+    padding: 60px 24px 24px;
+    list-style-type: none;
+  }
+
+  .nav ul li {
+
+  }
+
+  .nav ul.open {
+    display: block;
+  }
+  
+  .login-nav-btn button {
+    position: relative;
+    float: right;
+    background-color: var(--green);
+    border: none;
+    text-transform: uppercase;
+    padding: 5px 14px 5px 26px;
+    height: 42px;
+  }
+
+  .triangle {
+    position: absolute;
+    top: 0;
+    left: 0;
+	width: 0;
+	height: 0;
+	border-top: 21px solid transparent;
+	border-left: 20px solid var(--background);
+	border-bottom: 21px solid transparent;
+}
+
+.logo img {
+    max-height: 75px;
+  }
+
+/* home page styles */
+  .home .logo {
+    visibility: hidden;
+  }
+
+  .home .header {
+    border-bottom: none;
+  }
+  
+  
