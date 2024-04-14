@@ -94,4 +94,5 @@ main {
   }
 
 .home .section3 {
+  background-color: var(--background);
 }

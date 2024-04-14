@@ -47,6 +47,10 @@
   }
   
   .nav ul {
+    list-style-type: none;
+  }
+
+  .nav .nav-container {
     display: none;
     position: absolute;
     top: 0;
@@ -57,11 +61,7 @@
     list-style-type: none;
   }
 
-  .nav ul li {
-
-  }
-
-  .nav ul.open {
+  .nav .open {
     display: block;
   }
   
@@ -79,11 +79,11 @@
     position: absolute;
     top: 0;
     left: 0;
-	width: 0;
-	height: 0;
-	border-top: 21px solid transparent;
-	border-left: 20px solid var(--background);
-	border-bottom: 21px solid transparent;
+    width: 0;
+    height: 0;
+    border-top: 21px solid transparent;
+    border-left: 20px solid var(--background);
+    border-bottom: 21px solid transparent;
 }
 
 .logo img {

@@ -18,19 +18,22 @@ export default function Header() {
                 <div className="bar3"></div>
                 </span>
             </div>
-              <ul className={menuOpen ? 'open' : ''}>
+              <div className={menuOpen ? 'nav-container open' : 'nav-container'}>
+                <ul>
                 <li><NavLink to={`/`}>Home</NavLink></li>
                 <li><NavLink to={`/about`}>About Maths Rocks</NavLink></li>
-                <li><NavLink to={`/rocks`}>Rocks & Maths Topics</NavLink></li>
-                <ul>
+                <li><NavLink to={`/rocks`}>Rocks & Maths Topics</NavLink>
+                  <ul>
                     <li><NavLink to={`/rocks/0`}>0</NavLink></li>
-                  <li>Need to loop through items ....</li>
-                </ul>
+                    <li>Need to loop through items ....</li>
+                  </ul>
+                </li>
                 <li><NavLink to={`/leaderboard`}>Leaderboard</NavLink></li>
                 <li><NavLink to={`/profile`}>My Profile</NavLink></li>
                 <li><NavLink to={`/contact`}>Contact Us</NavLink></li>
                 <li><NavLink to={`/privacy-policy`}>Privacy Policy</NavLink></li>
               </ul>
+              </div>
           </nav>
           <div className="logo">
             <Link to={`/`}><img src={mathsRocksLogo} alt="Maths Rocks logo" title="Maths Rocks" /></Link>
