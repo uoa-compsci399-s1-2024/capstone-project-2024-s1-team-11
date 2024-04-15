@@ -1,28 +1,28 @@
-## Learning resources
+# Learning resources
 
-#React
+## React
 
-The react website has good info, and the tic-tac-toe tutorial is good for understanding how React works https://react.dev/learn
+- The react website has good info, and the tic-tac-toe tutorial is good for understanding how React works https://react.dev/learn
 
-We are using createBrowserRouter for our routes/urls in React: https://reactrouter.com/en/main/start/tutorial
+- We are using createBrowserRouter for our routes/urls in React: https://reactrouter.com/en/main/start/tutorial
 
-This is also a good video tutorial for React. We used Vite to install though, not create-react-app: https://youtu.be/5ZdHfJVAY-s?si=OpaMQGt9UGh4AE0P
+- This is also a good video tutorial for React. We used Vite to install though, not create-react-app: https://youtu.be/5ZdHfJVAY-s?si=OpaMQGt9UGh4AE0P
 
-#PERN stack
+## PERN stack
 
-This is a good short video on the PERN stack: https://www.freecodecamp.org/news/learn-the-pern-stack-full-course/ 
+- This is a good short video on the PERN stack: https://www.freecodecamp.org/news/learn-the-pern-stack-full-course/ 
 
-## What we have been working on
+# What we have been working on
 
-#Aaron
+## Aaron
 
-#Alyssa
+## Alyssa
 
-#Edward
+## Edward
 
-#Helen
+## Helen
 
-#Kelly
+## Kelly
 
-#Mark
+## Mark
 
