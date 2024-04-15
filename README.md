@@ -19,6 +19,12 @@ In your command line, cd to the *client* folder, then run:
 
 <code>npm install</code>
 
-To start the project make sure you are in the client folder, then run:
+## How to run the client server
+
+To start the react project so you can see it in your browser, cd to the *client* folder, then run:
 
 <code>npm run dev</code>
+
+To end the project type:
+
+<code>Ctrl + C </code>
