@@ -1,0 +1,21 @@
+.top-image {
+    position: relative;
+    height: 40vh;
+    background: var(--green);
+    overflow: hidden;
+    object-fit: cover;
+}
+
+.top-image img {
+    width: auto;
+    min-width: 100%;
+    min-height: 100%;
+}
+
+.bottom-curve {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: auto;
+  }
