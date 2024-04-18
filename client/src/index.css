@@ -10,11 +10,14 @@
 
   --text: #1e3e4d;
   --background: #fff;
+  --background-trans: rgba(255,255,255,0.9);
   --green: #06c49e;
   --blue: #30d6ff;
   --yellow: #fed265;
   --red: #dd5664;
   --grey: #ccc;
+
+  --border-padding: 24px;
 }
 
 /* reset styles */
@@ -56,24 +59,65 @@ p {
 }
 
 .side-padding {
-  padding: 0 24px;
+  padding: 0 var(--border-padding);
 }
 
 main {
   padding-top: 80px;
 }
 
-.home main {
-  padding-top: 0;
+.top-curve {
+  background-image: url(../top-curve.svg);
+  background-size: contain;
+  background-repeat: no-repeat;
+  position: absolute;
+  top: -1px;
+  left: 0;
+  width: 100%;
+  height: inherit;
 }
 
 /* home page styles */
 
-.floating-btn1, .floating-btn2, .floating-btn3 {
-  position: absolute;
+
+.home main {
+  padding-top: 0;
 }
 
-.home .section1 {
+.main-logo {
+  width: 85%;
+  margin: 0 auto 2.5rem auto;
+}
+
+.floating-btn1, .floating-btn2, .floating-btn3 {
+  position: absolute;
+  border-radius: 50%;
+  border: none;
+  width: 80px;
+  height: 80px;
+  z-index: 1;
+}
+
+.floating-btn1 {
+  background-color: var(--blue);
+  bottom: 0;
+  left: var(--border-padding);
+}
+
+.floating-btn2 {
+  background-color: var(--green);
+  bottom: 30px;
+  left: 50%;
+  translate: -50%;
+}
+
+.floating-btn3 {
+  background-color: var(--yellow);
+  bottom: 0;
+  right: var(--border-padding);;
+}
+
+.home .section1, .home .section2{
   position: relative;
   display: flex;
   align-items: center;
@@ -81,15 +125,14 @@ main {
 }
 
 .home .section2 {
-  display: flex;
-  align-items: center;
-  height: 50vh;
-  background-color: #06c49e;
+  background-image: url(../maths-rocks-home.jpg);
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 
   .home .section2 .txt-overlay {
-    background-color: var(--background);
-    padding: 24px;
+    background-color: var(--background-trans);
+    padding: var(--border-padding);
     border-radius: 8px;
   }
 
