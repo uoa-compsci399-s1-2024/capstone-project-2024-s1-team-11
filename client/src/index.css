@@ -1,13 +1,4 @@
 :root {
-  font-family: Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
-  font-size: 100%;
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-
   --text: #1e3e4d;
   --background: #fff;
   --background-trans: rgba(255,255,255,0.9);
@@ -20,7 +11,7 @@
   --border-padding: 24px;
 }
 
-/* reset styles */
+/* reset & global styles */
 
 *,
 ::after,
@@ -35,10 +26,19 @@ img {
     display: block;
 }
 
-/* global styles */
+* {
+  font-family: "Poppins", sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+  font-size: 100%;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  color: var(--text);
+}
 
 body {
-  color: var(--text);
   background-color: var(--background);
   height: 100vh;
 }
@@ -55,7 +55,7 @@ h1 {
 }
 
 p {
-    padding-bottom: 6px;
+    padding-bottom: 10px;
 }
 
 .side-padding {
@@ -75,6 +75,19 @@ main {
   left: 0;
   width: 100%;
   height: inherit;
+}
+
+button {
+  line-height: 1;
+}
+
+.btn {
+  background-color: var(--green);
+  border: 1px solid var(--text);
+  border-radius: 8px;
+  width: 100%;
+  text-align: center;
+  padding: 12px 10px;
 }
 
 /* home page styles */
@@ -134,6 +147,7 @@ main {
     background-color: var(--background-trans);
     padding: var(--border-padding);
     border-radius: 8px;
+    margin-top: 40px;
   }
 
 .home .section3 {
