@@ -156,17 +156,6 @@ class Repository {
             throw new Error(`Either ${user_id} is an invalid user ID or ${rock_id} is an invalid rock ID.`);
         }
     }
-
-    async isFromQRCode(userId, rockId) {
-        try {
-            // Not sure of this logic yet, but likely need a set QR code for each rock in the database for this to work
-            const userRock = await Users_Rocks.findOne({ where: { user_id: userId, rock_id: rockId } });
-            return userRock !== null;
-        } catch (error) {
-            console.error("Error checking if user came from QR code:", error);
-            return false; // Return false in case of error
-        }
-    }
     
     async updateUser(user){
         let user_data = await User.findOne({where: {user_id: user.user_id}});

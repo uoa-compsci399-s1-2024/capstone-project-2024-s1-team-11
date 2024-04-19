@@ -1,8 +1,7 @@
 import Header from '../components/header';
 import Footer from '../components/footer';
 import TopImage from '../components/top-image';
-//import Repository from '../../../server/repository/repository.js'; // Idk how to import this, its causing an error
-import { Repository } from '../../../server/repository/repository';
+import { isFromQRCode } from '../../../server/utils/authentication';
 import { useState, useEffect } from 'react';
 
 
