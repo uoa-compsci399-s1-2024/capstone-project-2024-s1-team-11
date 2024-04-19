@@ -1,14 +1,22 @@
 import './styles.css'
 import React, { useState } from 'react';
+import Hamburger from '../Hamburger';
 
-export default function Modal({ onClose }) {
-    const [modalOpen, setModalOpen] = useState(false)
+export default function Modal({ close }) {
 
     return (
+      <>
       <div className="modal">
-        <div>I'm a modal dialog</div>
-        <button onClick={onClose}>Close</button>
+      <div className="modal-container">
+        <div className="modal-body">
+          <span className='close' onClick={() => close()}>
+            <Hamburger />
+          </span>
+          <p>Add the login form here...</p>
+        </div>
       </div>
+      </div>
+      </>
     );
   }
   

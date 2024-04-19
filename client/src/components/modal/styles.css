@@ -1,0 +1,63 @@
+.close {
+  display: block;
+  position: absolute;
+  top: var(--border-padding);
+  right: var(--border-padding);
+}
+
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    width: 100%;
+    left: 0;
+    top: 0;
+    z-index: 4;
+  }
+
+  .open-modal .modal {
+    display: block;
+  }
+  
+.open-modal .modal-container {
+    position: relative;
+    background-color: var(--text);
+    margin: auto;
+    padding: 0;
+    width: 100%;
+    height: 100vh;
+    -webkit-animation: navReveal .75s cubic-bezier(.82,.47,.22,1);
+    animation: navReveal .75s cubic-bezier(.82,.47,.22,1);
+  }
+  
+  /* Add Animation */
+  @-webkit-keyframes navReveal {
+    0% {
+        -webkit-clip-path: circle(0 at calc(100% - 1.5625rem - 25px) 50px);
+        clip-path: circle(0 at calc(100% - 1.5625rem - 25px) 50px);
+    }
+    100% {
+        -webkit-clip-path: circle(150vmax at calc(100% - 1.5625rem - 25px) 50px);
+        clip-path: circle(150vmax at calc(100% - 1.5625rem - 25px) 50px);
+    }
+  }
+  
+  @keyframes navReveal {
+    0% {
+        -webkit-clip-path: circle(0 at calc(100% - 1.5625rem - 25px) 50px);
+        clip-path: circle(0 at calc(100% - 1.5625rem - 25px) 50px);
+    }
+    100% {
+        -webkit-clip-path: circle(150vmax at calc(100% - 1.5625rem - 25px) 50px);
+        clip-path: circle(150vmax at calc(100% - 1.5625rem - 25px) 50px);
+    }
+  }
+
+  .modal-body {
+    color: var(--background) !important;
+    padding: 5rem 1.5625rem 1.5625rem;
+  }
+
+  .modal-body p, .modal-body input {
+    color: var(--background) !important;
+  }
+  
