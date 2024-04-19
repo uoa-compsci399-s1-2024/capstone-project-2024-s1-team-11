@@ -103,7 +103,6 @@ svg {
 
 /* home page styles */
 
-
 .home main {
   padding-top: 0;
 }
@@ -163,4 +162,18 @@ svg {
 
 .home .section3 {
   background-color: var(--background);
+}
+
+/* form styles */
+
+input, input {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+}
+
+label {
+  color: var(--background);
 }
