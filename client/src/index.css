@@ -153,3 +153,10 @@ button {
 .home .section3 {
   background-color: var(--background);
 }
+
+/* rocks page styles */
+
+.rocks {
+  display: grid;
+  grid-template-columns: auto auto;
+}
