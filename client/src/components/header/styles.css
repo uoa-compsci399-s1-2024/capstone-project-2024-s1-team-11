@@ -71,23 +71,23 @@
   /* Add Animation */
   @-webkit-keyframes navReveal {
     0% {
-        -webkit-clip-path: circle(0 at calc(100% - 1.5625rem - 25px) 50px);
-        clip-path: circle(0 at calc(100% - 1.5625rem - 25px) 50px);
+        -webkit-clip-path: circle(0 at 0 50px);
+        clip-path: circle(0 at 0 50px);
     }
     100% {
-        -webkit-clip-path: circle(150vmax at calc(100% - 1.5625rem - 25px) 50px);
-        clip-path: circle(150vmax at calc(100% - 1.5625rem - 25px) 50px);
+        -webkit-clip-path: circle(150vmax at 0 50px);
+        clip-path: circle(150vmax at 0 50px);
     }
   }
   
   @keyframes navReveal {
     0% {
-        -webkit-clip-path: circle(0 at calc(100% - 1.5625rem - 25px) 50px);
-        clip-path: circle(0 at calc(100% - 1.5625rem - 25px) 50px);
+        -webkit-clip-path: circle(0 at 0 50px);
+        clip-path: circle(0 at 0 50px);
     }
     100% {
-        -webkit-clip-path: circle(150vmax at calc(100% - 1.5625rem - 25px) 50px);
-        clip-path: circle(150vmax at calc(100% - 1.5625rem - 25px) 50px);
+        -webkit-clip-path: circle(150vmax at 0 50px);
+        clip-path: circle(150vmax at 0 50px);
     }
   }
   

@@ -25,26 +25,26 @@
     padding: 0;
     width: 100%;
     height: 100vh;
-    -webkit-animation: navReveal .75s cubic-bezier(.82,.47,.22,1);
-    animation: navReveal .75s cubic-bezier(.82,.47,.22,1);
+    -webkit-animation: modalReveal .75s cubic-bezier(.82,.47,.22,1);
+    animation: modalReveal .75s cubic-bezier(.82,.47,.22,1);
   }
   
   /* Add Animation */
-  @-webkit-keyframes navReveal {
+  @-webkit-keyframes modalReveal {
     0% {
-        -webkit-clip-path: circle(0 at calc(100% - 1.5625rem - 25px) 50px);
-        clip-path: circle(0 at calc(100% - 1.5625rem - 25px) 50px);
+        -webkit-clip-path: circle(0 at 100% 50px);
+        clip-path: circle(0 at 100% 50px);
     }
     100% {
-        -webkit-clip-path: circle(150vmax at calc(100% - 1.5625rem - 25px) 50px);
-        clip-path: circle(150vmax at calc(100% - 1.5625rem - 25px) 50px);
+        -webkit-clip-path: circle(150vmax at 100% 50px);
+        clip-path: circle(150vmax at 100% 50px);
     }
   }
   
-  @keyframes navReveal {
+  @keyframes modalReveal {
     0% {
-        -webkit-clip-path: circle(0 at calc(100% - 1.5625rem - 25px) 50px);
-        clip-path: circle(0 at calc(100% - 1.5625rem - 25px) 50px);
+        -webkit-clip-path: circle(0 at 100% 50px);
+        clip-path: circle(0 at 100% 50px);
     }
     100% {
         -webkit-clip-path: circle(150vmax at calc(100% - 1.5625rem - 25px) 50px);
