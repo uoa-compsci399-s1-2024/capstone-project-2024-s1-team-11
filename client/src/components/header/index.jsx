@@ -26,8 +26,15 @@ function Navigation() {
 
 function LoginBtn() {
   const [modalOpen, setModalOpen] = useState(false)
+  const [displayLoginForm, setdisplayLoginForm] = useState(true)
+
   function handleState() {
     setModalOpen(!modalOpen);
+    setdisplayLoginForm(true);
+  }
+
+  function handleFormState() {
+    setdisplayLoginForm(!displayLoginForm);
   }
 
   return (
@@ -38,7 +45,7 @@ function LoginBtn() {
         </button>
       </div>
       <div className={modalOpen ? 'open-modal' : ''}>
-        <Modal close = {handleState} />
+        <Modal close={handleState} formFunction={handleFormState} formState={displayLoginForm} />
       </div>
     </>
   )
