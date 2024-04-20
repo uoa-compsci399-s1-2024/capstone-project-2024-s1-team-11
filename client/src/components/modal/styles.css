@@ -64,3 +64,7 @@
   .modal p, .modal h1, .modal h2 {
     color: var(--background);
   }
+
+  .register-btn {
+    padding-top: 20px;
+  }

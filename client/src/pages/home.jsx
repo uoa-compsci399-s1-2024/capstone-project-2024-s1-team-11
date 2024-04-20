@@ -14,7 +14,7 @@ export default function HomePage() {
           <img src={mathsRocksLogo} alt="Maths Rocks logo" title="Maths Rocks" className='main-logo' />
           <Link to={`/rocks`}><button className='floating-btn1'>Rocks</button></Link>
           <Link to={`/about`}><button className='floating-btn2'>About</button></Link>
-          <Link to={`/leaderboard`}><button className='floating-btn3'>Leaderboard</button></Link>
+          <Link to={`/leaderboard`}><button className='floating-btn3'>Leader<br></br>board</button></Link>
           </section>
           <section className='section2 side-padding'>
             <span className='top-curve'>
