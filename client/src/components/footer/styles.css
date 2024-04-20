@@ -1,3 +1,6 @@
 footer {
-    background-color: var(--blue);
+    text-align: center;
+    padding: 20px;
+    border-top: 1px solid var(--text);
+    background: var(--grey);
 }
