@@ -140,10 +140,12 @@ svg {
   right: var(--border-padding);;
 }
 
-.home .section1, .home .section2{
+.home .section1, .home .section2, .home .section3 {
   position: relative;
   display: flex;
+  justify-content: center;
   align-items: center;
+  width: 100%;
   height: 50vh;
 }
 
@@ -162,6 +164,7 @@ svg {
 
 .home .section3 {
   background-color: var(--background);
+  text-align: center;
 }
 
 /* form styles */

@@ -12,9 +12,9 @@ export default function HomePage() {
         <main>
         <section className='section1 side-padding'>
           <img src={mathsRocksLogo} alt="Maths Rocks logo" title="Maths Rocks" className='main-logo' />
-          <button className='floating-btn1'>Rocks</button>
-          <button className='floating-btn2'>About</button>
-          <button className='floating-btn3'>Leaderboard</button>
+          <Link to={`/rocks`}><button className='floating-btn1'>Rocks</button></Link>
+          <Link to={`/about`}><button className='floating-btn2'>About</button></Link>
+          <Link to={`/leaderboard`}><button className='floating-btn3'>Leaderboard</button></Link>
           </section>
           <section className='section2 side-padding'>
             <span className='top-curve'>
@@ -28,7 +28,7 @@ export default function HomePage() {
             </div>
           </section>
           <section className='section3'>
-            <p>Swipe through rocks</p>
+            <p>Swipe through rocks still to be completed</p>
           </section>
 
         </main>
