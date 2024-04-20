@@ -6,10 +6,12 @@ export default function RocksPage() {
     <>
       <Header />
         <main>
-          <h1>Rocks</h1>
-          <p>Browse rocks, or search for your favourite maths concept.</p>
+          <div className="pageText">
+            <h1>Rocks</h1>
+            <p>Browse rocks, or search for your favourite maths concept.</p>
+          </div>
           <div className="rocks">
-            <form>
+            <form className="dropDownMenu">
               <select name="sortBy" id="sortBy">
                 <option default value>Sort by:</option>
                 <option value="rarity">Rarity of rock</option>
@@ -18,17 +20,20 @@ export default function RocksPage() {
                 <option value="number">Numerical</option>
                 </select>
             </form>
-            <input type="text" size="20" placeholder="Search ..."></input>
+            <form className="searchBar">
+              <input type="text" size="10" placeholder="Search ..."></input>
+            </form>
+          </div>
             <section id="rocksList">
-              <div>
-                <p>rock0</p>
-              </div>
-              <div>
-                <p>rock1</p>
-              </div>
+              <div className="square"></div> {/* image placeholder */}
+              <div className="square"></div>
+              <div className="square"></div>
+              <div className="square"></div>
+              <div className="square"></div>
+              <div className="square"></div>
 
             </section>
-          </div>
+          
         </main>
         <Footer />
     </>
