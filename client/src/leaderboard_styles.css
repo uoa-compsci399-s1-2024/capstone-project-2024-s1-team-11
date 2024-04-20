@@ -10,11 +10,6 @@
 border-radius: 50%; 
 }
 
-
-.username {
-  font-weight: bold; 
-}
-
 .user-link {
   display: flex; 
   align-items: center;
@@ -67,28 +62,21 @@ border-radius: 50%;
   border-radius: 10px;
   text-align: center; 
 }
-.leaderboard-table tbody tr:hover {
-  background-color: #f2f2f2; 
-}
+
 .leaderboard-table tbody {
   font-size: 16px; 
 }
 
-.leaderboard-table tbody tr:hover {
-  background-color: #f2f2f2;
-}
 .leaderboard-table tbody {
   font-size: 25px; 
   font-weight: bold; 
 }
 
-.leaderboard-table tbody tr:hover {
-  background-color: #f2f2f2; 
-}
+
 .user-link {
   text-decoration: none; 
 }
 
-.user-link:hover {
-  text-decoration: none; 
+.leaderboard-table tbody td {
+  background-color: #e1dfe1; 
 }
