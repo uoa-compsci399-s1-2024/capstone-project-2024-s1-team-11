@@ -24,17 +24,25 @@ const Leaderboard = () => {
     fetchLeaderboardData();
   }, []);
 
-  // Generate random user data if leaderboardData is empty
+  // Generate random user data for display purposes
   useEffect(() => {
     if (leaderboardData.length === 0) {
-      const randomUsers = Array.from({ length: 10 }, (_, index) => ({
-        user_id: index + 1,
-        username: `User ${index + 1}`,
-        rock_count: 0
-      }));
+      const randomUsers = [
+        { user_id: 1, username: "User 1", rock_count: 10 },
+        { user_id: 2, username: "User 2", rock_count: 9 },
+        { user_id: 3, username: "User 3", rock_count: 9 },
+        { user_id: 4, username: "User 4", rock_count: 7 },
+        { user_id: 5, username: "User 5", rock_count: 6 },
+        { user_id: 6, username: "User 6", rock_count: 5 },
+        { user_id: 7, username: "User 7", rock_count: 4 },
+        { user_id: 8, username: "User 8", rock_count: 3 },
+        { user_id: 9, username: "User 9", rock_count: 1 },
+        { user_id: 10, username: "User 10", rock_count: 0 }
+      ];
       setLeaderboardData(randomUsers);
     }
   }, [leaderboardData]);
+  
 
   return (
     <>
@@ -58,7 +66,11 @@ const Leaderboard = () => {
           <tbody>
             {leaderboardData.map((user, index) => (
               <tr key={index}>
-                <td>#{index + 1}</td>
+                <td>
+                  {index > 0 && user.rock_count === leaderboardData[index - 1].rock_count
+                    ? `#${index}`
+                    : `#${index + 1}`}
+                </td>
                 <td className="user-cell">
                   <Link to={`/profile/${user.user_id}`} className="user-link">
                     <img src="/default_avatar.jpg" alt="Avatar" className="avatar"/>
