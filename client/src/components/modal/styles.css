@@ -57,7 +57,7 @@
     padding: 5rem 1.5625rem 1.5625rem;
   }
 
-  .modal-body p, .modal-body input {
+  .modal-body p{
     color: var(--background) !important;
   }
   
@@ -67,4 +67,7 @@
 
   .register-btn {
     padding-top: 20px;
+  }
+  .modal-body input,  .modal-body select {
+    z-index: 5;
   }
