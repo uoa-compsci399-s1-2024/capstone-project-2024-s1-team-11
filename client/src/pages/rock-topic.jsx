@@ -3,6 +3,7 @@ import Footer from '../components/footer';
 import TopImage from '../components/top-image';
 import { useState, useEffect } from 'react';
 import { useHistory, useLocation } from 'react-router-dom';
+import Repository from '../../../server/repository/repository';
 
 
 export default function RockTopicPage() {
