@@ -156,7 +156,7 @@ class Repository {
             throw new Error(`Either ${user_id} is an invalid user ID or ${rock_id} is an invalid rock ID.`);
         }
     }
-
+    
     async updateUser(user){
         let user_data = await User.findOne({where: {user_id: user.user_id}});
         if (user_data !== null){
