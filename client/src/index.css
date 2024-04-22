@@ -169,7 +169,7 @@ svg {
 
 /* form styles */
 
-input, select {
+input, select, textarea {
   position: relative;
   width: 100%;
   padding: 6px;

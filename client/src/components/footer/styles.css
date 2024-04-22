@@ -1,6 +1,7 @@
 footer {
     text-align: center;
     padding: 20px;
+    margin-top: 20px;
     border-top: 1px solid var(--text);
     background: var(--grey);
 }
