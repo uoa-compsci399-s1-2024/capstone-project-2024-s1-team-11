@@ -1,6 +1,8 @@
 import Header from '../components/header';
 import Footer from '../components/footer';
 import TopImage from '../components/top-image';
+import { Link } from "react-router-dom";
+
 
 export default function PrivacyPage() {
   return (
@@ -15,7 +17,7 @@ export default function PrivacyPage() {
             <p>During the registration process for our products and services and in other registration forms, we will indicate the types of personal information you must provide and the types of personal information we request. You may choose not to submit the information we request, but that may limit or prevent Math Rock from providing you with the Services.</p>
             <h2>2. Information We Collect</h2>
             <p>We collect information about you in three ways: directly from what you enter, from third-party sources, and with the help of automated technologies.</p>
-            <p><strong>2.1 Data you provide to us</strong></p>
+            <h3>2.1 Data you provide to us</h3>
             <p>The types of personal information we collect directly from you, depending on how you interact with us and the Services, may include:</p>
             <ul>
               <li>Contact details, such as your name, email address, postal address, social media aliases, and phone number;</li>
@@ -24,7 +26,7 @@ export default function PrivacyPage() {
               <li>Comments, feedback, and other information that you provide to us, such as search query data and questions, or information you send to customer support;</li>
               <li>Interests and communication preferences.</li>
             </ul>
-            <p><strong>2.2 Data from Other Sources</strong></p>
+            <h3>2.2 Data from Other Sources</h3>
             <p>We may also obtain your contact details and other information about you from our affiliates and other third parties, including:</p>
             <ul>
               <li>The social network you use when you grant permission to the Service to access your data on one or more social networks;</li>
@@ -43,9 +45,9 @@ export default function PrivacyPage() {
               <li>To comply with our legal obligations, resolve disputes, and enforce our agreements.</li>
             </ul>
             <h2>4. Sharing Your Information</h2>
-            <p><strong>4.1 Application Licensors</strong></p>
+            <h3>4.1 Application Licensors</h3>
             <p>If you access the application on the Services through a license agreement with the licensor of a third-party application, personal information associated with that third-party application may be shared with that licensor so that it can provide you with access to the application in accordance with the terms of the license agreement and privacy policy. </p>
-            <p><strong>4.2 For Legal Reasons</strong></p>
+            <h3>4.2 For Legal Reasons</h3>
             <p>We will also disclose your personal information when we believe it is reasonably necessary for the following purposes:</p>
             <ul>
               <li>to comply with any applicable law, regulation, legal process or other legal obligation;</li>
@@ -75,15 +77,13 @@ export default function PrivacyPage() {
 
             <h2>9. Accessing and Updating Your Information</h2>
           
-              <strong>9.1 Your Account</strong>
+              <h3>9.1 Your Account</h3>
       
             <p>
               The Service may allow registered users to directly access and review their account information at any time and to make corrections or updates after logging in. It is the user's responsibility to keep such information up to date. Registered users may also close their accounts directly through the Service or by contacting the Service's customer support department.
             </p>
 
-            <p>
-              <strong>9.2 Your Rights</strong>
-            </p>
+            <h3>9.2 Your Rights</h3>
             <p>
               In accordance with applicable privacy and data protection laws, you have the right, free of charge, to:
             </p>
@@ -93,13 +93,11 @@ export default function PrivacyPage() {
               <li>Restrict or object to our processing of your personal information;</li>
               <li>Portability of your personal information.</li>
             </ul>
-
-            <p>If you have any questions, comments, complaints, or requests about this Privacy Policy or our handling of your information, please send an email to <a href="mailto:jhe435@aucklanduni.zc.nz">jhe435@aucklanduni.zc.nz</a>.</p>
             
             <h2>10. Changes</h2>
             <p>We may update this Privacy Policy from time to time. We will post any changes on this page along with the updated revision date. Once we make any material changes, we will notify you through the Service or otherwise.</p>
-              <h2>11. Contact Information</h2>
-              <p>If you have any questions, comments, complaints or requests about this Privacy Policy or our handling of your information, please send an email to jhe435@aucklanduni.zc.nz. </p>
+            <h2>11. Contact Information</h2>
+            <p>If you have any questions, comments, complaints or requests about this Privacy Policy or our handling of your information, please <Link to={`/contact`}>contact us</Link>. </p>
         
             </article>
         </main>

@@ -71,3 +71,7 @@
   .modal-body input,  .modal-body select {
     z-index: 5;
   }
+
+  .modal-body label {
+    color: var(--background);
+  }

@@ -2,7 +2,7 @@ import Header from '../components/header';
 import Footer from '../components/footer';
 import TopImage from '../components/top-image';
 import { useState } from 'react';
-//import emailjs from 'emailjs-com';
+import emailjs from 'emailjs-com';
 
 const EMAILJS_PUBLIC_KEY = 'zyJ-DMEwPke6Q1WhF';
 const TEMPLETE_ID = 'template_oy7kadr';
@@ -48,10 +48,17 @@ export default function ContactPage() {
           <TopImage />
           <article className='side-padding'>
             <h1>Contact Us</h1>
+            <p>If you want to know more about Maths Rocks, or have any questions, suggestions or comments for us, we would love to hear from you!</p>
             <form onSubmit={handleSubmit}>
-              <input type="text" name="name" value={formData.name} onChange={handleChange} placeholder="Your Name" />
-              <input type="email" name="email" value={formData.email} onChange={handleChange} placeholder="Your Email"  />
-              <textarea name="message" value={formData.message} onChange={handleChange} placeholder="Your Message" ></textarea>
+              <label name="name">Your name
+                <input type="text" name="name" value={formData.name} onChange={handleChange} />
+              </label> 
+              <label name="email">Your email
+                <input type="email" name="email" value={formData.email} onChange={handleChange}  />
+                </label> 
+              <label name="namessageme">Your message
+                <textarea name="message" value={formData.message} onChange={handleChange}  ></textarea>
+              </label>
               <button type="submit" className='btn'>Send Message</button>
             </form>
           </article>

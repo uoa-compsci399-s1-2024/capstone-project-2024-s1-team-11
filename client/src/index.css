@@ -63,6 +63,10 @@ a, a:link {
   color: var(--green);
 }
 
+ul, ol {
+  margin: 1.25rem;
+}
+
 .side-padding {
   padding: 0 var(--border-padding);
 }
@@ -95,6 +99,7 @@ button {
   width: 100%;
   text-align: center;
   padding: 12px 10px;
+  text-transform: uppercase;
 }
 
 svg {
@@ -180,5 +185,6 @@ input, select, textarea {
 }
 
 label {
-  color: var(--background);
+  color: var(--text);
+  font-weight: 600;
 }
