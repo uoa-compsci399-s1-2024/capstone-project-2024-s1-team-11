@@ -1,7 +1,6 @@
 import Header from '../components/header';
 import Footer from '../components/footer';
 import TopImage from '../components/top-image';
-import { isFromQRCode } from '../../../server/utils/authentication';
 import { useState, useEffect } from 'react';
 
 
