@@ -4,6 +4,8 @@ import Header from '../components/header';
 import Footer from '../components/footer';
 import EditProfileModal from '../components/edit-profile-modal';
 import Modal from '../components/modal';
+import '../profile_styles.css';
+import API from '../../api';
 
 const ProfilePage = () => {
   const navigate = useNavigate();
@@ -22,7 +24,7 @@ const ProfilePage = () => {
     if (user_id) {
       const fetchUserData = async () => {
         try {
-          const response = await fetch(`http://localhost:5000/profile/${user_id}`);
+          const response = await fetch(API + `/profile/${user_id}`);
           if (!response.ok) {
             throw new Error('Failed to fetch user data');
           }
@@ -59,52 +61,54 @@ const ProfilePage = () => {
     <>
       <Header />
       <main>
-      <article className='side-padding'>
         <div className="profile-container">
           <img src="/default_avatar.jpg" alt="Profile Picture" className="profile-picture" />
-          <h1 className="greeting">{userData ? `Hi, ${userData.username}!` : 'Hi, Username!'}</h1>
+          <p className="greeting">{userData ? `Hi, ${userData.username}!` : 'Hi, Username!'}</p>
           <p>{userData ? userData.district : 'Auckland'}</p>
           <div className="buttons-section">
-            <button onClick={openEditProfileModal} className="profile-button">Edit profile</button>
-          </div>
+          <button onClick={openEditProfileModal} className="profile-button">Edit profile</button>
+        </div>
 
         {/* Render EditProfileModal */}
         <EditProfileModal isOpen={isEditProfileModalOpen} onClose={closeEditProfileModal} />
-          <div className='profile-card'>
-            <div>Total rocks found:</div><div> {userData ? userData.rock_count : '0'}</div>
-          </div>
+          <p>Total rocks found: {userData ? userData.rock_count : '0'}</p>
         </div>
         
+        <div className="badges-section">
           <h2>Badges</h2>
-          <div className="badges-section">
+          <div className="rounded-border1">
+            <ul className="list-container">
               {userData && userData.badges && userData.badges.map(badge => (
-                <div key={badge.badge_id} className="badge-square">{badge.name}</div>
+                <li key={badge.badge_id} className="badge-square">{badge.name}</li>
               ))}
+            </ul>
           </div>
+        </div>
 
         <div className="rocks-section">
-          <h2>Rocks collected</h2>
-          <div className="badges-section">
+          <h2>Rocks</h2>
+          <div className="rounded-border2">
+            <ul className="list-container">
               {userData && userData.rocks && userData.rocks.map(rock => (
                 <li key={rock.rock_id} className="badge-square">{rock.name}</li>
               ))}
+            </ul>
           </div>
         </div>
         
         <div className="profile-container">
           <div className="action-buttons">
             <div className="button-container">
-              <button onClick={() => navigate('/leaderboard')} className="btn">View the Leaderboard</button>
+              <button onClick={() => navigate('/leaderboard')} className="action-button">View the Leaderboard</button>
             </div>
             <div className="button-container">
-              <button onClick={() => navigate('/rocks')} className="btn blue">View All Rocks</button>
+              <button onClick={() => navigate('/rocks')} className="action-button">View All Rocks</button>
             </div>
             <div className="button-container">
-              <button className="btn yellow">Rock Finding Tips</button>
+              <button className="action-button">Rock Finding Tips</button>
             </div>
           </div>
         </div>
-        </article>
       </main>
       <Footer />
     </>

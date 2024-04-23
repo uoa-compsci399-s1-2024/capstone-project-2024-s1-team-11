@@ -71,10 +71,6 @@ ul, ol {
   padding: 0 var(--border-padding);
 }
 
-.top-padding {
-  padding-top: var(--border-padding);
-}
-
 main {
   padding-top: 80px;
 }
@@ -103,15 +99,7 @@ button {
   width: 100%;
   text-align: center;
   padding: 12px 10px;
-  margin-bottom: 16px;
   text-transform: uppercase;
-}
-.blue {
-  background-color: var(--blue);
-}
-
-.yellow {
-  background-color: var(--yellow);
 }
 
 svg {
@@ -206,9 +194,10 @@ input, select, textarea {
 }
 
 .rocks {
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  display: grid;
+  justify-content: space-evenly;
+  grid-template-columns: auto auto;
+  word-wrap: break-word;
 }
 
 .dropDownMenu {
@@ -218,7 +207,8 @@ input, select, textarea {
 }
 
 .searchBar {
-  padding-left: 10px;
+  padding-left: auto;
+  padding-right: 10px;
 }
 
 #rocksList {
@@ -226,72 +216,19 @@ input, select, textarea {
   justify-content: space-evenly;
   grid-template-columns: auto auto;
   word-wrap: break-word;
-  gap: 10px;
+  gap: 60px;
   padding-top: 10px;
+  padding-right: 10px;
   padding-bottom: 10px;
 }
 
 .square {
-  background-color: var(--blue);
+  height: 130px;
+  width: 130px;
+  background-color: green;
 }
 
 label {
   color: var(--text);
   font-weight: 600;
-}
-
-/* profile styles */
-
-.profile-picture {
-  border-radius: 50%;
-  margin: 20px auto;
-  max-width: 70%;
-}
-.profile-container h1 {
-  font-size: 30px;
-  text-align: center;
-  padding-bottom: 0;
-}
-
-.profile-container p {
-  text-align: center;
-}
-
-.profile-button {
-  display: block;
-  background-color: var(--green);
-  border: 1px solid var(--text);
-  border-radius: 8px;
-  width: auto;
-  text-align: center;
-  padding: 12px 10px;
-  margin: 0 auto 20px auto;
-  text-transform: uppercase;
-}
-
-.profile-card {
-  border: 1px solid var(--text);
-  border-radius: 8px;
-  padding: 20px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin: 0 0 20px 0;
-}
-
-.badges-section {
-  border: 1px solid var(--text);
-  border-radius: 8px;
-  padding: 14px 20px;
-  margin: 0 0 20px 0;
-}
-
-.badge-square {
-  display: inline-block;
-  background-color: var(--grey);
-  border-radius: 50%;
-  width: 60px;
-  height: 60px;
-  text-align: center;
-  margin-right: 20px;
 }

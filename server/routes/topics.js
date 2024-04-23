@@ -4,6 +4,7 @@ const Repository = require('../repository/repository');
 
 
 router.get("/", async(req, res) => {
+    console.log(req.session);
     repo = await Repository.getRepoInstance();
     repo.getAllTopics().then((topics) => { 
         res.json(Object.fromEntries(topics)); 

@@ -13,8 +13,7 @@ function Navigation() {
         <li><NavLink to={`/rocks`}>Rocks & Maths Topics</NavLink>
           <ul>
             <li><NavLink to={`/rocks/0`}>0</NavLink></li>
-            <li><NavLink to={`/rocks/0`}>1</NavLink></li>
-
+            <li>Need to loop through items ....</li>
           </ul>
         </li>
         <li><NavLink to={`/leaderboard`}>Leaderboard</NavLink></li>

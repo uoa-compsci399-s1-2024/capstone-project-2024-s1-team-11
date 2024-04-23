@@ -134,16 +134,22 @@ class Repository {
         return user;
     }
 
+    async getUserByUsername(username){
+        let user = await User.findOne({where: {username: username}});
+        return user;
+    }
     async addUser(user){
-        let user_data = await User.findOne({where: {user_id: user.user_id}});
+        let user_data = await User.findOne({where: {username: user.username}});
         if (user_data === null){     // Checks whether the same user already exist.
             await User.build({ user_id: user.user_id, 
-                                username: user.username, 
+                                username: user.username,
+                                alias: user.alias,
                                 password: user.password, 
+                                salt: user.salt,
                                 email: user.email, 
                                 district: user.district }).save();
         }else{
-            throw new Error(`User with ID: ${user.user_id} already exists in the database.`);
+            throw new Error(`User with username: ${user.username} already exists in the database.`);
         }
     }
 
