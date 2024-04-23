@@ -48,6 +48,7 @@ const Leaderboard = () => {
     <>
       <Header />
       <main>
+      <article className='side-padding top-padding'>
         <h1 className="leaderboard-header">Leaderboard</h1>
         <table className="leaderboard-table">
           <thead>
@@ -82,6 +83,7 @@ const Leaderboard = () => {
             ))}
           </tbody>
         </table>
+        </article>
       </main>
       <Footer />
     </>
