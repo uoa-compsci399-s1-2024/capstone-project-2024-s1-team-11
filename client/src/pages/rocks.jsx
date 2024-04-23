@@ -6,9 +6,10 @@ export default function RocksPage() {
     <>
       <Header />
         <main>
-        <article className='side-padding  top-padding'>
-          <h1>Maths topics</h1>
-          <p>Browse topics, or search for your favourite maths concept.</p>
+          <div className="pageText">
+            <h1>Rocks</h1>
+            <p>Browse rocks, or search for your favourite maths concept.</p>
+          </div>
           <div className="rocks">
             <form className="dropDownMenu">
               <select name="sortBy" id="sortBy">
@@ -24,26 +25,15 @@ export default function RocksPage() {
             </form>
           </div>
             <section id="rocksList">
-              <div className="square">
-                <img src="../placeholder.jpg" alt="Image overlay" />
-              </div>
-              <div className="square">
-                <img src="../placeholder.jpg" alt="Image overlay" />
-              </div>
-              <div className="square">
-                <img src="../placeholder.jpg" alt="Image overlay" />
-              </div>
-              <div className="square">
-                <img src="../placeholder.jpg" alt="Image overlay" />
-              </div>
-              <div className="square">
-                <img src="../placeholder.jpg" alt="Image overlay" />
-              </div>
-              <div className="square">
-                <img src="../placeholder.jpg" alt="Image overlay" />
-              </div>
+              <div className="square"></div> {/* image placeholder */}
+              <div className="square"></div>
+              <div className="square"></div>
+              <div className="square"></div>
+              <div className="square"></div>
+              <div className="square"></div>
+
             </section>
-          </article>
+          
         </main>
         <Footer />
     </>

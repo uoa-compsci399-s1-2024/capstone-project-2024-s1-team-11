@@ -26,8 +26,8 @@ border-radius: 50%;
   align-items: center;
   justify-content: flex-start; 
   padding: 5px 10px;
-  background-color: var(--blue);
-  color: var(--background);
+  background-color: #6ac5fe;
+  color: white;
   border-radius: 10px;
   text-align: center; 
 
@@ -37,7 +37,7 @@ border-radius: 50%;
   align-items: center;
   justify-content: flex-start; 
   padding: 5px 10px;
-  background-color: var(--green);
+  background-color: #66FF01;
   color: white;
   border-radius: 10px;
   text-align: center; 
@@ -47,7 +47,7 @@ border-radius: 50%;
   align-items: center;
   justify-content: flex-start; 
   padding: 5px 10px;
-  background-color: var(--yellow);
+  background-color: #ffd900;
   color: white;
   border-radius: 10px;
   text-align: center; 
@@ -57,7 +57,7 @@ border-radius: 50%;
   align-items: center;
   justify-content: flex-start; 
   padding: 5px 10px;
-  background-color: var(--red);
+  background-color: #ff6961;
   color: white;
   border-radius: 10px;
   text-align: center; 
@@ -79,5 +79,4 @@ border-radius: 50%;
 
 .leaderboard-table tbody td {
   background-color: #e1dfe1; 
-  padding: 6px;
 }
