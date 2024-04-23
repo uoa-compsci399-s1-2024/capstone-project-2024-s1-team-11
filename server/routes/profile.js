@@ -1,5 +1,6 @@
 const express = require('express');
 const { User, Users_Rocks, Users_Badges, Rock, Badge} = require('../models'); 
+const Repostitory = require('../repository/repository');
 
 const router = express.Router();
 

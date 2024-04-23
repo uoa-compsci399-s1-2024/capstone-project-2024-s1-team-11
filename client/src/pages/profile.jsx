@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom'; 
+import Cookies from 'js-cookie';
 import Header from '../components/header';
 import Footer from '../components/footer';
 import EditProfileModal from '../components/edit-profile-modal';
@@ -37,6 +38,10 @@ const ProfilePage = () => {
 
       fetchUserData();
     } else {
+
+      if (Cookies.get('user_id')){
+        navigate(`/profile/${Cookies.get('user_id')}`);
+      }
       // Set default user data for display purposes - DELETE later
       setUserData({
         username: 'Billy',

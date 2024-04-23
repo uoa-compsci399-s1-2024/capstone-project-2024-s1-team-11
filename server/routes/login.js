@@ -17,7 +17,7 @@ router.post('/', async (req, res) => {
             if (bcrypt.compare(password, user.password)){
                 req.session.user = username;
                 console.log(req.session);
-                return res.status(201).send({message: 'Authenticated!'});
+                return res.status(201).json({username: username, user_id: user.user_id});
             }
         }
         return res.status(401).send({message: 'Authentication failed!'});
