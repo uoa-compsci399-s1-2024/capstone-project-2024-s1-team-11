@@ -226,6 +226,7 @@ input, select, textarea {
   height: 130px;
   width: 130px;
   background-color: green;
+}
 
 label {
   color: var(--text);

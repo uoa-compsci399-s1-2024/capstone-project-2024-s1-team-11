@@ -2,8 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom'; 
 import Header from '../components/header';
 import Footer from '../components/footer';
-import EditProfileModal from '../components/edit-profile-modal/EditProfileModal';
-import '../profile_styles.css'; 
+import EditProfileModal from '../components/edit-profile-modal';
+import Modal from '../components/modal';
 
 const ProfilePage = () => {
   const navigate = useNavigate();

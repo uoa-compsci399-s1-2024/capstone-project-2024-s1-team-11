@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import Modal from 'react-modal';
-import './edit_profile_styles.css';
+import Modal from '../modal';
+import './styles.css';
 
 const EditProfileModal = ({ isOpen, onClose }) => {
   const [editingUsername, setEditingUsername] = useState(false);
