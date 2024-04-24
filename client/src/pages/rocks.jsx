@@ -1,7 +1,29 @@
 import Header from '../components/header';
 import Footer from '../components/footer';
+import React, {useState, useEffect} from 'react';
 
-export default function RocksPage() {
+const RocksPage = () => {
+  const [rocks, setRocks] = useState([]);
+  useEffect(() => {
+    fetchRocks();
+  }, []);
+
+  const fetchRocks = async () => {
+    const fetchPromise = await fetch('http://localhost:5000/rocks');
+    fetchPromise = await fetchPromise.json();
+    setRocks(fetchPromise);
+  }
+
+  useEffect(() => {
+    if(rocks.length == 0) {
+      const randomRocks = [
+        {rock_name: 0, rock_image: "none", product_key: 0}, {rock_name: 1, rock_image: "none", product_key: 1}
+      ]
+      setRocks(randomRocks);
+    }
+  }, [rocks]);
+
+
   return (
     <>
       <Header />
@@ -27,10 +49,9 @@ export default function RocksPage() {
             <section id="rocksList">
               <div className="square"></div> {/* image placeholder */}
               <div className="square"></div>
-              <div className="square"></div>
-              <div className="square"></div>
-              <div className="square"></div>
-              <div className="square"></div>
+              {rocks.map((rock) => (
+                <img src={rock.rock_image} alt={rock.rock_name} key={rock.product_key} height="130" width="130"/>
+              ))}
 
             </section>
           
@@ -39,3 +60,4 @@ export default function RocksPage() {
     </>
   );
 }
+export default RocksPage;
