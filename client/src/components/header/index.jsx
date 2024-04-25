@@ -12,7 +12,7 @@ function Navigation() {
         <li><NavLink to={`/about`}>About Maths Rocks</NavLink></li>
         <li><NavLink to={`/rocks`}>Rocks & Maths Topics</NavLink>
           <ul>
-            <li><NavLink to={`/rocks/0`}>0</NavLink></li>
+            <li><NavLink to={`/rocks/1`}>0</NavLink></li>
           </ul>
         </li>
         <li><NavLink to={`/leaderboard`}>Leaderboard</NavLink></li>

@@ -52,7 +52,7 @@ const router = createBrowserRouter([
     element: <RocksPage />,
   },
   {
-    path: "rocks/:rockName",
+    path: "rocks/:rock_id",
     element: <RockTopicPage />,
   },
 ]);
