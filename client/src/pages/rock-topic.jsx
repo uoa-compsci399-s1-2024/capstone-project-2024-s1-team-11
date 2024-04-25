@@ -2,11 +2,12 @@ import Header from '../components/header';
 import Footer from '../components/footer';
 import TopImage from '../components/top-image';
 import React, { useState, useEffect } from 'react';
-import { Link, useParams } from "react-router-dom";
+import { Link, useParams, useLocation } from "react-router-dom";
 
 
 export default function RockTopicPage() {
   const { rock_id } = useParams();
+  const location = useLocation();
   const [rock, setRock] = useState(null);
   console.log(rock_id);
 
@@ -27,6 +28,12 @@ export default function RockTopicPage() {
       fetchRockInfo();
     }
   }, [rock_id]);
+
+  // Extracting product_key from the URL
+  const urlSearchParams = new URLSearchParams(location.search);
+  const productKeyFromUrl = urlSearchParams.get('product_key');
+
+  const showCollectButton = rock && productKeyFromUrl === rock.product_key;
   return (
     <>
       <Header />
@@ -37,11 +44,11 @@ export default function RockTopicPage() {
               <>
                 <h1>{rock.rock_name}</h1>
                 <p>{rock.product_key}</p>
-                {/* Render topic information if available */}
+                {/* Render topic information if available, this part still needs to be fixed*/}
                 {rock.topic && (
                   <p>Topic: {rock.topic.title}</p>
                 )}
-                <Link to={`/rocks`}><button className='btn'>SIGN IN TO COLLECT +</button></Link>
+                {showCollectButton && <Link to={`/rocks`}><button className='btn'>SIGN IN TO COLLECT +</button></Link>}
               </>
             )}
             <h2>Rock hunting tips</h2>
