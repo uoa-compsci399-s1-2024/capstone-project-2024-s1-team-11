@@ -9,7 +9,7 @@ export default function RockTopicPage() {
   const { rock_id } = useParams();
   const location = useLocation();
   const [rock, setRock] = useState(null);
-  console.log(rock_id);
+  const [topic, setTopic] = useState(null);
 
   useEffect(() => {
     if (rock_id) {
@@ -21,6 +21,13 @@ export default function RockTopicPage() {
           }
           const data = await response.json();
           setRock(data);
+
+          const topicResponse = await fetch(`http://localhost:5000/topics/${data.topic_id}`);
+          if (!topicResponse.ok) {
+            throw new Error('Failed to fetch topic information');
+          }
+          const topicData = await topicResponse.json();
+          setTopic(topicData);
         } catch (error) {
           console.error('Error fetching rock information:', error);
         }
@@ -40,13 +47,13 @@ export default function RockTopicPage() {
         <main>
           <TopImage />
           <article className='side-padding'>
-            {!rock || !rock.rock_name ? null : (
+            {rock && rock.rock_name && (
               <>
-                <h1>{rock.rock_name}</h1>
-                <p>{rock.product_key}</p>
-                {/* Render topic information if available, this part still needs to be fixed*/}
-                {rock.topic && (
-                  <p>Topic: {rock.topic.title}</p>
+                {topic && topic.title && topic.description && (
+                  <>
+                    <h1>{topic.title}</h1>
+                    <p>{topic.description}</p>
+                  </>
                 )}
                 {showCollectButton && <Link to={`/rocks`}><button className='btn'>SIGN IN TO COLLECT +</button></Link>}
               </>
