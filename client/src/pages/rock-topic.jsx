@@ -41,6 +41,7 @@ export default function RockTopicPage() {
   const productKeyFromUrl = urlSearchParams.get('product_key');
 
   const showCollectButton = rock && productKeyFromUrl === rock.product_key;
+  const isAuthenticated = true; // Add proper auth, but for now changing this to true or false will change which button appears
   return (
     <>
       <Header />
@@ -55,7 +56,15 @@ export default function RockTopicPage() {
                     <p>{topic.description}</p>
                   </>
                 )}
-                {showCollectButton && <Link to={`/rocks`}><button className='btn'>SIGN IN TO COLLECT +</button></Link>}
+                {showCollectButton && (
+                  <>
+                    {isAuthenticated ? (
+                      <Link to={`/rocks`}><button className='btn'>ADD TO COLLECTION +</button></Link>
+                    ) : (
+                    <Link to={`/rocks`}><button className='btn'>SIGN IN TO COLLECT +</button></Link>
+                    )}
+                  </>
+                )}
               </>
             )}
             <h2>Rock hunting tips</h2>
