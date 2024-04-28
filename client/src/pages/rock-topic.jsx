@@ -3,6 +3,7 @@ import Footer from '../components/footer';
 import TopImage from '../components/top-image';
 import React, { useState, useEffect } from 'react';
 import { Link, useParams, useLocation } from "react-router-dom";
+import Cookies from "js-cookie";
 
 
 export default function RockTopicPage() {
@@ -10,6 +11,7 @@ export default function RockTopicPage() {
   const location = useLocation();
   const [rock, setRock] = useState(null);
   const [topic, setTopic] = useState(null);
+  const [isLogged, setIsLogged] = useState(!!Cookies.get('username'));
 
   useEffect(() => {
     if (rock_id) {
@@ -41,7 +43,6 @@ export default function RockTopicPage() {
   const productKeyFromUrl = urlSearchParams.get('product_key');
 
   const showCollectButton = rock && productKeyFromUrl === rock.product_key;
-  const isAuthenticated = true; // Add proper auth, but for now changing this to true or false will change which button appears
   return (
     <>
       <Header />
@@ -58,7 +59,7 @@ export default function RockTopicPage() {
                 )}
                 {showCollectButton && (
                   <>
-                    {isAuthenticated ? (
+                    {isLogged ? (
                       <Link to={`/rocks`}><button className='btn'>ADD TO COLLECTION +</button></Link>
                     ) : (
                     <Link to={`/rocks`}><button className='btn'>SIGN IN TO COLLECT +</button></Link>
