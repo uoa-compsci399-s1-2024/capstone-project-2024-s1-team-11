@@ -138,6 +138,12 @@ class Repository {
         let user = await User.findOne({where: {username: username}});
         return user;
     }
+
+    async getUserByEmail(email){
+        let user = await User.findOne({where: {email: email}});
+        return user;
+    }
+
     async addUser(user){
         let user_data = await User.findOne({where: {username: user.username}});
         if (user_data === null){     // Checks whether the same user already exist.

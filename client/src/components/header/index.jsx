@@ -2,8 +2,9 @@ import './styles.css'
 import mathsRocksLogo from '/maths-rocks-logo.svg';
 import Hamburger from '../Hamburger';
 import { Link, NavLink } from "react-router-dom";
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Modal from '../modal';
+import Cookies from "js-cookie";
 
 function Navigation() {
   return (
@@ -24,8 +25,9 @@ function Navigation() {
 }
 
 function LoginBtn() {
-  const [modalOpen, setModalOpen] = useState(false)
-  const [displayLoginForm, setdisplayLoginForm] = useState(true)
+  const [modalOpen, setModalOpen] = useState(false);
+  const [displayLoginForm, setdisplayLoginForm] = useState(true);
+  const [isLogged, setIsLogged] = useState(!Cookies.get('username') === undefined);
 
   function handleState() {
     setModalOpen(!modalOpen);
@@ -36,12 +38,29 @@ function LoginBtn() {
     setdisplayLoginForm(!displayLoginForm);
   }
 
+  useEffect(() => {
+    if (Cookies.get('username') !== undefined){
+      setIsLogged(true);
+    }else{
+      setIsLogged(false);
+    }
+  }); 
+
   return (
     <>
       <div className="login-nav-btn">
+        {!Cookies.get('username') && isLogged == false &&
         <button onClick={() => { setModalOpen(!modalOpen); }}>
           Login <br></br>or Join <span className='triangle'></span>
-        </button>
+        </button>}
+        {Cookies.get('username') && isLogged == true &&
+        <button onClick={() => { 
+          Cookies.remove('username');
+          Cookies.remove('user_id');
+          setIsLogged(false);
+          }}>
+          Logout <span className='triangle'></span>
+        </button>}
       </div>
       <div className={modalOpen ? 'open-modal' : ''}>
         <Modal close={handleState} formFunction={handleFormState} formState={displayLoginForm} />
