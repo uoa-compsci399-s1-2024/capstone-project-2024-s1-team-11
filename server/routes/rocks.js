@@ -12,7 +12,7 @@ router.get("/", async(req, res) => {
 
 router.get("/:rock_id", async (req, res) => {
     repo = await Repository.getRepoInstance();
-    const { rock_id } = req.params;
+    let { rock_id } = req.params;
     rock_id = Number.parseInt(rock_id);
     repo.getRock(rock_id).then((rock) => {
         res.json(rock);
