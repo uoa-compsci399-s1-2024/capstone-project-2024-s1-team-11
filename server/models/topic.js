@@ -17,7 +17,17 @@ Topic.init(
         },
         description: {
             type: DataTypes.TEXT
-        } 
+        },
+        imageUri: {
+            type: DataTypes.STRING,
+            defaultValue: "placeholder.jpg"
+        },
+        metaTitle: {
+            type: DataTypes.STRING
+        },
+        metaDescription: {
+            type: DataTypes.TEXT
+        }
     },
     { 
         sequelize,

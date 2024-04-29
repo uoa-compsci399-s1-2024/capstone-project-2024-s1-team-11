@@ -11,6 +11,10 @@ Avatar.init(
             primaryKey: true,
             autoIncrement: true,
             allowNull: false
+        },
+        imageUri: {
+            type: DataTypes.STRING,
+            defaultValue: "avatar-00.jpg"
         }
     },
     { 
