@@ -37,17 +37,17 @@ export default function LoginForm({formFunction}) {
                     <label name="username">Username
                         <input name="username" type='text' value={username} onChange={(e) => setUsername(e.target.value)}></input>
                     </label>
-                    <p>Forgot username?</p>
+                    <p><a href="#">Forgot username?</a></p>
                     <label name="password">Password
                         <input name="password" type='password' value={password} onChange={(e) => setPassword(e.target.value)}></input>
                     </label>
-                    <p>Forgot password?</p>
+                    <p><a href="#">Forgot password?</a></p>
                     <p>Insert captcha/I'm not a robot</p>
                     <button type='submit' className='btn'>login</button>
                 </form>
                 <section className='register-btn'>
                     <h2>New to Maths Rocks?</h2>
-                    <button className='btn' onClick={() => formFunction()}>Create an account</button>
+                    <button className='btn blue' onClick={() => formFunction()}>Create an account</button>
                 </section>
             </section>
         }

@@ -1,5 +1,6 @@
 :root {
   --text: #1e3e4d;
+  --text-trans: #1e3e4d66;
   --background: #fff;
   --background-trans: rgba(255,255,255,0.95);
   --green: #06c49e;
@@ -63,6 +64,11 @@ a, a:link {
   color: var(--green);
 }
 
+a:hover {
+  text-decoration: underline;
+  color: var(--blue);
+}
+
 ul, ol {
   margin: 1.25rem;
 }
@@ -102,10 +108,19 @@ button {
   border-radius: 8px;
   width: 100%;
   text-align: center;
-  padding: 12px 10px;
+  padding: 12px 30px;
   margin-bottom: 16px;
   text-transform: uppercase;
 }
+
+.btn:hover {
+  background-image: linear-gradient(var(--green),var(--blue));
+}
+
+form .btn {
+  width: auto;
+}
+
 .blue {
   background-color: var(--blue);
 }
@@ -129,6 +144,11 @@ svg {
   margin: 0 auto 2.5rem auto;
 }
 
+@keyframes pulse {
+  from { transform: scale(0.8); }
+  to { transform: scale(1.2); }
+}
+
 .floating-btn1, .floating-btn2, .floating-btn3 {
   position: absolute;
   border-radius: 50%;
@@ -138,10 +158,19 @@ svg {
   z-index: 1;
 }
 
+.floating-btn1 img, .floating-btn2 img, .floating-btn3 img {
+  max-height: 60%;
+}
+
+.floating-btn1:hover, .floating-btn2:hover, .floating-btn3:hover {
+box-shadow: inset 0 0 14px var(--text);
+}
+
 .floating-btn1 {
   background-color: var(--blue);
   bottom: 0;
   left: var(--border-padding);
+  animation: pulse 1s infinite ease-in-out alternate;
 }
 
 .floating-btn2 {
@@ -149,12 +178,14 @@ svg {
   bottom: 30px;
   left: 50%;
   translate: -50%;
+  animation: pulse 1s infinite ease-in-out alternate .4s;
 }
 
 .floating-btn3 {
   background-color: var(--yellow);
   bottom: 0;
-  right: var(--border-padding);;
+  right: var(--border-padding);
+  animation: pulse 1s infinite ease-in-out alternate .7s;
 }
 
 .home .section1, .home .section2, .home .section3 {
