@@ -106,7 +106,6 @@
   .login-nav-btn button:hover {
     background-color: var(--green);
     background-image: linear-gradient(var(--green),var(--blue));
-
   }
 
   .triangle {
@@ -139,5 +138,28 @@
 
   .home.show .header {
     border-bottom: 1px solid var(--text);
+  }
+
+  @media only screen and (min-width: 768px) {
+    .header {
+      height: 100px;
+    }
+    .login-nav-btn button {
+      padding: 10px 14px 10px 26px;
+      height: 52px;
+    }
+    .triangle {
+      border-top: 26px solid transparent;
+      border-left: 20px solid var(--background);
+      border-bottom: 26px solid transparent;
+    }  
+  }
+  
+  @media only screen and (min-width: 992px) {
+
+  }
+  
+  @media only screen and (min-width: 1200px) {
+    
   }
   

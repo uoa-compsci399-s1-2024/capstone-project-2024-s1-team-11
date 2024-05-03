@@ -88,3 +88,18 @@
     text-align: center;
     padding-top: 50%;
   }
+
+  @media only screen and (min-width: 768px) {
+    .login-form {
+      padding-top: 160px;
+    }  
+  }
+  
+  @media only screen and (min-width: 992px) {
+
+  }
+  
+  @media only screen and (min-width: 1200px) {
+    
+  }
+  
