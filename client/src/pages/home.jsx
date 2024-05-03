@@ -2,16 +2,46 @@ import mathsRocksLogo from '/maths-rocks-logo.svg';
 import Header from '../components/header';
 import Footer from '../components/footer';
 import { Link } from "react-router-dom";
+import { useState, useEffect } from 'react';
 
 
 export default function HomePage() {
+  const [scrollY, setScrollY] = useState(0);
+  const [imageSize, setImageSize] = useState(100)
+  const [showHeader, setShowHeader] = useState(false)
+
+  function logit() {
+    setScrollY(window.scrollY);
+    if (scrollY > 0) {
+      setImageSize(100 - scrollY);
+    } 
+    if (imageSize <= 0) {
+      setShowHeader(true);
+    }
+    if (imageSize > 0) {
+      setShowHeader(false);
+    }
+  }
+
+  useEffect(() => {
+    function watchScroll() {
+      window.addEventListener("scroll", logit);
+    }
+    watchScroll();
+    return () => {
+      window.removeEventListener("scroll", logit);
+    };
+  });
+
   return (
     <>
-      <div className="home">
+      <div className={showHeader ? 'home show' : 'home'}>
       <Header />
         <main>
         <section className='section1 side-padding'>
-          <img src={mathsRocksLogo} alt="Maths Rocks logo" title="Maths Rocks" className='main-logo' />
+          <div className='main-logo-container'>
+            <img src={mathsRocksLogo} alt="Maths Rocks logo" title="Maths Rocks" className="main-logo" style={{width: imageSize + "%"}} />
+          </div>
           <Link to={`/rocks`}><button className='floating-btn1'><img src="/rock-icon.svg" alt="An icon of a rock" title="Browse maths topics!" /></button></Link>
           <Link to={`/about`}><button className='floating-btn2'><img src="/about-icon.svg" alt="An icon of an information symbol" title="Learn more about Maths Rocks!" /></button></Link>
           <Link to={`/leaderboard`}><button className='floating-btn3'><img src="/leaderboard-icon.svg" alt="An icon of a leaderboard" title="Check out the leaderboard!" /></button></Link>

@@ -133,4 +133,11 @@
     border-bottom: none;
   }
   
+  .home.show .logo {
+    visibility: visible;
+  }
+
+  .home.show .header {
+    border-bottom: 1px solid var(--text);
+  }
   
