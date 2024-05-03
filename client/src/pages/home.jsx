@@ -27,8 +27,30 @@ export default function HomePage() {
                 <Link to={`/about`}><button className='btn'>LEARN MORE</button></Link >
             </div>
           </section>
-          <section className='section3'>
-            <p>Swipe through rocks still to be completed</p>
+          <section className='section3 side-padding top-padding'>
+            <h2>Browse maths topics</h2>
+            <div className="rock-grid">
+              <div className="rock-grid-item">
+                <div className='circle'><img src="../placeholder.jpg" alt="Image overlay" /></div>
+                <h3>What's so cool about the number 0?</h3>
+                <button className='btn'>Learn More</button>
+              </div>
+              <div className="rock-grid-item">
+                <img src="../placeholder.jpg" alt="Image overlay" />
+                <h3>Why we love the number 1!</h3>
+                <button className='btn'>Learn More</button>
+              </div>
+              <div className="rock-grid-item">
+                <img src="../placeholder.jpg" alt="Image overlay" />
+                <h3>Learn about the number 2</h3>
+                <button className='btn'>Learn More</button>
+              </div>
+              <div className="rock-grid-item">
+                <img src="../placeholder.jpg" alt="Image overlay" />
+                <h3>Learn about the number 3</h3>
+                <button className='btn'>Learn More</button>
+              </div>
+            </div>
           </section>
 
         </main>
