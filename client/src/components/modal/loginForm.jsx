@@ -53,7 +53,7 @@ export default function LoginForm({formFunction}) {
         }
         { (Cookies.get('username') || isLogged) &&
             <section className='login-success-msg'>
-                <p>Welcome back, {Cookies.get('username')}!</p>
+                <p>Welcome back,<br></br> {Cookies.get('username')}!</p>
             </section>
         }
     </main>
