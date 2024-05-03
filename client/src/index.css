@@ -50,12 +50,12 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 h1 {
-    font-size: 24px;
+    font-size: 1.5rem;
     padding-bottom: 14px;
 }
 
 h2 {
-  font-size: 20px;
+  font-size: 1.25rem;
   padding-bottom: 8px;
 }
 
@@ -353,12 +353,21 @@ label {
 }
 
 @media only screen and (min-width: 768px) {
+  h1 {
+    font-size: 1.875rem;
+  }
+  main {
+    padding-top: 100px;
+  }
   .main-logo-container {
     width: 70%;
   }
   .side-padding {
     padding: 0 60px;
   }
+  .top-padding {
+    padding-top: 20px;
+}
   .floating-btn1, .floating-btn2, .floating-btn3 {
     width: 100px;
     height: 100px;
@@ -382,7 +391,7 @@ label {
     padding-top: 40px;
   }
   .section3 h2 {
-    font-size: 26px;
+    font-size: 1.625rem;
   }
 }
 
