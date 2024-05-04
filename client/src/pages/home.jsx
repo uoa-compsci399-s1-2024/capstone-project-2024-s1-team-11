@@ -1,6 +1,7 @@
 import mathsRocksLogo from '/maths-rocks-logo.svg';
 import Header from '../components/header';
 import Footer from '../components/footer';
+import TopicCards from '../components/topic';
 import { Link } from "react-router-dom";
 import { useState, useEffect } from 'react';
 
@@ -54,35 +55,15 @@ export default function HomePage() {
             </span>
             <div className='txt-overlay'>
               <p>What is maths rocks introduction paragraph ed eatur repeliqui vele ctorro ga. Num qui oditatio demquia quo earchite volo.</p>
-                <Link to={`/about`}><button className='btn'>LEARN MORE</button></Link >
+              <Link to={`/about`}><button className='btn'>LEARN MORE</button></Link >
             </div>
           </section>
           <section className='section3 side-padding top-padding'>
             <h2>Browse maths topics</h2>
             <div className="rock-grid">
-              <div className="rock-grid-item">
-                <div className='circle'><img src="../placeholder.jpg" alt="Image overlay" /></div>
-                <h3>What's so cool about the number 0?</h3>
-                <button className='btn'>Learn More</button>
-              </div>
-              <div className="rock-grid-item">
-                <img src="../placeholder.jpg" alt="Image overlay" />
-                <h3>Why we love the number 1!</h3>
-                <button className='btn'>Learn More</button>
-              </div>
-              <div className="rock-grid-item">
-                <img src="../placeholder.jpg" alt="Image overlay" />
-                <h3>Learn about the number 2</h3>
-                <button className='btn'>Learn More</button>
-              </div>
-              <div className="rock-grid-item">
-                <img src="../placeholder.jpg" alt="Image overlay" />
-                <h3>Learn about the number 3</h3>
-                <button className='btn'>Learn More</button>
-              </div>
+              <TopicCards />
             </div>
           </section>
-
         </main>
         <Footer />
       </div>

@@ -86,20 +86,16 @@
     margin: 0 auto;
     font-size: 30px;
     text-align: center;
-    padding-top: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
   }
 
+  /* tablet styles */
   @media only screen and (min-width: 768px) {
     .login-form {
       padding-top: 160px;
     }  
-  }
-  
-  @media only screen and (min-width: 992px) {
-
-  }
-  
-  @media only screen and (min-width: 1200px) {
-    
   }
   
