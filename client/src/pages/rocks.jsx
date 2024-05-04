@@ -3,40 +3,42 @@ import Footer from '../components/footer';
 import React, {useState, useEffect} from 'react';
 
 const RocksPage = () => {
-  const [rocks, setRocks] = useState([]);
-  const [q, setQ] = useState("");
-  const [searchParam] = useState(["topic", "name"]);
+  const [topics, setTopics] = useState([]);
+
   useEffect(() => {
-    fetchRocks();
-    console.log(rocks);
+    const fetchTopics = async () => {
+        const fetchPromise = await fetch('http://localhost:5000/topics');
+        const streamPromise = await response.json();
+        setTopics(data);
+    };
+    //fetchTopics();
+
   }, []);
 
-  const fetchRocks = async () => {
-    const fetchPromise = await fetch('http://localhost:5000/rocks');
-    const streamPromise = await fetchPromise.json();
-    setRocks(streamPromise);
-  }
+  
 
   useEffect(() => {
-    if(rocks.length == 0) {
-      const randomRocks = [
-        {rock_name: "zero", rock_image: "../placeholder.jpg", product_key: 0}, {rock_name: "one", rock_image: "../redSquare.jpg", product_key: 1}
+    if(topics.length == 0) {
+      const randomTopics = [
+        {title: "zero", imageUri: "../placeholder.jpg", topic_id: 0}, {title: "one", imageUri: "../default_avatar.jpg", topic_id: 1},
+        {title: "two", imageUri: "none", topic_id: 2}
       ]
-      setRocks(randomRocks);
-      console.log(rocks);
+     setTopics(randomTopics);
     }
-  }, [rocks]);
+  }, [topics]);
 
-  function search(rocks) {
-    return rocks.filter((item) => {
-      return searchParam.some((newItem) => {
-        return (
-          console.log(newItem)
-          
-        );
-      });
-    });
+  console.log(topics);
+  const [query, setQuery] = useState("");
+  const search_params = Object.keys(Object.assign({}, ...topics));
+
+  function search(topics) {
+    return topics.filter((data) => 
+    search_params.some((param) =>
+    data[param].toString().toLowerCase().includes(query)
+      )
+    );
   }
+  
 
 
   return (
@@ -58,17 +60,15 @@ const RocksPage = () => {
                 </select>
             </form>
             <label htmlFor="search-form">
-              <input type="search" name="search-form" id="search-form" className="search-input" size="10" placeholder="Search..." value={q} onChange={(e) => setQ(e.target.value)}></input>
+              <input type="search" name="search-form" id="search-form" className="search-input" size="10" onChange={(e) => setQuery(e.target.value)} placeholder="Search..." ></input>
               
             </label>
           </div>
             <section id="rocksList">
-              {rocks.map((rock) => (
-                <img src={rock.rock_image} alt={rock.rock_name} key={rock.product_key} height="120"/>
+            {search(topics).map((topic) => (
+                <img src={topic.imageUri} alt={topic.title} key={topic.topic_id} height="120" title={topic.title}/>
               ))}
-              {search(rocks).map((item) => (
-                <img src={item.rock_image} alt={item.rock_name} key={item.product_key} height="120"/>
-              ))}
+
 
             </section>
           
