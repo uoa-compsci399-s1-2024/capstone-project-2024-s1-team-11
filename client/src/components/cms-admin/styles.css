@@ -69,11 +69,12 @@ table {
     height: 100%;
     display: flex;
     justify-content: center;
-    align-items: center;
+    align-items: flex-start;
     background: #06c49e55;
     box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(19px);
+    overflow: scroll;
   }
 
   .modal-content {
@@ -81,6 +82,7 @@ table {
     width: 0;
     height: 0;
     position: relative;
+    margin: 40px;
   }
 
   .open-modal {

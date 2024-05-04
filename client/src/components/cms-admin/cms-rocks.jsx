@@ -18,7 +18,7 @@ function EditRock({close}) {
           <label name="rname">Rock name
             <input type="text" name="rname" id='rname' value="Zero" />
           </label>
-          <div className='cms-image'><img src="maths-rocks-zero.jpg" /></div>
+          <div className='cms-image'><img src="/maths-rocks-zero.jpg" /></div>
           <label name="filename">Change the rock image
             <input type="file" id="myFile" name="filename" />
           </label>  

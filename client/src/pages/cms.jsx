@@ -9,8 +9,8 @@ import { useState } from "react";
 
 export default function CmsPage() {
     const [display, setDisplay] = useState({
-        pages: true,
-        topics: false,
+        pages: false,
+        topics: true,
         rocks: false,
         users: false
       });
