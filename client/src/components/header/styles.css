@@ -15,10 +15,6 @@
     color: var(--green);
   }
   
-  .nav, .login-nav-btn {
-    width: 40%;
-  }
-  
   .nav-icon {
     position: relative;
     float: left;
@@ -95,7 +91,6 @@
   
   .login-nav-btn button {
     position: relative;
-    float: right;
     background-color: var(--green);
     border: none;
     text-transform: uppercase;
@@ -138,6 +133,10 @@
 
   .home.show .header {
     border-bottom: 1px solid var(--text);
+  }
+
+  .main-logo.hide {
+    visibility: hidden;
   }
 
   /* tablet styles */

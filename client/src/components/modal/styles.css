@@ -89,7 +89,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh;
+    height: 75vh;
   }
 
   /* tablet styles */
@@ -97,5 +97,16 @@
     .login-form {
       padding-top: 160px;
     }  
+    form .btn {
+      margin-right: 20px;
+      padding: 12px 30px;
+    }
   }
+
+/* desktop styles */
+@media only screen and (min-width: 1200px) {
+  .login-form {
+    padding-top: 0;
+  }
+}
   

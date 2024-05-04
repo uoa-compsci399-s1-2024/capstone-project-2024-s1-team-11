@@ -1,7 +1,6 @@
 .top-image {
     position: relative;
     height: 40vh;
-    background: var(--green);
     overflow: hidden;
     object-fit: cover;
 }
@@ -19,3 +18,14 @@
     width: 100%;
     height: auto;
   }
+
+/* desktop styles */
+@media only screen and (min-width: 1200px) {
+    .bottom-curve {
+        display: none;
+    }
+    .top-image {
+        height: 40vh;
+        margin-bottom: 40px;
+    }
+}

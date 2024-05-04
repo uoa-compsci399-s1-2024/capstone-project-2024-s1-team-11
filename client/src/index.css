@@ -133,11 +133,11 @@ form .btn {
 }
 
 .blue {
-  background-color: var(--blue);
+  background-color: var(--blue) !important;
 }
 
 .yellow {
-  background-color: var(--yellow);
+  background-color: var(--yellow) !important;
 }
 
 svg {
@@ -156,6 +156,7 @@ svg {
 
 .main-logo {
   margin: 0 auto 2.5rem auto;
+  visibility: visible;
 }
 
 @keyframes pulse {
@@ -426,10 +427,36 @@ label {
 
 /* desktop styles */
 @media only screen and (min-width: 1200px) {
+  .main-logo-container {
+    width: 50%;
+    padding-top: 120px;
+  }
+  .home .section2 .txt-overlay {
+    padding: var(--border-padding) 30px;
+    margin-top: 180px;
+    margin-left: 15%;
+    margin-right: 15%;
+  }
+  .floating-btn2 {
+    bottom: -130px;
+  }
   .rock-grid {
     grid-template-columns: 1fr 1fr 1fr 1fr;
   }
   .rock-grid-img {
     height: 12em;
+  }
+  .btn {
+    width: auto;
+    margin-right: 20px;
+  }
+  .txt-overlay .btn {
+    width: 100%;
+    margin-right: 0;
+  }
+  article {
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
   }
 }

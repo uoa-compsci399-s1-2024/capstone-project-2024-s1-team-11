@@ -10,6 +10,8 @@ export default function HomePage() {
   const [scrollY, setScrollY] = useState(0);
   const [imageSize, setImageSize] = useState(100)
   const [showHeader, setShowHeader] = useState(false)
+  const [hideLogo, setHideLogo] = useState(false)
+
 
   function logit() {
     setScrollY(window.scrollY);
@@ -18,9 +20,11 @@ export default function HomePage() {
     } 
     if (imageSize <= 0) {
       setShowHeader(true);
+      setHideLogo(true);
     }
     if (imageSize > 0) {
       setShowHeader(false);
+      setHideLogo(false);
     }
   }
 
@@ -41,7 +45,7 @@ export default function HomePage() {
         <main>
         <section className='section1 side-padding'>
           <div className='main-logo-container'>
-            <img src={mathsRocksLogo} alt="Maths Rocks logo" title="Maths Rocks" className="main-logo" style={{width: imageSize + "%"}} />
+            <img src={mathsRocksLogo} alt="Maths Rocks logo" title="Maths Rocks" className={hideLogo ? 'main-logo hide' : 'main-logo'} style={{width: imageSize + "%"}} />
           </div>
           <Link to={`/rocks`}><button className='floating-btn1'><img src="/rock-icon.svg" alt="An icon of a rock" title="Browse maths topics!" /></button></Link>
           <Link to={`/about`}><button className='floating-btn2'><img src="/about-icon.svg" alt="An icon of an information symbol" title="Learn more about Maths Rocks!" /></button></Link>

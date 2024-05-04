@@ -61,10 +61,10 @@ function LoginBtn() {
           }}>
           Logout <span className='triangle'></span>
         </button>}
-      </div>
-      <div className={modalOpen ? 'open-modal' : ''}>
-        <Modal close={handleState} formFunction={handleFormState} formState={displayLoginForm} />
-      </div>
+        <div className={modalOpen ? 'open-modal' : ''}>
+          <Modal close={handleState} formFunction={handleFormState} formState={displayLoginForm} />
+        </div>
+      </div>  
     </>
   )
 }
