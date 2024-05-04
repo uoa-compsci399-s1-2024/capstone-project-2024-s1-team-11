@@ -433,9 +433,9 @@ label {
   }
   .home .section2 .txt-overlay {
     padding: var(--border-padding) 30px;
-    margin-top: 180px;
-    margin-left: 15%;
-    margin-right: 15%;
+    margin-top: 190px;
+    margin-left: 10%;
+    margin-right: 10%;
   }
   .floating-btn2 {
     bottom: -130px;
