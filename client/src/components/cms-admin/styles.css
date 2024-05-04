@@ -1,0 +1,40 @@
+.cms-nav {
+    border-bottom: 1px solid var(--text);
+    overflow: hidden;
+    margin-bottom: 30px;
+}
+.cms-nav ul {
+    margin: 0;
+}
+.cms-nav li {
+    display: inline-block;
+    background: var(--green);
+    padding: 10px 14px;
+    margin: 0 10px 0 0;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+}
+.cms-nav li:hover, .cms-nav li:active {
+    background-image: linear-gradient(var(--green),var(--blue));
+}
+
+/* table styles */
+table {
+    border-collapse: collapse;
+    width: 100%;
+  }
+  
+  th, td {
+    text-align: left;
+    padding: 8px;
+    border-right: 1px solid var(--grey);
+  }
+
+  th {
+    background-color: var(--blue);
+    font-weight: 600;
+  }
+  
+  tr:nth-child(even) {
+    background-color: #f2f2f2;
+    }
