@@ -9,12 +9,31 @@
 .cms-nav li {
     display: inline-block;
     background: var(--green);
-    padding: 10px 14px;
+    padding: 6px 10px;
     margin: 0 10px 0 0;
     border-top-left-radius: 8px;
     border-top-right-radius: 8px;
+    font-weight: 500;
+    text-transform: uppercase;
 }
-.cms-nav li:hover, .cms-nav li:active {
+.cms-nav li:hover {
+    background: var(--blue);
+}
+
+.cms-nav li.active {
+    background-image: linear-gradient(var(--green),var(--blue));
+}
+
+.cms-btn {
+    background-color: var(--green);
+    border: 1px solid var(--text);
+    border-radius: 8px;
+    text-align: center;
+    padding: 10px;
+    text-transform: uppercase;
+}
+    
+.cms-btn:hover {
     background-image: linear-gradient(var(--green),var(--blue));
 }
 
@@ -27,7 +46,7 @@ table {
   th, td {
     text-align: left;
     padding: 8px;
-    border-right: 1px solid var(--grey);
+    border: 1px solid var(--grey);
   }
 
   th {
@@ -38,3 +57,55 @@ table {
   tr:nth-child(even) {
     background-color: #f2f2f2;
     }
+
+
+/* modal styles */
+.modal-wrapper {
+    visibility: hidden;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #06c49e55;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(19px);
+  }
+
+  .modal-content {
+    position: relative;
+    width: 0;
+    height: 0;
+    position: relative;
+  }
+
+  .open-modal {
+    visibility: visible;
+    z-index: 5;
+  }
+
+  .open-modal .modal-content {
+    width: 950px;
+    height: auto;
+    padding: 30px 40px;
+    border: 1px solid var(--text);
+    border-radius: 10px;
+    background: var(--background);
+  }
+
+  .modal-content .close {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+  }
+
+  .modal-content .close .hamburger {
+    fill: var(--text);
+  }
+  .cms-image {
+    width: 200px;
+  }
