@@ -31,6 +31,8 @@ export default function RegisterForm({formFunction}) {
   
     return (
       <>
+      <main>
+      <section className='login-form'> 
         <h1>Join the Maths Rocks community</h1>
         <form onSubmit={handleRegistration}>
           <label name="username">Username
@@ -58,8 +60,10 @@ export default function RegisterForm({formFunction}) {
           <p>{statusMsg}</p>
           {!isPending && !isSucceed && <button type='submit' className='btn'>Register</button>}
           {isPending && <button type='submit' className='btn' disabled>Registering...</button>}
-          <button className='btn' onClick={() => formFunction()}>Back to login</button>
+          <button className='btn blue' onClick={() => formFunction()}>Back to login</button>
         </form>
+        </section>
+        </main>
       </>
     )
   }

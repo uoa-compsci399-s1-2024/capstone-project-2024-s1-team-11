@@ -1,20 +1,55 @@
 import mathsRocksLogo from '/maths-rocks-logo.svg';
 import Header from '../components/header';
 import Footer from '../components/footer';
+import TopicCards from '../components/topic';
 import { Link } from "react-router-dom";
+import { useState, useEffect } from 'react';
 
 
 export default function HomePage() {
+  const [scrollY, setScrollY] = useState(0);
+  const [imageSize, setImageSize] = useState(100)
+  const [showHeader, setShowHeader] = useState(false)
+  const [hideLogo, setHideLogo] = useState(false)
+
+
+  function logit() {
+    setScrollY(window.scrollY);
+    if (scrollY > 0) {
+      setImageSize(100 - scrollY);
+    } 
+    if (imageSize <= 0) {
+      setShowHeader(true);
+      setHideLogo(true);
+    }
+    if (imageSize > 0) {
+      setShowHeader(false);
+      setHideLogo(false);
+    }
+  }
+
+  useEffect(() => {
+    function watchScroll() {
+      window.addEventListener("scroll", logit);
+    }
+    watchScroll();
+    return () => {
+      window.removeEventListener("scroll", logit);
+    };
+  });
+
   return (
     <>
-      <div className="home">
+      <div className={showHeader ? 'home show' : 'home'}>
       <Header />
         <main>
         <section className='section1 side-padding'>
-          <img src={mathsRocksLogo} alt="Maths Rocks logo" title="Maths Rocks" className='main-logo' />
-          <Link to={`/rocks`}><button className='floating-btn1'>Rocks</button></Link>
-          <Link to={`/about`}><button className='floating-btn2'>About</button></Link>
-          <Link to={`/leaderboard`}><button className='floating-btn3'>Leader<br></br>board</button></Link>
+          <div className='main-logo-container'>
+            <img src={mathsRocksLogo} alt="Maths Rocks logo" title="Maths Rocks" className={hideLogo ? 'main-logo hide' : 'main-logo'} style={{width: imageSize + "%"}} />
+          </div>
+          <Link to={`/rocks`}><button className='floating-btn1'><img src="/rock-icon.svg" alt="An icon of a rock" title="Browse maths topics!" /></button></Link>
+          <Link to={`/about`}><button className='floating-btn2'><img src="/about-icon.svg" alt="An icon of an information symbol" title="Learn more about Maths Rocks!" /></button></Link>
+          <Link to={`/leaderboard`}><button className='floating-btn3'><img src="/leaderboard-icon.svg" alt="An icon of a leaderboard" title="Check out the leaderboard!" /></button></Link>
           </section>
           <section className='section2 side-padding'>
             <span className='top-curve'>
@@ -24,13 +59,15 @@ export default function HomePage() {
             </span>
             <div className='txt-overlay'>
               <p>What is maths rocks introduction paragraph ed eatur repeliqui vele ctorro ga. Num qui oditatio demquia quo earchite volo.</p>
-                <Link to={`/about`}><button className='btn'>LEARN MORE</button></Link >
+              <Link to={`/about`}><button className='btn'>LEARN MORE</button></Link >
             </div>
           </section>
-          <section className='section3'>
-            <p>Swipe through rocks still to be completed</p>
+          <section className='section3 side-padding top-padding'>
+            <h2>Browse maths topics</h2>
+            <div className="rock-grid">
+              <TopicCards />
+            </div>
           </section>
-
         </main>
         <Footer />
       </div>

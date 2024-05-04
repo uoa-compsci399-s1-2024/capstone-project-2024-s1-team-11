@@ -15,10 +15,6 @@
     color: var(--green);
   }
   
-  .nav, .login-nav-btn {
-    width: 40%;
-  }
-  
   .nav-icon {
     position: relative;
     float: left;
@@ -95,7 +91,6 @@
   
   .login-nav-btn button {
     position: relative;
-    float: right;
     background-color: var(--green);
     border: none;
     text-transform: uppercase;
@@ -103,10 +98,15 @@
     height: 42px;
   }
 
+  .login-nav-btn button:hover {
+    background-color: var(--green);
+    background-image: linear-gradient(var(--green),var(--blue));
+  }
+
   .triangle {
     position: absolute;
     top: 0;
-    left: 0;
+    left: -1px;
     width: 0;
     height: 0;
     border-top: 21px solid transparent;
@@ -127,4 +127,31 @@
     border-bottom: none;
   }
   
+  .home.show .logo {
+    visibility: visible;
+  }
+
+  .home.show .header {
+    border-bottom: 1px solid var(--text);
+  }
+
+  .main-logo.hide {
+    visibility: hidden;
+  }
+
+  /* tablet styles */
+  @media only screen and (min-width: 768px) {
+    .header {
+      height: 100px;
+    }
+    .login-nav-btn button {
+      padding: 10px 14px 10px 26px;
+      height: 52px;
+    }
+    .triangle {
+      border-top: 26px solid transparent;
+      border-left: 20px solid var(--background);
+      border-bottom: 26px solid transparent;
+    }  
+  }
   
