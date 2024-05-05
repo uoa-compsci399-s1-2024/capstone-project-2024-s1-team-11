@@ -11,6 +11,7 @@ export default function RockTopicPage() {
   const location = useLocation();
   const [rock, setRock] = useState(null);
   const [topic, setTopic] = useState(null);
+  const [user, setUser] = useState(null);
   const [isLogged, setIsLogged] = useState(!!Cookies.get('username'));
 
   useEffect(() => {
@@ -46,6 +47,13 @@ export default function RockTopicPage() {
 
   async function handleAddToCollection() {
     console.log("rock added")
+    const username = Cookies.get('username');
+    const userResponse = await fetch(`http://localhost:5000/user/${username}`);
+    if (!userResponse.ok) {
+      throw new Error('Failed to fetch user information');
+    }
+    const userData = await userResponse.json();
+    setUser(userData);
   }
   return (
     <>
