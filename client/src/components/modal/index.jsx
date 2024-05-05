@@ -1,5 +1,4 @@
 import './styles.css'
-import React, { useState } from 'react';
 import Hamburger from '../Hamburger';
 import RegisterForm from './registerForm';
 import LoginForm from './loginForm';

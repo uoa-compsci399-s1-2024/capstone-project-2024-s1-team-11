@@ -42,7 +42,7 @@ const ProfilePage = () => {
         }
       };
       fetchUserData();
-    }
+    } else{ navigate("/"); }
   }, []);
 
   return (

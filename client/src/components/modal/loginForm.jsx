@@ -1,7 +1,6 @@
 import API from '../../../api';
 import { useState } from 'react';
 import Cookies from 'js-cookie';
-import ReCAPTCHA from "react-google-recaptcha";
 
 
 export default function LoginForm({formFunction}) {
@@ -23,7 +22,6 @@ export default function LoginForm({formFunction}) {
 
         if (res.status === 201){
             let data = await res.json();
-            console.log(data);
             Cookies.set('username', username);
             Cookies.set('user_id', data.user_id);
             Cookies.set('signature', data.signature);
@@ -46,7 +44,6 @@ export default function LoginForm({formFunction}) {
                         <input name="password" type='password' value={password} onChange={(e) => setPassword(e.target.value)}></input>
                     </label>
                     <p><a href="#">Forgot password?</a></p>
-                    <p>Insert captcha/I'm not a robot</p>
                     <button type='submit' className='btn'>login</button>
                 </form>
                 <section className='register-btn'>

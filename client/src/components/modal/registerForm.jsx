@@ -23,9 +23,7 @@ export default function RegisterForm({formFunction}) {
         body: JSON.stringify({ username: username, password: password, email: email, district: area})
       })
       setIsPending(false);
-      if (res.status == 201){
-        setIsSucceed(true);
-      }
+      if (res.status === 201){ setIsSucceed(true); }
       let responseJson = await res.json();
       setStatusMsg(responseJson.message)
     }
