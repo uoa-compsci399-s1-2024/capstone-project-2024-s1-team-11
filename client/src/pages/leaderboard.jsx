@@ -5,13 +5,16 @@ import '../leaderboard_styles.css';
 
 const Leaderboard = () => {
   const [leaderboardData, setLeaderboardData] = useState([]);
-  const [isMonthly, setIsMonthly] = useState(false);
+  const [monthly, setMonthly] = useState(false);
 
   useEffect(() => {
     const fetchLeaderboardData = async () => {
       try {
-        const endpoint = isMonthly ? 'http://localhost:5000/monthly-leaderboard' : 'http://localhost:5000/leaderboard';
-        const response = await fetch(endpoint);
+        let url = 'http://localhost:5000/leaderboard';
+        if (monthly) {
+          url += '/monthly';
+        }
+        const response = await fetch(url);
         if (!response.ok) {
           throw new Error('Failed to fetch leaderboard data');
         }
@@ -23,24 +26,16 @@ const Leaderboard = () => {
     };
 
     fetchLeaderboardData();
-  }, [isMonthly]);
-
-  
-  // Function to handle toggle between monthly and all-time leaderboard
-  const toggleLeaderboard = () => {
-    setIsMonthly(!isMonthly);
-  };
+  }, [monthly]);
 
   return (
     <>
       <Header />
       <main>
         <h1 className="leaderboard-header">Leaderboard</h1>
-        <div className="toggle-container">
-          <label>
-            <input type="checkbox" checked={isMonthly} onChange={toggleLeaderboard} />
-            <span className="toggle-text">Monthly</span>
-          </label>
+        <div className="toggle-buttons">
+          <button onClick={() => setMonthly(false)} className={!monthly ? "active" : ""}>All Time</button>
+          <button onClick={() => setMonthly(true)} className={monthly ? "active" : ""}>Monthly</button>
         </div>
         <table className="leaderboard-table">
           <thead>
@@ -65,13 +60,9 @@ const Leaderboard = () => {
                     : `#${index + 1}`}
                 </td>
                 <td className="user-cell">
-  <div className="user-link">
-    <img src="/default_avatar.jpg" alt="Avatar" className="avatar"/>
-    <span className="username">{user.username}</span>
-  </div>
-</td>
-
-                <td style={{ textAlign: 'right' }}>{user.rock_count}</td> 
+                  <span className="username">{user.username}</span>
+                </td>
+                <td style={{ textAlign: 'right' }}>{user.rock_count}</td>
               </tr>
             ))}
           </tbody>
