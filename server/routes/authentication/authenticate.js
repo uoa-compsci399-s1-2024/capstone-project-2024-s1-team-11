@@ -1,7 +1,7 @@
 const bcrypt = require("bcrypt");
 const SECRET_KEY = require("../../utils/secretKeyGenerator");
 
-export default function authenticate(req, res, next){
+function authenticate(req, res, next){
     const username = req.body.username;
     const signature = req.body.signature
 
@@ -10,3 +10,5 @@ export default function authenticate(req, res, next){
     }
     next();
 }
+
+module.exports = authenticate;

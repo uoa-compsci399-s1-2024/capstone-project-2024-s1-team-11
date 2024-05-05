@@ -1,6 +1,6 @@
 const express = require('express');
 const { User, Users_Rocks, Users_Badges, Rock, Badge} = require('../models'); 
-const { authenticate } = require("./authentication/login");
+const authenticate = require("./authentication/authenticate");
 const Repostitory = require('../repository/repository');
 
 
