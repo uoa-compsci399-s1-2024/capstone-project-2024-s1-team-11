@@ -32,13 +32,9 @@ const RocksPage = () => {
 
   //search bar function
   const [query, setQuery] = useState("");
-  const search_params = Object.keys(Object.assign({}, ...topics));
 
   function search(topics) {
-    return topics.filter((data) => 
-    search_params.some((param) =>
-    data[param].toString().toLowerCase().includes(query)
-      )
+    return topics.filter((data) => data.title.includes(query)
     );
   }
 
@@ -64,7 +60,7 @@ const RocksPage = () => {
     };
     sortArray(sortType);
   }, [sortType]);
-  
+
 
   return (
     <>
