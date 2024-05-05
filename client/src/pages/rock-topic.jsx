@@ -43,6 +43,43 @@ export default function RockTopicPage() {
   const productKeyFromUrl = urlSearchParams.get('product_key');
 
   const showCollectButton = rock && productKeyFromUrl === rock.product_key;
+
+  async function handleAddToCollection() {
+    try {
+      if (!isLogged) {
+        return;
+      }
+
+      const userResponse = await fetch(`http://localhost:5000/users?username=${encodeURIComponent(username)}`);
+      if (!response.ok) {
+        throw new Error('Failed to fetch user details');
+      }
+      
+      const userData = await response.json();
+      const user_id = userData.user_id;
+
+      const rockAlreadyInCollection = false;
+
+      if (rockAlreadyInCollection) {
+        return;
+      }
+
+      const addRockResponse = await fetch('rocks/${rock_id}/add-to-collection', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        }, 
+        body: JSON.stringify({user_id: user_id, rock_id}),
+      });
+      if (addRockResponse.ok) {
+        console.log(rock_id, 'has been added to your collection')
+      } else {
+        console.error('Failed to add rock to collection');
+      }
+    } catch (error) {
+      console.error('Error adding rock to collection');
+    }
+  }
   return (
     <>
       <Header />
@@ -60,7 +97,7 @@ export default function RockTopicPage() {
                 {showCollectButton && (
                   <>
                     {isLogged ? (
-                      <Link to={`/rocks`}><button className='btn'>ADD TO COLLECTION +</button></Link>
+                      <button className='btn' onClick={handleAddToCollection}>ADD TO COLLECTION +</button>
                     ) : (
                       <Link to={`/rocks`}><button className='btn'>SIGN IN TO COLLECT +</button></Link>
                     )}
