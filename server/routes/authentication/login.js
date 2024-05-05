@@ -15,7 +15,7 @@ router.post('/', async (req, res) => {
         const repo = await Repository.getRepoInstance();
         let user = await repo.getUserByUsername(username);
         if (user !== null && bcrypt.compare(password, user.password)){
-            const signature = bcrypt.hash(username + SECRET_KEY);
+            const signature = await bcrypt.hash(username + SECRET_KEY, 10);
             req.session.user = username;
             req.session.signature = signature;
             console.log(req.session);

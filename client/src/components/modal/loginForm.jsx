@@ -22,6 +22,7 @@ export default function LoginForm({formFunction}) {
 
         if (res.status === 201){
             let data = await res.json();
+            console.log(data);
             Cookies.set('username', username);
             Cookies.set('user_id', data.user_id);
             Cookies.set('signature', data.signature);

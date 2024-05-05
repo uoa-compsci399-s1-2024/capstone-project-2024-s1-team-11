@@ -1,30 +1,31 @@
 const express = require('express');
 const { User, Users_Rocks, Users_Badges, Rock, Badge} = require('../models'); 
 const authenticate = require("./authentication/authenticate");
-const Repostitory = require('../repository/repository');
+const Repository = require('../repository/repository');
 
 
 const router = express.Router();
-
+router.use(express.json());
 router.use(authenticate);
 
-router.get('/', async (req, res) => {
+router.post('/', async (req, res) => {
     try {
-        const repo = Repostitory.getRepoInstance();
+        console.log(req.body);
+        const repo = await Repository.getRepoInstance();
         const user_id = req.body.user_id;
-        const user = await repo.getUser(user_id);
+        const user = await repo.getUser(user_id.valueOf());
         if (!user) { return res.status(404).json({ error: 'User not found' });}
-        const user_rocks = await repo.getUserRocks();
-        const user_badges = await repo.getUserBadges();
+        const user_rocks = await repo.getUserRocks(user_id);
+        const user_badges = await repo.getUserBadges(user_id);
 
-        const rockId_name_map = new Map();
+        const rocks_list = [];
         for (const [rock_id, rock] of user_rocks) {
-            rockId_name_map.set(rock_id, rock.rock_name);
+            rocks_list.push(rock);
         }
 
-        const badgeId_title_map = new Map();
+        const badges_list = [];
         for (const [badge_id, badge] of user_badges) {
-            badgeId_title_map.set(badge_id, badge.badge_title);
+            badges_list.push(badge);
         }
 
         return res.json({
@@ -33,8 +34,8 @@ router.get('/', async (req, res) => {
             alias: user.alias,
             email: user.email,
             district: user.district,
-            rocks: rockId_name_map,
-            badges: badgeId_title_map,
+            rocks: rocks_list,
+            badges: badges_list,
             rock_count: user_rocks.length,
         });
     } catch (error) {
