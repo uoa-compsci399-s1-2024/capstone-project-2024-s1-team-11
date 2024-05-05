@@ -4,7 +4,8 @@ const Rock = require('./rock');
 const User = require('./user');
 const Badge = require('./badge');
 const Item = require('./item');
-const Avatar = require('./avatar');
+const Avatar = require('./avatar')
+const Privilege = require('./privilege')
 
 
 Rock.belongsTo(Topic, { foreignKey: 'topic_id' });
@@ -24,6 +25,8 @@ Avatar.belongsTo(Item, { as: 'Clothing', foreignKey: 'clothing_id' });
 Avatar.belongsTo(Item, { as: 'Leggings', foreignKey: 'leggings_id' });
 Avatar.belongsTo(Item, { as: 'Boots', foreignKey: 'boots_id' });
 
+User.hasOne(Privilege, {foreignKey: 'user_id'});
+Privilege.belongsTo(User, {foreignKey: 'user_id'});
 
 const Users_Rocks = sequelize.models.Users_Rocks;
 const Users_Badges = sequelize.models.Users_Badges;
