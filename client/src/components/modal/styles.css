@@ -54,7 +54,6 @@
 
   .modal-body {
     color: var(--background) !important;
-    padding: 5rem 1.5625rem 1.5625rem;
   }
 
   .modal-body p{
@@ -68,6 +67,7 @@
   .register-btn {
     padding-top: 20px;
   }
+
   .modal-body input,  .modal-body select {
     z-index: 5;
   }
@@ -75,3 +75,38 @@
   .modal-body label {
     color: var(--background);
   }
+
+  .login-form {
+    padding: 5rem 2rem 2rem;
+    max-width: 600px;
+    margin: 0 auto;
+  }
+
+  .login-success-msg {
+    margin: 0 auto;
+    font-size: 30px;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 75vh;
+  }
+
+  /* tablet styles */
+  @media only screen and (min-width: 768px) {
+    .login-form {
+      padding-top: 160px;
+    }  
+    form .btn {
+      margin-right: 20px;
+      padding: 12px 30px;
+    }
+  }
+
+/* desktop styles */
+@media only screen and (min-width: 1200px) {
+  .login-form {
+    padding-top: 0;
+  }
+}
+  
