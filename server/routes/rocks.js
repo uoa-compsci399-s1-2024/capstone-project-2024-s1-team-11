@@ -19,4 +19,16 @@ router.get("/:rock_id", async (req, res) => {
     });
 });
 
+router.post("/:rock_id/add-to-collection", async (req, res) => {
+    const { user_id, rock_id } = req.body;
+    try {
+        repo = await Repository.getRepoInstance();
+        await Repository.addRockToUserCollection(user_id, rock_id);
+        res.status(200).json({ message: 'Rock added to collection successfully' });
+    } catch (error) {
+        console.error('Error adding rock to collection:', error);
+        res.status(500).json({ error: 'Failed to add rock to collection' });
+    }
+});
+
 module.exports = router;

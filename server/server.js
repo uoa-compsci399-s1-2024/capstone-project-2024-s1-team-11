@@ -6,7 +6,7 @@ const registrationRouter = require("./routes/registration");
 const loginRouter = require("./routes/login");
 const leaderboardRouter = require("./routes/leaderboard");
 const profileRouter = require("./routes/profile");
-const rocksRouter = require("./routes/rocks")
+const rocksRouter = require("./routes/rocks");
 const Repository = require("./repository/repository");
 
 async function start_server(){

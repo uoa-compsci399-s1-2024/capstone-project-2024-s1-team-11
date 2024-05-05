@@ -62,7 +62,7 @@ export default function RockTopicPage() {
                     {isLogged ? (
                       <Link to={`/rocks`}><button className='btn'>ADD TO COLLECTION +</button></Link>
                     ) : (
-                    <Link to={`/rocks`}><button className='btn'>SIGN IN TO COLLECT +</button></Link>
+                      <Link to={`/rocks`}><button className='btn'>SIGN IN TO COLLECT +</button></Link>
                     )}
                   </>
                 )}
