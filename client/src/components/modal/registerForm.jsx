@@ -1,5 +1,6 @@
 import API from '../../../api';
-import React, { useState } from 'react';
+import { useState } from 'react';
+import ReCAPTCHA from "react-google-recaptcha";
 
   
 export default function RegisterForm({formFunction}) {
@@ -56,7 +57,7 @@ export default function RegisterForm({formFunction}) {
           <label name="password"> Password
             <input name="password" type='password' value={password} onChange={(e) => setPassword(e.target.value)}></input>
           </label>
-          {/*Insert captcha/I'm not a robot*/}
+          <ReCAPTCHA sitekey="6LfMldEpAAAAABx0c5Nfk7T91fqWmI_geB6X5TyL"/>
           <p>{statusMsg}</p>
           {!isPending && !isSucceed && <button type='submit' className='btn'>Register</button>}
           {isPending && <button type='submit' className='btn' disabled>Registering...</button>}
