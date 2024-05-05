@@ -1,63 +1,46 @@
 const express = require('express');
 const { User, Users_Rocks, Users_Badges, Rock, Badge} = require('../models'); 
+const { authenticate } = require("./authentication/login");
 const Repostitory = require('../repository/repository');
+
 
 const router = express.Router();
 
-router.get('/:user_id', async (req, res) => {
-  try {
-    
-    const { user_id } = req.params;
+router.use(authenticate);
 
-    const user = await User.findByPk(user_id);
+router.get('/', async (req, res) => {
+    try {
+        const repo = Repostitory.getRepoInstance();
+        const user_id = req.body.user_id;
+        const user = await repo.getUser(user_id);
+        if (!user) { return res.status(404).json({ error: 'User not found' });}
+        const user_rocks = await repo.getUserRocks();
+        const user_badges = await repo.getUserBadges();
 
-    if (!user) {
-      return res.status(404).json({ error: 'User not found' });
-    }
-
-    const userRocks = await Users_Rocks.findAll({
-      where: {
-        user_id: user_id
-      }
-    });
-
-    const rocksPromises = userRocks.map(userRock =>
-      Rock.findByPk(userRock.rock_id)
-    );
-
-    const userBadges = await Users_Badges.findAll({
-        where: {
-          user_id: user_id
+        const rockId_name_map = new Map();
+        for (const [rock_id, rock] of user_rocks) {
+            rockId_name_map.set(rock_id, rock.rock_name);
         }
-      });
 
-    const badgesPromises = userBadges.map(userBadge =>
-        Badge.findByPk(userBadge.badge_id)
-      );
+        const badgeId_title_map = new Map();
+        for (const [badge_id, badge] of user_badges) {
+            badgeId_title_map.set(badge_id, badge.badge_title);
+        }
 
-    const rocks = await Promise.all(rocksPromises);
-    const badges = await Promise.all(badgesPromises);
-
-    res.json({
-        user_id: user.user_id,
-        username: user.username,
-        alias: user.alias,
-        email: user.email,
-        district: user.district,
-        rocks: rocks.map(rock => ({
-          rock_id: rock.rock_id,
-          name: rock.rock_name,
-        })),
-        badges: badges.map(badge => ({
-          badge_id: badge.badge_id,
-          name: badge.badge_title,
-        })),
-        rock_count: rocks.length, 
-      });
+        return res.json({
+            user_id: user.user_id,
+            username: user.username,
+            alias: user.alias,
+            email: user.email,
+            district: user.district,
+            rocks: rockId_name_map,
+            badges: badgeId_title_map,
+            rock_count: user_rocks.length,
+        });
     } catch (error) {
-    console.error('Error fetching user profile:', error);
-    res.status(500).json({ error: 'Internal server error' });
-  }
+        console.error('Error fetching user profile:', error);
+        return res.status(500).json({ error: 'Internal server error' });
+    }
 });
 
 module.exports = router;
