@@ -1,5 +1,5 @@
 const sequelize = require('../database-utils/entity-manager');
-const {Topic, Rock, User, Badge, Item, Avatar, Users_Rocks, Users_Badges, Users_Items} = require('../models');
+const {Topic, Rock, User, Badge, Item, Avatar, Users_Rocks, Users_Badges, Users_Items, Privilege} = require('../models');
 
 
 class Repository {
@@ -233,6 +233,21 @@ class Repository {
                 result.set(badge.badge_id, badge);
             } return result;
         } catch (e) { console.error(e); }
+    }
+
+    async getUserPrivilege(username){
+        try{
+            if (username) {
+                let user = await this.getUserByUsername(username);
+                if (user) {
+                    let user_id = user.user_id;
+                    return await Privilege.findOne({where: {user_id: user_id.valueOf()}});
+                }
+            } return false;
+        } catch (e){
+            console.error(e);
+            return false;
+        }
     }
 }
 

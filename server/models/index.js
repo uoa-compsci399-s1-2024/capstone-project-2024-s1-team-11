@@ -32,4 +32,4 @@ const Users_Rocks = sequelize.models.Users_Rocks;
 const Users_Badges = sequelize.models.Users_Badges;
 const Users_Items = sequelize.models.Users_Items;
 
-module.exports = {Topic, Rock, User, Badge, Item, Avatar, Users_Rocks, Users_Badges, Users_Items};
+module.exports = {Topic, Rock, User, Badge, Item, Avatar, Users_Rocks, Users_Badges, Users_Items, Privilege};

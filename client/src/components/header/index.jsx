@@ -57,6 +57,7 @@ function LoginBtn() {
         <button onClick={() => { 
           Cookies.remove('username');
           Cookies.remove('user_id');
+          Cookies.remove('signature');
           setIsLogged(false);
           }}>
           Logout <span className='triangle'></span>

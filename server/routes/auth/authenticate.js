@@ -5,7 +5,7 @@ const SECRET_KEY = require("../../utils/secretKeyGenerator");
 function authenticate(req, res, next) {
     try {
         console.log(req.body);
-        if (req.body !== undefined) {
+        if (req.body !== undefined && req.body.username && req.body.signature) {
             const username = req.body.username;
             const signature = req.body.signature
             console.log(req.body);
