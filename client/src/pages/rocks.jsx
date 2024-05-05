@@ -1,17 +1,18 @@
 import Header from '../components/header';
 import Footer from '../components/footer';
 import React, {useState, useEffect} from 'react';
-//page is currently only fully functional with placeholder data
 
+//fetches the data
 const RocksPage = () => {
   const [topics, setTopics] = useState([]);
 
-  useEffect(() => { //doesn't work yet as the fetched data is arriving as objects, not an array so map function does not work
+  useEffect(() => {
     const fetchTopics = async () => {
         const fetchPromise = await fetch('http://localhost:5000/topics');
         const streamPromise = await fetchPromise.json();
-        const data = Object.entries(streamPromise); //temporary fix to prevent errors
-        setTopics(data);
+        const data = Object.entries(streamPromise);
+        let output = data.map((obj, i) => ({...obj[1], indexID: i}));
+        setTopics(output);
     };
     fetchTopics();
 
@@ -20,16 +21,14 @@ const RocksPage = () => {
   
   //placeholder data
   useEffect(() => {
-    if(topics.length == 0) { //change the 0 to however many topic objects in the database to use placeholder data
+    if(topics.length == 0) {
       const randomTopics = [
-        {title: "zero", imageUri: "../placeholder.jpg", topic_id: 0}, {title: "one", imageUri: "../placeholder.jpg", topic_id: 1},
-        {title: "two", imageUri: "../placeholder.jpg", topic_id: 2}
+        {title: "zero", imageUri: "../maths-rocks-zero.jpg", topic_id: 0}, {title: "one", imageUri: "../maths-rocks-one.jpg", topic_id: 1},
+        {title: "two", imageUri: "../maths-rocks-two.jpg", topic_id: 2}
       ]
      setTopics(randomTopics);
     }
   }, [topics]);
-
-  //console.log(topics);
 
   //search bar function
   const [query, setQuery] = useState("");
@@ -43,7 +42,7 @@ const RocksPage = () => {
     );
   }
 
-  //dropdown sort function - can sort alphabetically and numerically
+  //dropdown sort function - can sort alphabetically and numerically (ignore rarity and most found)
   const [sortType, setSortType] = useState('numerical');
 
   useEffect(() => {
@@ -66,7 +65,6 @@ const RocksPage = () => {
     sortArray(sortType);
   }, [sortType]);
   
-
 
   return (
     <>
