@@ -55,6 +55,17 @@ export default function RockTopicPage() {
     const userData = await userResponse.json();
     setUser(userData);
     console.log(userData.user_id);
+
+    let res = await fetch(
+      `http://localhost:5000/addRock`,
+      {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify({ user_id: userData.user_id, rock_id: rock.rock_id })
+      })
+      if (res.status == 200){
+        console.log("rock added to user collection");
+      }
   }
   return (
     <>
