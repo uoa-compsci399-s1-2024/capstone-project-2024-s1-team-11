@@ -5,10 +5,11 @@ import CmsPages from '../components/cms-admin/cms-pages';
 import CmsTopics from '../components/cms-admin/cms-topics';
 import CmsRocks from '../components/cms-admin/cms-rocks';
 import CmsUsers from '../components/cms-admin/cms-users';
+import authorization from "../utils/auth.jsx";
 import { useState, useEffect } from "react";
-import API from "../../api.js";
+import { useNavigate } from "react-router-dom";
 import Cookies from "js-cookie";
-import {useNavigate} from "react-router-dom";
+
 
 export default function CmsPage() {
     const [display, setDisplay] = useState({
@@ -24,23 +25,13 @@ export default function CmsPage() {
     const signature = Cookies.get("signature");
 
     useEffect(() => {
-        const authorization = async () => {
-            try {
-                const response = await fetch(API + `/authorization`,
-                    {
-                        method: "POST",
-                        headers: {'Content-Type': 'application/json'},
-                        body: JSON.stringify({user_id: user_id, username: username, signature: signature})
-                    });
-                if (response.status !== 200) {
-                    navigate("/");
-                }
-            } catch (e) {
-                console.log(e);
+        const authorize = async () => {
+            if (! await authorization(user_id, username, signature)){
+                navigate("/");
             }
-        }
-        authorization()
+        }; authorize();
     });
+
   return (
     <>
       <Header />
