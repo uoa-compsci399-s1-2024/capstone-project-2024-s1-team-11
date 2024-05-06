@@ -2,40 +2,38 @@ import './styles.css'
 import mathsRocksLogo from '/maths-rocks-logo.svg';
 import Hamburger from '../Hamburger';
 import { Link, NavLink } from "react-router-dom";
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import Modal from '../modal';
 import Cookies from "js-cookie";
 
 function Navigation() {
   return (
+    <>
     <ul>
         <li><NavLink to={`/`}>Home</NavLink></li>
         <li><NavLink to={`/about`}>About Maths Rocks</NavLink></li>
-        <li><NavLink to={`/rocks`}>Rocks & Maths Topics</NavLink>
-          <ul>
-            <li><NavLink to={`/rocks/1`}>0</NavLink></li>
-          </ul>
-        </li>
+        <li><NavLink to={`/rocks`}>Maths Topics</NavLink></li>
         <li><NavLink to={`/leaderboard`}>Leaderboard</NavLink></li>
-        <li><NavLink to={`/profile`}>My Profile</NavLink></li>
         <li><NavLink to={`/contact`}>Contact Us</NavLink></li>
         <li><NavLink to={`/privacy-policy`}>Privacy Policy</NavLink></li>
+        <li><NavLink to={`/profile`}>My Profile</NavLink></li>
     </ul>
+    </>
   )
 }
 
 function LoginBtn() {
   const [modalOpen, setModalOpen] = useState(false);
-  const [displayLoginForm, setdisplayLoginForm] = useState(true);
+  const [displayLoginForm, setDisplayLoginForm] = useState(true);
   const [isLogged, setIsLogged] = useState(!Cookies.get('username') === undefined);
 
   function handleState() {
     setModalOpen(!modalOpen);
-    setdisplayLoginForm(true);
+    setDisplayLoginForm(true);
   }
 
   function handleFormState() {
-    setdisplayLoginForm(!displayLoginForm);
+    setDisplayLoginForm(!displayLoginForm);
   }
 
   useEffect(() => {
@@ -49,14 +47,15 @@ function LoginBtn() {
   return (
     <>
       <div className="login-nav-btn">
-        {!Cookies.get('username') && isLogged == false &&
+        {!Cookies.get('username') && isLogged === false &&
         <button onClick={() => { setModalOpen(!modalOpen); }}>
           Login <br></br>or Join <span className='triangle'></span>
         </button>}
-        {Cookies.get('username') && isLogged == true &&
+        {Cookies.get('username') && isLogged === true &&
         <button onClick={() => { 
           Cookies.remove('username');
           Cookies.remove('user_id');
+          Cookies.remove('signature');
           setIsLogged(false);
           }}>
           Logout <span className='triangle'></span>

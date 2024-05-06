@@ -60,7 +60,11 @@ const Leaderboard = () => {
                     : `#${index + 1}`}
                 </td>
                 <td className="user-cell">
+
                   <span className="username">{user.username}</span>
+
+                    <img src="/default_avatar.jpg" alt="Avatar" className="avatar"/>
+
                 </td>
                 <td style={{ textAlign: 'right' }}>{user.rock_count}</td>
               </tr>
