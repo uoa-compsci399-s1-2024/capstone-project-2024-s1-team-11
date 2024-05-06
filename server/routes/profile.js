@@ -43,23 +43,25 @@ router.post('/', async (req, res) => {
     }
 });
 
-router.put('/:user_id/username', async (req, res) => {
+router.put('/username', async (req, res) => {
   try {
-    const { user_id } = req.params;
-    const { username } = req.body;
+    const { userId, newUsername } = req.body;
 
-    const existingUser = await User.findOne({ where: { username: username } });
+    const repo = await Repository.getRepoInstance();
+
+  
+    const existingUser = await repo.getUserByUsername(newUsername);
     if (existingUser) {
       return res.status(400).json({ error: 'Username already exists' });
     }
 
-    const user = await User.findByPk(user_id);
+    const user = await repo.getUser(userId);
     if (!user) {
       return res.status(404).json({ error: 'User not found' });
     }
 
-    user.username = username;
-    await user.save();
+    user.username = newUsername;
+    await repo.updateUser(user);
 
     res.json({ success: true });
   } catch (error) {
@@ -68,30 +70,26 @@ router.put('/:user_id/username', async (req, res) => {
   }
 });
 
-router.put('/:user_id/email', async (req, res) => {
+router.put('/email', async (req, res) => {
   try {
-    const { user_id } = req.params;
-    const { email } = req.body;
+      const { userId, newUsername } = req.body;
+      const existingEmail = await User.findOne({ where: { email: newEmail } });
+      if (existingEmail) {
+          return res.status(400).json({ error: 'Email already exists' });
+      }
+      const user = await User.findByPk(userId);
+      if (!user) {
+          return res.status(404).json({ error: 'User not found' });
+      }
 
-    const existingEmail = await User.findOne({ where: { email: email } });
-    if (existingEmail) {
-      return res.status(400).json({ error: 'Email already exists' });
-    }
+      user.email = email;
+      await user.save();
 
-    const user = await User.findByPk(user_id);
-    if (!user) {
-      return res.status(404).json({ error: 'User not found' });
-    }
-
-    user.email = email;
-    await user.save();
-
-    res.json({ success: true });
+      res.json({ success: true });
   } catch (error) {
-    console.error('Error updating email:', error);
-    res.status(500).json({ error: 'Internal server error' });
+      console.error('Error updating email:', error);
+      res.status(500).json({ error: 'Internal server error' });
   }
 });
 
 module.exports = router;
-
