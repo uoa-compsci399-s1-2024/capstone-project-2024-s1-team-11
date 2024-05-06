@@ -66,6 +66,7 @@ const RocksPage = () => {
     <>
       <Header />
         <main>
+        <article className='side-padding top-padding'>
           <div className="pageText">
             <h1>Rocks</h1>
             <p>Browse rocks, or search for your favourite maths concept.</p>
@@ -92,7 +93,7 @@ const RocksPage = () => {
 
 
             </section>
-          
+          </article>
         </main>
         <Footer />
     </>

@@ -49,6 +49,8 @@ const ProfilePage = () => {
       <>
         <Header/>
         <main>
+        <article className='side-padding top-padding'>
+
           <div className="profile-container">
             <img src="/default_avatar.jpg" alt="Profile Picture" className="profile-picture"/>
             <p className="greeting">{userData ? `Hi, ${userData.username}!` : 'Hi, Username!'}</p>
@@ -98,6 +100,7 @@ const ProfilePage = () => {
               </div>
             </div>
           </div>
+          </article>
         </main>
         <Footer/>
       </>
