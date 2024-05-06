@@ -16,6 +16,7 @@ import RocksPage from './pages/rocks';
 import RockTopicPage from './pages/rock-topic';
 import Leaderboard from './pages/leaderboard';
 import ProfilePage from './pages/profile';
+import CmsPage from './pages/cms';
 
 const router = createBrowserRouter([
   {
@@ -52,9 +53,13 @@ const router = createBrowserRouter([
     element: <RocksPage />,
   },
   {
-    path: "rocks/:rockName",
+    path: "rocks/:rock_id",
     element: <RockTopicPage />,
   },
+  {
+    path: "/cms",
+    element: <CmsPage />,
+  }
 ]);
 
 ReactDOM.createRoot(document.getElementById('root')).render(

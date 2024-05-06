@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="a" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 46.01 48.54">
+  <defs>
+    <style>
+      .b {
+        fill: none;
+        stroke: #1e3e4d;
+        stroke-miterlimit: 10;
+        stroke-width: 3px;
+      }
+
+      .c {
+        fill: #1e3e4d;
+        stroke-width: 0px;
+      }
+    </style>
+  </defs>
+  <polygon class="c" points="23.04 0 25.46 4.91 30.88 5.69 26.96 9.51 27.89 14.91 23.04 12.36 18.2 14.91 19.12 9.51 15.21 5.69 20.62 4.91 23.04 0"/>
+  <polyline class="b" points="16.37 34.38 15.06 34.38 1.5 34.38 1.5 47.04 16.37 47.04"/>
+  <rect class="b" x="16.04" y="18.55" width="14" height="28.48"/>
+  <polyline class="b" points="30.51 47.04 44.51 47.04 44.51 26.99 30.51 26.99"/>
+</svg>

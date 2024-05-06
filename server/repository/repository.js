@@ -1,5 +1,5 @@
 const sequelize = require('../database-utils/entity-manager');
-const {Topic, Rock, User, Badge, Item, Avatar, Users_Rocks, Users_Badges, Users_Items} = require('../models');
+const {Topic, Rock, User, Badge, Item, Avatar, Users_Rocks, Users_Badges, Users_Items, Privilege} = require('../models');
 
 
 class Repository {
@@ -11,113 +11,135 @@ class Repository {
     }
 
     static async getRepoInstance(){
-        if (Repository.#repoInstance === null){
-            Repository.#repoInstance = new Repository();
-            await Repository.#repoInstance.sequelize.sync();
-        }
-        return Repository.#repoInstance;
+        try {
+            if (Repository.#repoInstance === null) {
+                Repository.#repoInstance = new Repository();
+                await Repository.#repoInstance.sequelize.sync();
+            } return Repository.#repoInstance;
+        } catch (e){ console.error(e); }
     }
 
     // CRUD operations for Maths Topics
     async getTopicsCount(){
-        let query = await Topic.findAndCountAll();
-        return query.count;
+        try{
+            return (await Topic.findAndCountAll()).count;
+        }catch (e){ console.log(e); }
     }
 
-    async getAllTopics(){
-        let topics_map = new Map();
-        let topics = await Topic.findAll();
-        topics.forEach((topic) => { 
-            topics_map.set(topic.topic_id, topic);
-        });
-        return topics_map;
+    async getAllTopics() {
+        try{
+            let topics_map = new Map();
+            let topics = await Topic.findAll();
+            topics.forEach((topic) => { topics_map.set(topic.topic_id, topic); });
+            return topics_map;
+        } catch (e){ console.error(e); }
     }
 
     async getTopic(topic_id){
-        let topic =  await Topic.findOne({ where: {topic_id: topic_id}});
-        if (topic !== null){
-            return topic;
-        }return null;
+        try {
+            return await Topic.findByPk(topic_id);
+        } catch (e){ console.log(e); }
     }
 
     async addTopic(topic){
-        // Search the topic in our database to check whether the same topic already exists. Only add the topic if it does not already exist.
-        let topic_data = await Topic.findOne({ where: {topic_id: topic.topic_id}});
-        if (topic_data === null){
-            await Topic.build({ topic_id: topic.topic_id, title: topic.title, description: topic.description}).save();
-        }else{
-            throw new Error(`Topic with ID: ${topic.topic_id} already exists in the database.`);
-        }
+        try {
+            // Search the topic in our database to check whether the same topic already exists. Only add the topic if it does not already exist.
+            let topic_data = await Topic.findByPk(topic.topic_id);
+            if (topic_data === null) {
+                await Topic.build({ topic_id: topic.topic_id, title: topic.title, description: topic.description}).save();}
+        } catch (e) { console.error(e); }
     }
 
     async updateTopic(updated_topic){
-        let topic_data =  await Topic.findOne({ where: {topic_id: updated_topic.topic_id}});
-        if (topic_data !== null){
-            await topic_data.update({title: updated_topic.title, description: updated_topic.description});
-        }else{
-            throw new Error(`Topic with ID: ${updated_topic.topic_id} does not exist in the database.`);
-        }
+        try {
+            let topic_data = await Topic.findByPk(updated_topic.topic_id);
+            if (topic_data !== null) {
+                await topic_data.update({title: updated_topic.title, description: updated_topic.description});
+            }
+        } catch (e) { console.error(e); }
     }
 
     async deleteTopic(topic_id){
-        let topic_data =  await Topic.findOne({ where: {topic_id: topic_id}});
-        if (topic_data !== null){
-            await topic_data.destroy();
-        }
+        try {
+            let topic_data = await Topic.findByPk(topic_id);
+            if (topic_data !== null) {
+                await topic_data.destroy();
+            }
+        }catch (e) { console.log(e); }
     }
 
     // CRUD operations for Maths Rock.
     async getRocksCount(){
-        let query = await Rock.findAndCountAll();
-        return query.count;
+        return (await Rock.findAndCountAll()).count;
     }
 
     async getAllRocks(){
-        let rocks_map = new Map();
-        let rocks = await Rock.findAll();
-        for (let i = 0; i < rocks.length; i++){
-            rocks_map.set(rocks[i].rock_id, rocks[i]);
+        try {
+            let rocks_map = new Map();
+            let rocks = await Rock.findAll();
+            for (let i = 0; i < rocks.length; i++) {
+                rocks_map.set(rocks[i].rock_id, rocks[i]);
+            }
+            return rocks_map;
+        }catch (e){
+            console.error(e);
         }
-        return rocks_map;
     }
 
     async getRock(rock_id){
-        let rock = await Rock.findOne({ where: { rock_id: rock_id }});
-        return rock;
+        try {
+            return await Rock.findByPk(rock_id);
+        }catch (e){ console.error(e); }
     }
 
     async addRock(rock){
-        let rock_data = await Rock.findOne({where: { rock_id: rock.rock_id }});
-        if (rock_data === null){     // Checks whether the same rock already exist in the database.
-            await Rock.build({ rock_id: rock.rock_id, 
-                                        rock_name: rock.rock_name, 
-                                        product_key: rock.product_key, 
-                                        topic_id: rock.topic_id }).save();
-        }else{
-            throw new Error(`Rock with ID: ${rock.rock_id} already exists in the database.`);
-        }
+        try{
+            let rock_data = await Rock.findByPk(rock.rock_id);
+            if (rock_data === null){     // Checks whether the same rock already exist in the database.
+                await Rock.build({
+                    rock_id: rock.rock_id,
+                    rock_name: rock.rock_name,
+                    product_key: rock.product_key,
+                    topic_id: rock.topic_id
+                }).save();
+            }
+        } catch (e) { console.error(e); }
     }
 
-    async updateRock(rock){
-        let rock_data = await Rock.findOne({ where: { rock_id: rock.rock_id }});
-        if (rock_data !== null){     // Checks whether the rock exists in the database.
-            rock.save({rock_name: rock.rock_name, product_key: rock.product_key, topic_id: rock.topic_id })
-        }else{
-            throw new Error(`Rock with ID: ${rock.rock_id} does not exist in the database.`);
-        }
+    async updateRock(rock) {
+        try {
+            let rock_data = await Rock.findByPk(rock.rock_id);
+            if (rock_data !== null) {     // Checks whether the rock exists in the database.
+                rock.save({rock_name: rock.rock_name, product_key: rock.product_key, topic_id: rock.topic_id})
+            }
+        } catch (e) { console.error(e); }
     }
 
     async deleteMathsRock(rock_id){
-        let rock =  await Rock.findOne({ where: {rock_id: rock_id}});
-        if (rock !== null){
-            await rock.destroy();
-        }
+        try {
+            let rock = await Rock.findByPk(rock_id);
+            if (rock !== null) {
+                await rock.destroy();
+            }
+        } catch (e) { console.error(e); }
+    }
+
+    // CRUD operations for Badges
+    async getAllBadges(){
+        try {
+            let badges_map = new Map();
+            let badges = await Badge.findAll();
+            for (let i = 0; i < badges.length; i++) {
+                badges_map.set(badges[i].badge_id, badges[i]);
+            } return badges_map;
+        }catch (e){ console.error(e); }
     }
 
     // CRUD operations for Users
-    async getUsersCount(){
-        let query = await User.findAndCountAll();
-        return query.count;
+    async getUsersCount() {
+        try {
+            return (await User.findAndCountAll()).count;
+        } catch (e) {console.error(e); }
     }
 
     async getAllUsers(){
@@ -130,48 +152,114 @@ class Repository {
     }
 
     async getUser(user_id){
-        let user = await User.findOne({where: {user_id: user_id}});
-        return user;
+        try {
+            return await User.findByPk(user_id);
+        } catch (e) { console.error(e); }
     }
 
     async getUserByUsername(username){
-        let user = await User.findOne({where: {username: username}});
-        return user;
+        try {
+            return await User.findOne({where: {username: username}});
+        } catch (e) { console.error(e); }
     }
+
+    async getUserByEmail(email){
+        try {
+            return await User.findOne({where: {email: email}});
+        } catch (e) {console.error(e);}
+    }
+
     async addUser(user){
-        let user_data = await User.findOne({where: {username: user.username}});
-        if (user_data === null){     // Checks whether the same user already exist.
-            await User.build({ user_id: user.user_id, 
-                                username: user.username,
-                                alias: user.alias,
-                                password: user.password, 
-                                salt: user.salt,
-                                email: user.email, 
-                                district: user.district }).save();
-        }else{
-            throw new Error(`User with username: ${user.username} already exists in the database.`);
-        }
+        try {
+            let user_data = await User.findOne({where: {username: user.username}});
+            if (user_data === null) {     // Checks whether the same user already exist.
+                await User.build({
+                    user_id: user.user_id,
+                    username: user.username,
+                    alias: user.alias,
+                    password: user.password,
+                    salt: user.salt,
+                    email: user.email,
+                    district: user.district
+                }).save();
+            }
+        } catch (e) { console.error(e); }
     }
 
     async addRockToUserCollection(user_id, rock_id){
-        let user = await User.findOne({where: {user_id: user_id}});
-        let rock = await Rock.findOne({where: {rock_id: rock_id}});
-        if (user !== null & rock !== null){
-            await Users_Rocks.findOrCreate({where: {user_id: user_id, rock_id: rock_id}});
-        }else{
-            throw new Error(`Either ${user_id} is an invalid user ID or ${rock_id} is an invalid rock ID.`);
+        try {
+            let user = await User.findByPk(user_id);
+            let rock = await Rock.findByPk(rock_id);
+            if (user !== null && rock !== null) {
+                await Users_Rocks.findOrCreate({where: {user_id: user_id, rock_id: rock_id}});
+            }
+        } catch (e) { console.error(e); }
+    }
+
+    async getUserRocks(user_id){
+        try {
+            let rocks = await this.getAllRocks();
+            let userRocks = await Users_Rocks.findAll({where: {user_id: user_id}})
+            let result = new Map();
+            for (const userRock of userRocks){
+                let rock = rocks.get(userRock.rock_id);
+                result.set(rock.rock_id, rock);
+            }
+            return result;
+        } catch (e) { console.error(e); }
+    }
+
+    async checkRockInUserCollection(user_id, rock_id) {
+        try {
+            const userRock = await Users_Rocks.findOne({ where: {user_id: user_id, rock_id: rock_id } });
+    
+            return !!userRock; // Returns true if the user is linked to the rock in the Users_Rocks table
+        } catch (error) {
+            console.error('Error checking rock in user collection:', error);
+            throw new Error('Failed to check rock in user collection.');
         }
     }
     
     async updateUser(user){
-        let user_data = await User.findOne({where: {user_id: user.user_id}});
-        if (user_data !== null){
-            await user.save({ username: user.username, password: user.password, email: user.email, district: user.district });
-        }else{
-            throw new Error(`User with user ID: ${user.user_id} does not exist in the database.`);
-        }
+        try {
+            let user_data = await User.findOne({where: {user_id: user.user_id}});
+            if (user_data !== null) {
+                await user.save({
+                    username: user.username,
+                    password: user.password,
+                    email: user.email,
+                    district: user.district
+                });
+            }
+        } catch (e) { console.error(e); }
     }
 
+    async getUserBadges(user_id){
+        try {
+            let badges = await this.getAllBadges();
+            let user_badges = await Users_Badges.findAll({where: {user_id: user_id}})
+            let result = new Map();
+            for (const user_badge of user_badges){
+                let badge = badges.get(user_badge.badge_id);
+                result.set(badge.badge_id, badge);
+            } return result;
+        } catch (e) { console.error(e); }
+    }
+
+    async getUserPrivilege(username){
+        try{
+            if (username) {
+                let user = await this.getUserByUsername(username);
+                if (user) {
+                    let user_id = user.user_id;
+                    return await Privilege.findOne({where: {user_id: user_id.valueOf()}});
+                }
+            } return false;
+        } catch (e){
+            console.error(e);
+            return false;
+        }
+    }
 }
 
 module.exports = Repository;
