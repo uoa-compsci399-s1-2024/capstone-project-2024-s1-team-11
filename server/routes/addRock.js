@@ -12,15 +12,8 @@ router.post('/', async (req, res) => {
 
     const repo = await Repository.getRepoInstance();
     try {
-        // Check if the rock is already in the user's collection
-        const rockAlreadyInCollection = await repo.checkRockInUserCollection(user_id, rock_id);
-                
-        if (rockAlreadyInCollection) {
-            return res.status(201).json({ error: 'Rock is already in the user collection' });
-        } else {
-            repo.addRockToUserCollection(user_id, rock_id);
-            res.status(200).json({ message: 'Rock added to collection successfully' });
-        }
+        repo.addRockToUserCollection(user_id, rock_id);
+        res.status(200).json({ message: 'Rock added to collection successfully' });
     } catch (error) {
         console.error('Error adding rock to collection:', error);
         res.status(500).json({ error: 'Failed to add rock to collection' });

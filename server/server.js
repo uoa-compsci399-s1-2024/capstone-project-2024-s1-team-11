@@ -9,6 +9,7 @@ const profileRouter = require("./routes/profile");
 const rocksRouter = require("./routes/rocks");
 const userRouter = require("./routes/user");
 const addRockRouter = require("./routes/addRock");
+const checkCollectionRouter = require("./routes/checkCollection");
 const Repository = require("./repository/repository");
 
 async function start_server(){
@@ -28,6 +29,7 @@ async function start_server(){
     app.use("/rocks", rocksRouter);
     app.use("/user", userRouter);
     app.use("/addRock", addRockRouter);
+    app.use("/checkCollection", checkCollectionRouter);
     app.listen(5000, () => {console.log("Server started on port 5000.")});
 }
 

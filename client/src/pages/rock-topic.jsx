@@ -38,7 +38,39 @@ export default function RockTopicPage() {
       };
       fetchRockInfo();
     }
+    fetchCollectionInfo();
   }, [rock_id]);
+
+  const fetchCollectionInfo = async () => {
+    try {
+      const username = Cookies.get('username');
+      const userResponse = await fetch(`http://localhost:5000/user/${username}`);
+      if (!userResponse.ok) {
+        throw new Error('Failed to fetch user information');
+      }
+      const userData = await userResponse.json();
+      setUser(userData);
+      console.log(userData.user_id);
+
+      let res = await fetch(
+        `http://localhost:5000/checkCollection`,
+        {
+          method: 'POST',
+          headers: {'Content-Type': 'application/json'},
+          body: JSON.stringify({ user_id: userData.user_id, rock_id: rock_id })
+        })
+        if (res.status == 200) {
+          setCollected(false);
+          console.log("rock not in collection");
+        } else if (res.status == 201) {
+          setCollected(true);
+          console.log("rock already in your collection");
+        }
+
+    } catch (error) {
+      console.error('Error fetching collection information:', error);
+    }
+  };
 
   // Extracting product_key from the URL
   const urlSearchParams = new URLSearchParams(location.search);
@@ -47,27 +79,17 @@ export default function RockTopicPage() {
   const showCollectButton = rock && productKeyFromUrl === rock.product_key;
 
   async function handleAddToCollection() {
-    const username = Cookies.get('username');
-    const userResponse = await fetch(`http://localhost:5000/user/${username}`);
-    if (!userResponse.ok) {
-      throw new Error('Failed to fetch user information');
-    }
-    const userData = await userResponse.json();
-    setUser(userData);
-    console.log(userData.user_id);
-
     let res = await fetch(
       `http://localhost:5000/addRock`,
       {
         method: 'POST',
         headers: {'Content-Type': 'application/json'},
-        body: JSON.stringify({ user_id: userData.user_id, rock_id: rock.rock_id })
+        body: JSON.stringify({ user_id: user.user_id, rock_id: rock.rock_id })
       })
       if (res.status == 200){
         console.log("rock added to user collection");
-      } else if (res.status == 201) {
-        setCollected(true);
-        console.log("rock already in your collection");
+        alert("Rock added to your collection!");
+        window.location.reload();
       }
   }
   return (
