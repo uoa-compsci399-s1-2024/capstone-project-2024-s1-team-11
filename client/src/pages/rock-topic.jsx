@@ -13,6 +13,7 @@ export default function RockTopicPage() {
   const [topic, setTopic] = useState(null);
   const [user, setUser] = useState(null);
   const [isLogged, setIsLogged] = useState(!!Cookies.get('username'));
+  const [rockCollected, setCollected] = useState(false);
 
   useEffect(() => {
     if (rock_id) {
@@ -46,7 +47,6 @@ export default function RockTopicPage() {
   const showCollectButton = rock && productKeyFromUrl === rock.product_key;
 
   async function handleAddToCollection() {
-    console.log("rock added")
     const username = Cookies.get('username');
     const userResponse = await fetch(`http://localhost:5000/user/${username}`);
     if (!userResponse.ok) {
@@ -65,6 +65,9 @@ export default function RockTopicPage() {
       })
       if (res.status == 200){
         console.log("rock added to user collection");
+      } else if (res.status == 201) {
+        setCollected(true);
+        console.log("rock already in your collection");
       }
   }
   return (
@@ -84,7 +87,13 @@ export default function RockTopicPage() {
                 {showCollectButton && rock && (
                   <>
                     {isLogged ? (
-                      <button className='btn' onClick={handleAddToCollection}>ADD TO COLLECTION +</button>
+                      <>
+                        {rockCollected ? (
+                          <button className='btn'>ROCK ALREADY IN COLLECTION</button>
+                        ) : (
+                          <button className='btn' onClick={handleAddToCollection}>ADD TO COLLECTION +</button>
+                        )}
+                      </>
                     ) : (
                       <Link to={`/rocks`}><button className='btn'>SIGN IN TO COLLECT +</button></Link>
                     )}
