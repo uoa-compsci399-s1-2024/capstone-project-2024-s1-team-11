@@ -6,8 +6,13 @@ const registrationRouter = require("./routes/auth/register");
 const loginRouter = require("./routes/auth/login");
 const leaderboardRouter = require("./routes/leaderboard");
 const profileRouter = require("./routes/profile");
-const rocksRouter = require("./routes/rocks")
+const rocksRouter = require("./routes/rocks");
+const userRouter = require("./routes/user");
+const addRockRouter = require("./routes/addRock");
+const checkCollectionRouter = require("./routes/checkCollection");
 const authorizationRouter = require("./routes/auth/authorization")
+
+
 const Repository = require("./repository/repository");
 
 async function start_server(){
@@ -19,9 +24,12 @@ async function start_server(){
     app.use("/leaderboard", leaderboardRouter);
     app.use("/profile", profileRouter);
     app.use("/registration", registrationRouter);
-    app.use("/login", loginRouter)
+    app.use("/login", loginRouter);
+    app.use("/rocks", rocksRouter);
+    app.use("/user", userRouter);
+    app.use("/addRock", addRockRouter);
+    app.use("/checkCollection", checkCollectionRouter);
     app.use("/authorization", authorizationRouter);
-    app.use("/rocks", rocksRouter)
     app.listen(5000, () => {console.log("Server started on port 5000.")});
 }
 

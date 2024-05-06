@@ -208,6 +208,17 @@ class Repository {
             return result;
         } catch (e) { console.error(e); }
     }
+
+    async checkRockInUserCollection(user_id, rock_id) {
+        try {
+            const userRock = await Users_Rocks.findOne({ where: {user_id: user_id, rock_id: rock_id } });
+    
+            return !!userRock; // Returns true if the user is linked to the rock in the Users_Rocks table
+        } catch (error) {
+            console.error('Error checking rock in user collection:', error);
+            throw new Error('Failed to check rock in user collection.');
+        }
+    }
     
     async updateUser(user){
         try {
