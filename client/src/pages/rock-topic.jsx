@@ -54,6 +54,7 @@ export default function RockTopicPage() {
     }
     const userData = await userResponse.json();
     setUser(userData);
+    console.log(userData.user_id);
   }
   return (
     <>
