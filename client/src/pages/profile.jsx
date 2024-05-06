@@ -3,9 +3,9 @@ import { useNavigate } from 'react-router-dom';
 import Cookies from 'js-cookie';
 import Header from '../components/header';
 import Footer from '../components/footer';
-import EditProfileModal from '../components/edit-profile-modal';
 import '../profile_styles.css';
 import API from '../../api';
+import EditProfileModal from '../components/edit-profile-modal';
 
 const ProfilePage = () => {
   const navigate = useNavigate();
@@ -13,14 +13,7 @@ const ProfilePage = () => {
   const username = Cookies.get("username");
   const signature = Cookies.get("signature");
   const [userData, setUserData] = useState(null);
-  const [isEditProfileModalOpen, setIsEditProfileModalOpen] = useState(false);
-  const openEditProfileModal = () => {
-    setIsEditProfileModalOpen(true);
-  };
-
-  const closeEditProfileModal = () => {
-    setIsEditProfileModalOpen(false);
-  };
+  const [showEditModal, setShowEditModal] = useState(false);
 
   useEffect(() => {
     if (user_id) {
@@ -45,6 +38,14 @@ const ProfilePage = () => {
     } else{ navigate("/"); }
   }, []);
 
+  const handleEditProfile = () => {
+    setShowEditModal(true); 
+  };
+
+  useEffect(() => {
+    console.log('showEditModal:', showEditModal);
+  }, [showEditModal]);
+
   return (
       <>
         <Header/>
@@ -52,15 +53,13 @@ const ProfilePage = () => {
         <article className='side-padding top-padding'>
 
           <div className="profile-container">
-            <img src="/default_avatar.jpg" alt="Profile Picture" className="profile-picture"/>
+            <img src="/avatar-00.jpg" alt="Profile Picture" className="profile-picture"/>
             <p className="greeting">{userData ? `Hi, ${userData.username}!` : 'Hi, Username!'}</p>
             <p>{userData ? userData.district : 'Auckland'}</p>
             <div className="buttons-section">
-              <button onClick={openEditProfileModal} className="profile-button">Edit profile</button>
+              <button className="profile-button" onClick={handleEditProfile}>Edit profile</button>
             </div>
 
-            {/* Render EditProfileModal */}
-            <EditProfileModal isOpen={isEditProfileModalOpen} onClose={closeEditProfileModal}/>
             <p>Total rocks found: {userData ? userData.rock_count : '0'}</p>
           </div>
 
@@ -103,6 +102,7 @@ const ProfilePage = () => {
           </article>
         </main>
         <Footer/>
+        {showEditModal && <EditProfileModal onClose={() => setShowEditModal(false)} />}
       </>
   );
 };
