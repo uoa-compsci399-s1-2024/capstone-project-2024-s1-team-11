@@ -2,11 +2,12 @@ import Header from '../components/header';
 import Footer from '../components/footer';
 import TopImage from '../components/top-image';
 import { useState } from 'react';
-//import emailjs from 'emailjs-com';
+import emailjs from '@emailjs/browser';
+//use 'npm install @emailjs/browser - save' in terminal
 
-const EMAILJS_PUBLIC_KEY = 'zyJ-DMEwPke6Q1WhF';
-const TEMPLETE_ID = 'template_oy7kadr';
-const SERVICE_ID = 'service_br0fx9k';
+const EMAILJS_PUBLIC_KEY = 'QShoOBQuDYFL1ZiV1';
+const TEMPLETE_ID = 'template_py51ops';
+const SERVICE_ID = 'service_booi0ql';
 const USER_NAME = 'Math Rocks Team';
 
 
