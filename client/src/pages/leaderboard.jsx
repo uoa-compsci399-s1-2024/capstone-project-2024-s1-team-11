@@ -72,10 +72,8 @@ const Leaderboard = () => {
                     : `#${index + 1}`}
                 </td>
                 <td className="user-cell">
-                  <Link to={`/profile/${user.user_id}`} className="user-link">
                     <img src="/default_avatar.jpg" alt="Avatar" className="avatar"/>
                     <span className="username">{user.username}</span>
-                  </Link>
                 </td>
                 <td style={{ textAlign: 'right' }}>{user.rock_count}</td> 
               </tr>

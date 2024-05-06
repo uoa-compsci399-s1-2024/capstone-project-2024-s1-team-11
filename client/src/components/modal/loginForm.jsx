@@ -1,32 +1,34 @@
 import API from '../../../api';
-import React, { useState } from 'react';
+import { useState } from 'react';
 import Cookies from 'js-cookie';
-import { useNavigate } from 'react-router-dom';
 
 
 export default function LoginForm({formFunction}) {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const [isLogged, setIsLogged] = useState(false);
-    const navigate = useNavigate();
 
     const handleLogin = async (e) => {
         setIsLogged(false);
         e.preventDefault();
-        let res = await fetch(
-          API + '/login',
+
+        let res = await fetch(API + '/login',
           {
             method: 'POST',
             headers: {'Content-Type': 'application/json'},
             body: JSON.stringify({ username: username, password: password })
-          })
-          if (res.status == 201){
+          }
+        )
+
+        if (res.status === 201){
             let data = await res.json();
             Cookies.set('username', username);
             Cookies.set('user_id', data.user_id);
+            Cookies.set('signature', data.signature);
             setIsLogged(true);
-          }
         }
+    }
+
     return (
     <>
     <main>
@@ -42,7 +44,6 @@ export default function LoginForm({formFunction}) {
                         <input name="password" type='password' value={password} onChange={(e) => setPassword(e.target.value)}></input>
                     </label>
                     <p><a href="#">Forgot password?</a></p>
-                    <p>Insert captcha/I'm not a robot</p>
                     <button type='submit' className='btn'>login</button>
                 </form>
                 <section className='register-btn'>

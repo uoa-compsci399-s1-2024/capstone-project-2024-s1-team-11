@@ -1,4 +1,4 @@
-import { useRouteError } from "react-router-dom";
+import { useRouteError, Link } from "react-router-dom";
 import Header from "./components/header";
 import Footer from "./components/footer";
 
@@ -17,7 +17,9 @@ export default function ErrorPage() {
           <i>{error.statusText || error.message}</i>
         </p>
       </article>
-      </main>
+      <div className="side-padding">
+      <Link to="/"><div className="action-button">Back to Home</div></Link>
+      </div></main>
       <Footer />
     </>
   );
