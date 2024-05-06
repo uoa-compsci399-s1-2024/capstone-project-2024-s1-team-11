@@ -45,7 +45,7 @@ router.post('/', async (req, res) => {
 
 router.put('/username', async (req, res) => {
   try {
-    const { userId, newUsername } = req.body;
+    const { user_id, newUsername } = req.body;
 
     const repo = await Repository.getRepoInstance();
 
@@ -55,7 +55,7 @@ router.put('/username', async (req, res) => {
       return res.status(400).json({ error: 'Username already exists' });
     }
 
-    const user = await repo.getUser(userId);
+    const user = await repo.getUser(user_id);
     if (!user) {
       return res.status(404).json({ error: 'User not found' });
     }
@@ -72,17 +72,17 @@ router.put('/username', async (req, res) => {
 
 router.put('/email', async (req, res) => {
   try {
-      const { userId, newUsername } = req.body;
+      const { user_id, newEmail } = req.body;
       const existingEmail = await User.findOne({ where: { email: newEmail } });
       if (existingEmail) {
           return res.status(400).json({ error: 'Email already exists' });
       }
-      const user = await User.findByPk(userId);
+      const user = await User.findByPk(user_id);
       if (!user) {
           return res.status(404).json({ error: 'User not found' });
       }
 
-      user.email = email;
+      user.email = newEmail;
       await user.save();
 
       res.json({ success: true });

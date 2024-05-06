@@ -20,13 +20,15 @@ const EditProfileModal = ({ onClose }) => {
     e.preventDefault();
     try {
       const data = {
-        userId: user_id,
+        user_id: user_id,
+        username: username,
+        signature: signature
       };
   
       if (activeTab === 'username') {
         data.newUsername = newUsername;
       } else if (activeTab === 'email') {
-        data.newUsername = newUsername;
+        data.newEmail = newEmail;
       }
   
       const response = await fetch(API + `/profile/${activeTab}`,
