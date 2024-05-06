@@ -1,33 +1,88 @@
-/* Modal Styles */
-.modal {
-  display: block;
+.profile-modal {
   position: fixed;
-  z-index: 1;
-  left: 0;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #ffffff;
+  border-radius: 10px;
+  padding: 20px;
+  width: 80%;
+  max-width: 400px;
+}
+
+.profile-modal-overlay {
+  position: fixed;
   top: 0;
+  left: 0;
   width: 100%;
   height: 100%;
-  background-color: rgba(0, 0, 0, 0.5);
+  background-color: rgba(0, 0, 0, 0.5); 
+  z-index: 999; 
 }
 
-.modal-content {
-  background-color: white;
-  margin: 15% auto;
-  padding: 20px;
-  border: 1px solid #888;
-  width: 50%;
+.profile-modal h1 {
+  text-align: center;
+  font-size: 1.5rem; 
 }
 
-.close {
-  color: #aaa;
-  float: right;
-  font-size: 28px;
-  font-weight: bold;
-}
-
-.close:hover,
-.close:focus {
-  color: black;
-  text-decoration: none;
+.close-btn {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: none;
+  border: none;
   cursor: pointer;
+}
+
+.tab-navigation {
+  display: flex;
+  flex-direction: column; 
+  margin-bottom: 10px;
+}
+
+.tab-navigation button {
+  padding: 10px 20px;
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+  text-align: center; 
+  margin-bottom: 5px; 
+}
+
+.tab-navigation button.active {
+  background-color: #f0f0f0;
+}
+
+.tab-content {
+  margin-top: 10px;
+}
+
+.tab-content form {
+  display: flex;
+  flex-direction: column;
+}
+
+.tab-content form label {
+  margin-bottom: 5px;
+  font-size: 0.9rem; 
+}
+
+.tab-content form input[type='text'],
+.tab-content form input[type='email'] {
+  padding: 10px;
+  margin-bottom: 10px;
+  width: calc(100% - 20px);
+}
+
+.tab-content form button {
+  padding: 10px 20px;
+  border: none;
+  background-color: #007bff;
+  color: white;
+  cursor: pointer;
+  font-size: 1rem;
+}
+
+.tab-content form button:hover {
+  background-color: #0056b3;
 }
