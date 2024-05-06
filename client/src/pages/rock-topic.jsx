@@ -3,6 +3,7 @@ import Footer from '../components/footer';
 import TopImage from '../components/top-image';
 import React, { useState, useEffect } from 'react';
 import { Link, useParams, useLocation } from "react-router-dom";
+import Cookies from "js-cookie";
 
 
 export default function RockTopicPage() {
@@ -10,6 +11,9 @@ export default function RockTopicPage() {
   const location = useLocation();
   const [rock, setRock] = useState(null);
   const [topic, setTopic] = useState(null);
+  const [user, setUser] = useState(null);
+  const [isLogged, setIsLogged] = useState(!!Cookies.get('username'));
+  const [rockCollected, setCollected] = useState(false);
 
   useEffect(() => {
     if (rock_id) {
@@ -34,13 +38,60 @@ export default function RockTopicPage() {
       };
       fetchRockInfo();
     }
+    fetchCollectionInfo();
   }, [rock_id]);
+
+  const fetchCollectionInfo = async () => {
+    try {
+      const username = Cookies.get('username');
+      const userResponse = await fetch(`http://localhost:5000/user/${username}`);
+      if (!userResponse.ok) {
+        throw new Error('Failed to fetch user information');
+      }
+      const userData = await userResponse.json();
+      setUser(userData);
+      console.log(userData.user_id);
+
+      let res = await fetch(
+        `http://localhost:5000/checkCollection`,
+        {
+          method: 'POST',
+          headers: {'Content-Type': 'application/json'},
+          body: JSON.stringify({ user_id: userData.user_id, rock_id: rock_id })
+        })
+        if (res.status == 200) {
+          setCollected(false);
+          console.log("rock not in collection");
+        } else if (res.status == 201) {
+          setCollected(true);
+          console.log("rock already in your collection");
+        }
+
+    } catch (error) {
+      console.error('Error fetching collection information:', error);
+    }
+  };
 
   // Extracting product_key from the URL
   const urlSearchParams = new URLSearchParams(location.search);
   const productKeyFromUrl = urlSearchParams.get('product_key');
 
   const showCollectButton = rock && productKeyFromUrl === rock.product_key;
+
+  async function handleAddToCollection() {
+    let res = await fetch(
+      `http://localhost:5000/addRock`,
+      {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify({ user_id: user.user_id, rock_id: rock.rock_id })
+      })
+      if (res.status == 200){
+        console.log("rock added to user collection");
+        alert("Rock added to your collection!");
+        window.location.reload();
+      }
+  }
   return (
     <>
       <Header />
@@ -55,7 +106,21 @@ export default function RockTopicPage() {
                     <p>{topic.description}</p>
                   </>
                 )}
-                {showCollectButton && <Link to={`/rocks`}><button className='btn'>SIGN IN TO COLLECT +</button></Link>}
+                {showCollectButton && rock && (
+                  <>
+                    {isLogged ? (
+                      <>
+                        {rockCollected ? (
+                          <button className='btn'>ROCK ALREADY IN COLLECTION</button>
+                        ) : (
+                          <button className='btn' onClick={handleAddToCollection}>ADD TO COLLECTION +</button>
+                        )}
+                      </>
+                    ) : (
+                      <Link to={`/rocks`}><button className='btn'>SIGN IN TO COLLECT +</button></Link>
+                    )}
+                  </>
+                )}
               </>
             )}
             <h2>Rock hunting tips</h2>
