@@ -10,6 +10,7 @@ export default function RegisterForm({formFunction}) {
   const [area, setArea] = useState('Auckland City');
   const [isPending, setIsPending] = useState(false);
   const [isSucceed, setIsSucceed] = useState(false);
+  let [isHuman, setIsHuman] = useState(false);
   const [statusMsg, setStatusMsg] = useState('');
   
   const handleRegistration = async (e) => {
@@ -26,6 +27,10 @@ export default function RegisterForm({formFunction}) {
       if (res.status === 201){ setIsSucceed(true); }
       let responseJson = await res.json();
       setStatusMsg(responseJson.message)
+    }
+
+    function onChange(){
+    setIsHuman(true);
     }
   
     return (
@@ -55,9 +60,10 @@ export default function RegisterForm({formFunction}) {
           <label name="password"> Password
             <input name="password" type='password' value={password} onChange={(e) => setPassword(e.target.value)}></input>
           </label>
-          <ReCAPTCHA sitekey="6LfMldEpAAAAABx0c5Nfk7T91fqWmI_geB6X5TyL"/>
+          <ReCAPTCHA sitekey="6LfMldEpAAAAABx0c5Nfk7T91fqWmI_geB6X5TyL"
+          onChange={onChange}/>
           <p>{statusMsg}</p>
-          {!isPending && !isSucceed && <button type='submit' className='btn'>Register</button>}
+          {!isPending && !isSucceed && isHuman && <button type='submit' className='btn'>Register</button>}
           {isPending && <button type='submit' className='btn' disabled>Registering...</button>}
           <button className='btn blue' onClick={() => formFunction()}>Back to login</button>
         </form>
