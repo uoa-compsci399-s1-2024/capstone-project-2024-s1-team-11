@@ -97,6 +97,7 @@ export default function CmsTopics() {
         <CmsModal close={handleState} content={content}  />
       </div>
       <table>
+        <tbody>
         <tr>
           <th>Topic id</th>
           <th>Title (H1 tag)</th>
@@ -114,6 +115,7 @@ export default function CmsTopics() {
             <CmsModal close={handleState} content={content} /></div>
           </td>
         </tr>
+        </tbody>
       </table>
       </>
   );
