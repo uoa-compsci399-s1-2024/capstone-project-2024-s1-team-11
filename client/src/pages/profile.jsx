@@ -53,7 +53,11 @@ const ProfilePage = () => {
         <article className='side-padding top-padding'>
 
           <div className="profile-container">
-            <img src="/avatar-00.jpg" alt="Profile Picture" className="profile-picture"/>
+          {userData && userData.avatar ? (
+    <img src={`/` + userData.avatar} alt="Profile Picture" className="profile-picture" />
+) : (
+    <img src="/avatar-00.jpg" alt="Default Profile Picture" className="profile-picture" />
+)}
             <p className="greeting">{userData ? `Hi, ${userData.username}!` : 'Hi, Username!'}</p>
             <p>{userData ? userData.district : 'Auckland'}</p>
             <div className="buttons-section">
@@ -68,7 +72,7 @@ const ProfilePage = () => {
             <div className="rounded-border1">
               <ul className="list-container">
                 {userData && userData.badges && userData.badges.map(badge => (
-                    <li key={badge.badge_id} className="badge-square">{badge.name}</li>
+                    <li key={badge.badge_id} className="badge-square">{badges.badge_title}</li>
                 ))}
               </ul>
             </div>
@@ -79,7 +83,7 @@ const ProfilePage = () => {
             <div className="rounded-border2">
               <ul className="list-container">
                 {userData && userData.rocks && userData.rocks.map(rock => (
-                    <li key={rock.rock_id} className="badge-square">{rock.name}</li>
+                    <li key={rock.rock_id} className="badge-square">{rock.rock_name}</li>
                 ))}
               </ul>
             </div>
