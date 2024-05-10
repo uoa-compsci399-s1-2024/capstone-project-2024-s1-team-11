@@ -1,5 +1,5 @@
 const express = require('express');
-const { User, Users_Rocks, Users_Badges, Rock, Badge} = require('../models'); 
+const { User, Users_Rocks, Users_Badges, Rock, Badge, Avatar} = require('../models'); 
 const authenticate = require("./auth/authenticate");
 const Repository = require('../repository/repository');
 
@@ -12,6 +12,11 @@ router.post('/', async (req, res) => {
         console.log(req.body);
         const repo = await Repository.getRepoInstance();
         const user_id = req.body.user_id;
+        const user2 = await User.findByPk(user_id);
+
+        if (!user2) {
+            return res.status(404).json({ error: 'User not found' });
+        }
         const user = await repo.getUser(user_id.valueOf());
         if (!user) { return res.status(404).json({ error: 'User not found' });}
         const user_rocks = await repo.getUserRocks(user_id);
@@ -27,16 +32,23 @@ router.post('/', async (req, res) => {
             badges_list.push(badge);
         }
 
+        const userAvatar = await Avatar.findByPk(user.avatar_id);
+        const avatarImageUri = userAvatar ? userAvatar.imageUri : null;
+
         return res.json({
             user_id: user.user_id,
             username: user.username,
             alias: user.alias,
             email: user.email,
             district: user.district,
+            avatar: avatarImageUri,
             rocks: rocks_list,
             badges: badges_list,
-            rock_count: user_rocks.length,
+            rock_count: rocks_list.length
         });
+
+        
+
     } catch (error) {
         console.error('Error fetching user profile:', error);
         return res.status(500).json({ error: 'Internal server error' });
@@ -91,5 +103,6 @@ router.put('/email', async (req, res) => {
       res.status(500).json({ error: 'Internal server error' });
   }
 });
+
 
 module.exports = router;
