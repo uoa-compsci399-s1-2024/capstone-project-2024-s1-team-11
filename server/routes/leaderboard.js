@@ -1,5 +1,5 @@
 const express = require('express');
-const { User, Users_Rocks } = require('../models'); 
+const { User, Users_Rocks, Avatar } = require('../models'); 
 
 const router = express.Router();
 
@@ -45,16 +45,32 @@ async function getUsersWithRockCount(users) {
       }
     });
 
+    const userAvatar = await Avatar.findByPk(user.avatar_id);
+    const avatarImageUri = userAvatar ? userAvatar.imageUri : null;
+
     rocksCount = userRocks.length;
 
     usersWithRockCount.push({
       user_id: user.user_id,
       username: user.username,
-      rock_count: rocksCount
+      rock_count: rocksCount,
+      avatar: avatarImageUri
     });
   }
 
   return usersWithRockCount;
 }
+
+router.get('/avatars', async (req, res) => {
+  try {
+      const avatars = await Avatar.findAll({
+          attributes: ['avatar_id', 'imageUri']
+      });
+      return res.json(avatars);
+  } catch (error) {
+      console.error('Error fetching avatars:', error);
+      return res.status(500).json({ error: 'Internal server error' });
+  }
+});
 
 module.exports = router;
