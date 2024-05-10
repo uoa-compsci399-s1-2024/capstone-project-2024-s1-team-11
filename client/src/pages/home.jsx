@@ -5,8 +5,22 @@ import TopicCards from '../components/topic';
 import { Link } from "react-router-dom";
 import { useState, useEffect } from 'react';
 
+const HomePage = () => {
+  const [topics, setTopics] = useState([]);
 
-export default function HomePage() {
+  useEffect(() => {
+    const fetchTopics = async () => {
+        const fetchPromise = await fetch('http://localhost:5000/topics');
+        const streamPromise = await fetchPromise.json();
+        const data = Object.entries(streamPromise);
+        let output = data.map((obj, i) => ({...obj[1], indexID: i}));
+        setTopics(output);
+    };
+    fetchTopics();
+
+  }, []);
+
+
   const [scrollY, setScrollY] = useState(0);
   const [imageSize, setImageSize] = useState(100)
   const [showHeader, setShowHeader] = useState(false)
@@ -65,7 +79,15 @@ export default function HomePage() {
           <section className='section3 side-padding top-padding'>
             <h2>Browse maths topics</h2>
             <div className="rock-grid">
-              <TopicCards />
+              {topics.slice(0, 4).map((topic) => (
+                <div>
+                  <img src={topic.imageUri} alt={topic.title} key={topic.topic_id} height="120"/>
+                  <h3>{topic.description}</h3>
+                  <Link to={'/rocks/' + topic.topic_id}>
+                    <button className='btn'>Learn More</button>
+                  </Link>
+                </div>
+              ))}
             </div>
           </section>
         </main>
@@ -74,3 +96,4 @@ export default function HomePage() {
     </>
   );
 }
+export default HomePage;
