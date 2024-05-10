@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Cookies from 'js-cookie';
 import API from '../../../api';
 import './styles.css'; 
@@ -10,11 +10,34 @@ const EditProfileModal = ({ onClose }) => {
   const [activeTab, setActiveTab] = useState('username'); 
   const [newUsername, setNewUsername] = useState('');
   const [newEmail, setNewEmail] = useState('');
-  const [avatar, setAvatar] = useState(null);
+  const [selectedAvatar, setSelectedAvatar] = useState(null);
+  const [avatarData, setAvatarData] = useState([]);
+  const [selectedAvatarIndex, setSelectedAvatarIndex] = useState(null); 
+
+  useEffect(() => {
+    const fetchAvatarData = async () => {
+      try {
+        let url = API + '/leaderboard/avatars';
+        
+        const response = await fetch(url);
+        if (!response.ok) {
+          throw new Error('Failed to fetch avatar data');
+        }
+        const data = await response.json();
+        setAvatarData(data);
+      } catch (error) {
+        console.error('Error fetching avatar data:', error);
+      }
+    };
+
+    fetchAvatarData();
+  }, []);
 
   const handleTabClick = (tab) => {
     setActiveTab(tab);
   };
+
+  
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -29,6 +52,8 @@ const EditProfileModal = ({ onClose }) => {
         data.newUsername = newUsername;
       } else if (activeTab === 'email') {
         data.newEmail = newEmail;
+      } else if (activeTab === 'avatar') {
+        data.selectedAvatar = selectedAvatar;
       }
   
       const response = await fetch(API + `/profile/${activeTab}`,
@@ -44,14 +69,18 @@ const EditProfileModal = ({ onClose }) => {
   
       if (response.ok) {
         console.log('PUT request was successful!');
-    } else {
+      } else {
         console.error('PUT request failed:', response.status);
-    }
+      }
   
       console.log(`${activeTab} updated successfully!`);
     } catch (error) {
       console.error(`Error updating ${activeTab}:`, error.message);
     }
+  };
+
+  const handleAvatarClick = (id) => {
+    setSelectedAvatar(id);
   };
 
   return (
@@ -72,7 +101,12 @@ const EditProfileModal = ({ onClose }) => {
           >
             Edit Email
           </button>
-          {/* Add avatar tab */}
+          <button
+            className={activeTab === 'avatar' ? 'active' : ''}
+            onClick={() => handleTabClick('avatar')}
+          >
+            Select Avatar
+          </button>
         </div>
         <div className="tab-content">
           {activeTab === 'username' && (
@@ -89,7 +123,25 @@ const EditProfileModal = ({ onClose }) => {
               <button type="submit">Save</button>
             </form>
           )}
-          {/* Add avatar selection tab content */}
+          {activeTab === 'avatar' && (
+            <div className="avatar-selection">
+              <form onSubmit={handleSubmit}>
+                <ul className="avatar-grid">
+                  {avatarData.map((entry, index) => (
+                    <li key={index}>
+                      <div 
+                        className={`avatar ${selectedAvatarIndex === index ? 'selected' : ''}`}
+                        onClick={() => handleAvatarClick(index)}
+                      >
+                        <img src={entry.imageUri} alt={`Avatar ${index}`} />
+                      </div>
+                    </li>
+                  ))}
+                </ul>
+                <button type="submit">Save</button>
+              </form>
+            </div>
+          )}
         </div>
       </section>
     </section>
