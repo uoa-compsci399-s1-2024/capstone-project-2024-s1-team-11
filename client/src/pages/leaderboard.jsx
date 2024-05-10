@@ -32,6 +32,7 @@ const Leaderboard = () => {
     <>
       <Header />
       <main>
+      <article className='side-padding top-padding'>
         <h1 className="leaderboard-header">Leaderboard</h1>
         <div className="toggle-buttons">
           <button onClick={() => setMonthly(false)} className={!monthly ? "active" : ""}>All Time</button>
@@ -60,10 +61,17 @@ const Leaderboard = () => {
                     : `#${index + 1}`}
                 </td>
                 <td className="user-cell">
+                {user && user.avatar ? (
+    <img src={`/` + user.avatar} alt="Profile Picture" className="avatar" />
+) : (
+    <img src="/avatar-00.jpg" alt="Default Profile Picture" className="avatar" />
+)}
 
                   <span className="username">{user.username}</span>
 
-                    <img src="/default_avatar.jpg" alt="Avatar" className="avatar"/>
+                  
+
+                    
 
                 </td>
                 <td style={{ textAlign: 'right' }}>{user.rock_count}</td>
@@ -71,6 +79,7 @@ const Leaderboard = () => {
             ))}
           </tbody>
         </table>
+        </article>
       </main>
       <Footer />
     </>
