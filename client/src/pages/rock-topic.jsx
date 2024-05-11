@@ -103,7 +103,7 @@ export default function RockTopicPage() {
                 {topic && topic.title && topic.description && (
                   <>
                     <h1>{topic.title}</h1>
-                    <p>{topic.description}</p>
+                    <div dangerouslySetInnerHTML={{ __html: topic.description }} />
                   </>
                 )}
                 {showCollectButton && rock && (
