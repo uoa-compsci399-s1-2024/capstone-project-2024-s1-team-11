@@ -252,6 +252,16 @@ class Repository {
         } catch (e) { console.error(e); }
     }
 
+    async giveBadgeToUser(user_id, badge_id){
+        try {
+            let user = await User.findByPk(user_id);
+            let badge = await Badge.findByPk(badge_id);
+            if (user !== null && badge !== null) {
+                await Users_Badges.findOrCreate({where: {user_id: user_id, badge_id: badge_id}});
+            }
+        } catch (e) { console.error(e); }
+    }
+
     async getUserPrivilege(username){
         try{
             if (username) {
