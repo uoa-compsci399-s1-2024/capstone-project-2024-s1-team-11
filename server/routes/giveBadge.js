@@ -24,6 +24,8 @@ router.post('/', async (req, res) => {
         } else if (userRocksCount % 10 === 0) {
             repo.giveBadgeToUser(user_id, t_badge_id);
             res.status(200).json({ message: '4th and upwards Badge given to User' });
+        } else {
+            res.status(201).json({ message: 'User ineligible for badges rn' });
         }
     } catch (error) {
         console.error('Error giving User badge:', error);
