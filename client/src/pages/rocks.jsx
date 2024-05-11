@@ -1,6 +1,7 @@
 import Header from '../components/header';
 import Footer from '../components/footer';
 import React, {useState, useEffect} from 'react';
+import {Link, NavLink} from 'react-router-dom';
 
 //fetches the data
 const RocksPage = () => {
@@ -38,14 +39,12 @@ const RocksPage = () => {
     );
   }
 
-  //dropdown sort function - can sort alphabetically and numerically (ignore rarity and most found)
+  //dropdown sort function - can sort alphabetically and numerically
   const [sortType, setSortType] = useState('numerical');
 
   useEffect(() => {
     const sortArray = type => {
       const types = {
-        rarity: 'rarity',
-        mostFound: 'found',
         alphabet: 'title',
         number: 'topic_id',
       };
@@ -66,6 +65,7 @@ const RocksPage = () => {
     <>
       <Header />
         <main>
+        <article className='side-padding top-padding'>
           <div className="pageText">
             <h1>Rocks</h1>
             <p>Browse rocks, or search for your favourite maths concept.</p>
@@ -74,8 +74,6 @@ const RocksPage = () => {
             <form className="dropDownMenu">
               <select name="sortBy" id="sortBy" onChange={(e) => setSortType(e.target.value)}>
                 <option default value>Sort by:</option>
-                <option value="rarity">Rarity of rock</option>
-                <option value="mostFound">Most found</option>
                 <option value="alphabet">Alphabetical</option>
                 <option value="number">Numerical</option>
                 </select>
@@ -87,12 +85,18 @@ const RocksPage = () => {
           </div>
             <section id="rocksList">
             {search(topics).map((topic) => (
-                <img src={topic.imageUri} alt={topic.title} key={topic.topic_id} height="120" title={topic.title}/>
+                <div>
+                  <img src={topic.imageUri} alt={topic.title} key={topic.topic_id} height="120"/>
+                  <h3>{topic.title}</h3>
+                  <Link to={'/rocks/' + topic.topic_id}>
+                    <button className='btn'>Learn More</button>
+                  </Link>
+                </div>
               ))}
 
 
             </section>
-          
+          </article>
         </main>
         <Footer />
     </>

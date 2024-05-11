@@ -209,6 +209,12 @@ class Repository {
         } catch (e) { console.error(e); }
     }
 
+    async getUserRocksCount(user_id){
+        try{
+            return (await Users_Rocks.findAndCountAll({where: {user_id: user_id}})).count;
+        } catch (e) { console.error(e); }
+    }
+
     async checkRockInUserCollection(user_id, rock_id) {
         try {
             const userRock = await Users_Rocks.findOne({ where: {user_id: user_id, rock_id: rock_id } });
@@ -260,6 +266,7 @@ class Repository {
             return false;
         }
     }
+
 }
 
 module.exports = Repository;

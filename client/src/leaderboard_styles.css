@@ -37,7 +37,7 @@ border-radius: 50%;
   align-items: center;
   justify-content: flex-start; 
   padding: 5px 10px;
-  background-color: #66FF01;
+  background-color: var(--green);
   color: white;
   border-radius: 10px;
   text-align: center; 

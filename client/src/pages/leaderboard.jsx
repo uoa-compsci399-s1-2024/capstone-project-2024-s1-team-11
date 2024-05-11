@@ -32,6 +32,7 @@ const Leaderboard = () => {
     <>
       <Header />
       <main>
+      <article className='side-padding top-padding'>
         <h1 className="leaderboard-header">Leaderboard</h1>
         <div className="toggle-buttons">
           <button onClick={() => setMonthly(false)} className={!monthly ? "active" : ""}>All Time</button>
@@ -71,6 +72,7 @@ const Leaderboard = () => {
             ))}
           </tbody>
         </table>
+        </article>
       </main>
       <Footer />
     </>
