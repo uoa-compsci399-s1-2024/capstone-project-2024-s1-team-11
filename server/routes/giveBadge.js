@@ -26,8 +26,8 @@ router.post('/', async (req, res) => {
             res.status(200).json({ message: '4th and upwards Badge given to User' });
         }
     } catch (error) {
-        console.error('Error adding rock to collection:', error);
-        res.status(500).json({ error: 'Failed to add rock to collection' });
+        console.error('Error giving User badge:', error);
+        res.status(500).json({ error: 'Failed to give User badge' });
     }
 })
 module.exports = router;

@@ -100,10 +100,9 @@ export default function RockTopicPage() {
           <article className='side-padding'>
             {rock && rock.rock_name && (
               <>
-                {topic && topic.title && topic.description && (
+                {topic && topic.title && (
                   <>
                     <h1>{topic.title}</h1>
-                    <div dangerouslySetInnerHTML={{ __html: topic.description }} />
                   </>
                 )}
                 {showCollectButton && rock && (
@@ -119,6 +118,11 @@ export default function RockTopicPage() {
                     ) : (
                       <Link to={`/rocks`}><button className='btn'>SIGN IN TO COLLECT +</button></Link>
                     )}
+                  </>
+                )}
+                {topic && topic.description && (
+                  <>
+                    <div dangerouslySetInnerHTML={{ __html: topic.description }} />
                   </>
                 )}
               </>
