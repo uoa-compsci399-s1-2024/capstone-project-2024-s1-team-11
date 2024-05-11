@@ -10,6 +10,7 @@ const rocksRouter = require("./routes/rocks");
 const userRouter = require("./routes/user");
 const addRockRouter = require("./routes/addRock");
 const checkCollectionRouter = require("./routes/checkCollection");
+const giveBadgeRouter = require("./routes/giveBadge");
 const {router: authorizationRouter} = require("./routes/auth/authorization")
 const usersReportRouter = require("./routes/content-management/usersReport")
 
@@ -30,6 +31,7 @@ async function start_server(){
     app.use("/user", userRouter);
     app.use("/addRock", addRockRouter);
     app.use("/checkCollection", checkCollectionRouter);
+    app.use("/giveBadge", giveBadgeRouter);
 
     app.use("/authorization", authorizationRouter);
     app.use("/usersReport", usersReportRouter)
