@@ -53,8 +53,11 @@ const ProfilePage = () => {
         <article className='side-padding top-padding'>
 
           <div className="profile-container">
-            <img src="/avatar-00.jpg" alt="Profile Picture" className="profile-picture"/>
-          
+          {userData && userData.avatar ? (
+    <img src={`/` + userData.avatar} alt="Profile Picture" className="profile-picture" />
+) : (
+    <img src="/avatar-00.jpg" alt="Default Profile Picture" className="profile-picture" />
+)}
             <p className="greeting">{userData ? `Hi, ${userData.username}!` : 'Hi, Username!'}</p>
             <p>{userData ? userData.district : 'Auckland'}</p>
             <div className="buttons-section">

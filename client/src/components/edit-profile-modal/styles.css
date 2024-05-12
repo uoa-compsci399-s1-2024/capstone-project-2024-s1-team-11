@@ -86,3 +86,28 @@
 .tab-content form button:hover {
   background-color: #0056b3;
 }
+
+
+.avatar-grid {
+  display: flex;
+  flex-wrap: wrap;
+  list-style: none;
+  padding: 0;
+}
+
+.avatar-grid li {
+  flex: 0 0 25%; 
+  padding: 5px; 
+}
+
+.avatar {
+  width: 100%;
+  text-align: center;
+}
+
+.avatar img {
+  max-width: 100%;
+  height: auto;
+}
+
+

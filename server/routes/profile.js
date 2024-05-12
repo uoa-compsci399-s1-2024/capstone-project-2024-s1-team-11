@@ -32,17 +32,22 @@ router.post('/', async (req, res) => {
             badges_list.push(badge);
         }
 
+        const userAvatar = await Avatar.findByPk(user.avatar_id);
+        const avatarImageUri = userAvatar ? userAvatar.imageUri : null;
 
-return res.json({
-    user_id: user.user_id,
-    username: user.username,
-    alias: user.alias,
-    email: user.email,
-    district: user.district,
-    rocks: rocks_list,
-    badges: badges_list,
-    rock_count: rocks_list.length
-});
+        return res.json({
+            user_id: user.user_id,
+            username: user.username,
+            alias: user.alias,
+            email: user.email,
+            district: user.district,
+            avatar: avatarImageUri,
+            rocks: rocks_list,
+            badges: badges_list,
+            rock_count: rocks_list.length
+        });
+
+        
 
     } catch (error) {
         console.error('Error fetching user profile:', error);
