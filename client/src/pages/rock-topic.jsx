@@ -88,10 +88,9 @@ export default function RockTopicPage() {
     if (res.status == 200){
       console.log("rock added to user collection");
       alert("Rock added to your collection!");
-      window.location.reload();
 
       await fetch(
-        `http://localhost:5000/addBadge`,
+        `http://localhost:5000/giveBadge`,
         {
           method: 'POST',
           headers: {'Content-Type': 'application/json'},
