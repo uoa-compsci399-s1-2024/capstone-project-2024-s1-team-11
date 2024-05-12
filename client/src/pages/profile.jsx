@@ -14,6 +14,7 @@ const ProfilePage = () => {
   const signature = Cookies.get("signature");
   const [userData, setUserData] = useState(null);
   const [showEditModal, setShowEditModal] = useState(false);
+  const [userBadges, setUserBadges] = useState(null);
 
   useEffect(() => {
     if (user_id) {
@@ -30,6 +31,10 @@ const ProfilePage = () => {
           }
           const data = await response.json();
           setUserData(data);
+
+          const badgesResp = await fetch(`http://localhost:5000/getBadges/${user_id}`);
+          const badgeData = await badgesResp.json();
+          setUserBadges(badgeData);
         } catch (error) {
           console.error('Error fetching user data:', error);
         }
@@ -71,8 +76,8 @@ const ProfilePage = () => {
             <h2>Badges</h2>
             <div className="rounded-border1">
               <ul className="list-container">
-                {userData && userData.badges && userData.badges.map(badge => (
-                    <li key={badge.badge_id} className="badge-square">{badges.badge_title}</li>
+                {userData && userBadges && Array.from(userBadges).map(([badge_id, badge]) => (
+                    <li key={badge_id} className="badge-square">{badge.badge_title}</li>
                 ))}
               </ul>
             </div>
