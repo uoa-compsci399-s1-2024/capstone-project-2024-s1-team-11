@@ -1,7 +1,7 @@
 import mathsRocksLogo from '/maths-rocks-logo.svg';
 import Header from '../components/header';
 import Footer from '../components/footer';
-import TopicCards from '../components/topic';
+import API from '../../api.js'
 import { Link } from "react-router-dom";
 import { useState, useEffect } from 'react';
 
@@ -10,7 +10,7 @@ const HomePage = () => {
 
   useEffect(() => {
     const fetchTopics = async () => {
-        const fetchPromise = await fetch('http://localhost:5000/topics');
+        const fetchPromise = await fetch(API + '/topics');
         const streamPromise = await fetchPromise.json();
         const data = Object.entries(streamPromise);
         let output = data.map((obj, i) => ({...obj[1], indexID: i}));
