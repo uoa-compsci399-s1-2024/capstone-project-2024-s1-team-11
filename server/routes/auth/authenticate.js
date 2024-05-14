@@ -2,14 +2,14 @@ const bcrypt = require("bcrypt");
 const express = require("express");
 const SECRET_KEY = require("../../utils/secretKeyGenerator");
 
-function authenticate(req, res, next) {
+async function authenticate(req, res, next) {
     try {
         console.log(req.body);
         if (req.body !== undefined && req.body.username && req.body.signature) {
             const username = req.body.username;
             const signature = req.body.signature
             console.log(req.body);
-            if (bcrypt.compare(signature, username + SECRET_KEY)) {
+            if (await bcrypt.compare(signature, username + SECRET_KEY)) {
                 console.log("Successful authentication.")
                 next();
             } else{ return res.status(401).send({message: 'Unauthorized: Authentication failed.'}); }
