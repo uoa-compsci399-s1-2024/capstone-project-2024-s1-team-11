@@ -58,15 +58,14 @@ export default function RockTopicPage() {
           method: 'POST',
           headers: {'Content-Type': 'application/json'},
           body: JSON.stringify({ user_id: userData.user_id, rock_id: rock_id })
-        })
-        if (res.status == 200) {
-          setCollected(false);
-          console.log("rock not in collection");
-        } else if (res.status == 201) {
-          setCollected(true);
-          console.log("rock already in your collection");
-        }
-
+        });
+      if (res.status == 200) {
+        setCollected(false);
+        console.log("rock not in collection");
+      } else if (res.status == 201) {
+        setCollected(true);
+        console.log("rock already in your collection");
+      }
     } catch (error) {
       console.error('Error fetching collection information:', error);
     }
@@ -85,12 +84,19 @@ export default function RockTopicPage() {
         method: 'POST',
         headers: {'Content-Type': 'application/json'},
         body: JSON.stringify({ user_id: user.user_id, rock_id: rock.rock_id })
-      })
-      if (res.status == 200){
-        console.log("rock added to user collection");
-        alert("Rock added to your collection!");
-        window.location.reload();
-      }
+      });
+    if (res.status == 200){
+      console.log("rock added to user collection");
+      alert("Rock added to your collection!");
+
+      await fetch(
+        `http://localhost:5000/giveBadge`,
+        {
+          method: 'POST',
+          headers: {'Content-Type': 'application/json'},
+          body: JSON.stringify({ user_id: user.user_id })
+        });
+    }
   }
   return (
     <>
@@ -100,10 +106,9 @@ export default function RockTopicPage() {
           <article className='side-padding'>
             {rock && rock.rock_name && (
               <>
-                {topic && topic.title && topic.description && (
+                {topic && topic.title && (
                   <>
                     <h1>{topic.title}</h1>
-                    <p>{topic.description}</p>
                   </>
                 )}
                 {showCollectButton && rock && (
@@ -119,6 +124,11 @@ export default function RockTopicPage() {
                     ) : (
                       <Link to={`/rocks`}><button className='btn'>SIGN IN TO COLLECT +</button></Link>
                     )}
+                  </>
+                )}
+                {topic && topic.description && (
+                  <>
+                    <div dangerouslySetInnerHTML={{ __html: topic.description }} />
                   </>
                 )}
               </>
