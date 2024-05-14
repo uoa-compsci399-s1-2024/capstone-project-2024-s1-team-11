@@ -1,7 +1,7 @@
 import Header from '../components/header';
 import Footer from '../components/footer';
-import React, {useState, useEffect} from 'react';
-import {Link, NavLink} from 'react-router-dom';
+import {useState, useEffect} from 'react';
+import { Link } from 'react-router-dom';
 import API from '../../api.js'
 
 //fetches the data
@@ -23,7 +23,7 @@ const RocksPage = () => {
   
   //placeholder data
   useEffect(() => {
-    if(topics.length == 0) {
+    if(topics.length === 0) {
       const randomTopics = [
         {title: "zero", imageUri: "../maths-rocks-zero.jpg", topic_id: 0}, {title: "one", imageUri: "../maths-rocks-one.jpg", topic_id: 1},
         {title: "two", imageUri: "../maths-rocks-two.jpg", topic_id: 2}
@@ -51,7 +51,7 @@ const RocksPage = () => {
       };
       const sortProperty = types[type];
       let sorted = '';
-      if (sortProperty == 'topic_id') {
+      if (sortProperty === 'topic_id') {
         sorted = [...topics].sort((a, b) => a[sortProperty] - b[sortProperty]);
       } else {
         sorted = [...topics].sort((a, b) => a.title.localeCompare(b.title));
@@ -86,8 +86,8 @@ const RocksPage = () => {
           </div>
             <section id="rocksList">
             {search(topics).map((topic) => (
-                <div>
-                  <img src={topic.imageUri} alt={topic.title} key={topic.topic_id} height="120"/>
+                <div key={topic.topic_id}>
+                  <img src={topic.imageUri} alt={topic.title} height="120"/>
                   <h3>{topic.title}</h3>
                   <Link to={'/rocks/' + topic.topic_id}>
                     <button className='btn'>Learn More</button>
