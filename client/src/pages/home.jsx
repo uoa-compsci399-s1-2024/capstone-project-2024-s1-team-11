@@ -82,7 +82,7 @@ const HomePage = () => {
               {topics.slice(0, 4).map((topic) => (
                 <div>
                   <img src={topic.imageUri} alt={topic.title} key={topic.topic_id} height="120"/>
-                  <h3>{topic.description}</h3>
+                  <h3>{topic.title}</h3>
                   <Link to={'/rocks/' + topic.topic_id}>
                     <button className='btn'>Learn More</button>
                   </Link>
