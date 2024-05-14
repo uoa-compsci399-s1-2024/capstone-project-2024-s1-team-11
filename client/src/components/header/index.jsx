@@ -3,6 +3,7 @@ import mathsRocksLogo from '/maths-rocks-logo.svg';
 import Hamburger from '../Hamburger';
 import { Link, NavLink } from "react-router-dom";
 import { useState, useEffect } from 'react';
+import { useNavigate } from "react-router-dom";
 import Modal from '../modal';
 import Cookies from "js-cookie";
 
@@ -26,6 +27,7 @@ function LoginBtn() {
   const [modalOpen, setModalOpen] = useState(false);
   const [displayLoginForm, setDisplayLoginForm] = useState(true);
   const [isLogged, setIsLogged] = useState(!Cookies.get('username') === undefined);
+  const navigate = useNavigate();
 
   function handleState() {
     setModalOpen(!modalOpen);
@@ -42,7 +44,7 @@ function LoginBtn() {
     }else{
       setIsLogged(false);
     }
-  }); 
+  }, []);
 
   return (
     <>
@@ -57,6 +59,8 @@ function LoginBtn() {
           Cookies.remove('user_id');
           Cookies.remove('signature');
           setIsLogged(false);
+          navigate("/");
+
           }}>
           Logout <span className='triangle'></span>
         </button>}
