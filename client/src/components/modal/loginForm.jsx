@@ -6,6 +6,7 @@ import Cookies from 'js-cookie';
 export default function LoginForm({formFunction}) {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
+    const [statusMsg, setStatusMsg] = useState('');
     const [isLogged, setIsLogged] = useState(false);
 
     const handleLogin = async (e) => {
@@ -20,32 +21,37 @@ export default function LoginForm({formFunction}) {
           }
         )
 
+        let data = await res.json();
+
         if (res.status === 201){
-            let data = await res.json();
             Cookies.set('username', username);
             Cookies.set('user_id', data.user_id);
             Cookies.set('signature', data.signature);
             setIsLogged(true);
         }
+        setStatusMsg(data.message);
     }
 
     return (
     <>
     <main>
         { !Cookies.get('username') &&
-            <section className='login-form'>          
+            <section className='login-form'>
                 <h1>Sign in</h1>
                 <form onSubmit={handleLogin}>
                     <label name="username">Username
-                        <input name="username" type='text' value={username} onChange={(e) => setUsername(e.target.value)}></input>
+                        <input name="username" type='text' value={username}
+                               onChange={(e) => setUsername(e.target.value)}></input>
                     </label>
                     <p><a href="#">Forgot username?</a></p>
                     <label name="password">Password
-                        <input name="password" type='password' value={password} onChange={(e) => setPassword(e.target.value)}></input>
+                        <input name="password" type='password' value={password}
+                               onChange={(e) => setPassword(e.target.value)}></input>
                     </label>
                     <p><a href="#">Forgot password?</a></p>
                     <button type='submit' className='btn'>login</button>
                 </form>
+                <p>{statusMsg}</p>
                 <section className='register-btn'>
                     <h2>New to Maths Rocks?</h2>
                     <button className='btn blue' onClick={() => formFunction()}>Create an account</button>

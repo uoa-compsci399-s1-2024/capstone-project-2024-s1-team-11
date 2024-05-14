@@ -7,9 +7,10 @@ async function authenticate(req, res, next) {
         console.log(req.body);
         if (req.body !== undefined && req.body.username && req.body.signature) {
             const username = req.body.username;
+            const user_id = req.body.user_id;
             const signature = req.body.signature
             console.log(req.body);
-            if (await bcrypt.compare(signature, username + SECRET_KEY)) {
+            if (await bcrypt.compare(signature, username + user_id + SECRET_KEY)) {
                 console.log("Successful authentication.")
                 next();
             } else{ return res.status(401).send({message: 'Unauthorized: Authentication failed.'}); }
