@@ -22,19 +22,19 @@ async function start_server(){
     const app = express();
     app.use(cors());
     app.use(session({secret: 'secret', saveUninitialized: false, resave: false}));
-    app.use("/topics", topicsRouter);
-    app.use("/leaderboard", leaderboardRouter);
-    app.use("/profile", profileRouter);
-    app.use("/registration", registrationRouter);
-    app.use("/login", loginRouter);
-    app.use("/rocks", rocksRouter);
-    app.use("/user", userRouter);
-    app.use("/addRock", addRockRouter);
-    app.use("/checkCollection", checkCollectionRouter);
-    app.use("/giveBadge", giveBadgeRouter);
+    app.use("/api/topics", topicsRouter);
+    app.use("/api/leaderboard", leaderboardRouter);
+    app.use("/api/profile", profileRouter);
+    app.use("/api/registration", registrationRouter);
+    app.use("/api/login", loginRouter);
+    app.use("/api/rocks", rocksRouter);
+    app.use("/api/user", userRouter);
+    app.use("/api/addRock", addRockRouter);
+    app.use("/api/checkCollection", checkCollectionRouter);
+    app.use("/api/giveBadge", giveBadgeRouter);
 
-    app.use("/authorization", authorizationRouter);
-    app.use("/usersReport", usersReportRouter)
+    app.use("/api/authorization", authorizationRouter);
+    app.use("/api/usersReport", usersReportRouter)
     app.listen(5000, () => {console.log("Server started on port 5000.")});
 }
 
