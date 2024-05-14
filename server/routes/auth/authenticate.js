@@ -4,14 +4,11 @@ const SECRET_KEY = require("../../utils/secretKeyGenerator");
 
 async function authenticate(req, res, next) {
     try {
-        console.log(req.body);
         if (req.body !== undefined && req.body.username && req.body.signature) {
             const username = req.body.username;
             const user_id = req.body.user_id;
             const signature = req.body.signature
-            console.log(req.body);
-            if (await bcrypt.compare(signature, username + user_id + SECRET_KEY)) {
-                console.log("Successful authentication.")
+            if (await bcrypt.compare(username + user_id + SECRET_KEY, signature)) {
                 next();
             } else{ return res.status(401).send({message: 'Unauthorized: Authentication failed.'}); }
         } else{ return res.status(401).send({message: 'Unauthorized: Authentication failed.'}); }
