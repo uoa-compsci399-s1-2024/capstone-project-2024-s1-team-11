@@ -22,6 +22,7 @@ async function start_server(){
     const app = express();
     app.use(cors());
     app.use(session({secret: 'secret', saveUninitialized: false, resave: false}));
+    app.use("/api/images", express.static('images'));
     app.use("/api/topics", topicsRouter);
     app.use("/api/leaderboard", leaderboardRouter);
     app.use("/api/profile", profileRouter);

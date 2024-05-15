@@ -25,8 +25,9 @@ const RocksPage = () => {
   useEffect(() => {
     if(topics.length === 0) {
       const randomTopics = [
-        {title: "Zero", imageUri: "../maths-rocks-zero.jpg", topic_id: 0}, {title: "One", imageUri: "../maths-rocks-one.jpg", topic_id: 1},
-        {title: "Two", imageUri: "../maths-rocks-two.jpg", topic_id: 2}
+        {title: "Zero", imageUri: API + "/images/rocks/" + "maths-rocks-zero.jpg", topic_id: 0},
+        {title: "One", imageUri: API + "/images/rocks/" + "maths-rocks-one.jpg", topic_id: 1},
+        {title: "Two", imageUri: API + "/images/rocks/" + "maths-rocks-two.jpg", topic_id: 2}
       ]
      setTopics(randomTopics);
     }
@@ -84,8 +85,8 @@ const RocksPage = () => {
             <section>
             <div className="rock-grid">
             {search(topics).map((topic) => (
-                  <Link to={'/rocks/' + topic.topic_id} className="rock-grid-item">
-                    <div className='rock-grid-img' style={{backgroundImage: `url(${topic.imageUri})`}}></div>
+                  <Link to={'/rocks/' + topic.topic_id} className="rock-grid-item" key={topic.topic_id}>
+                    <div className='rock-grid-img' style={{backgroundImage: `url(${API + "/images/rocks/" + topic.imageUri})`}}></div>
                     <h3>{topic.title}</h3>
                     <button className='btn'>Learn More</button>
                   </Link >
