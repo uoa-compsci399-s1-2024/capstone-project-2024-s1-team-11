@@ -1,14 +1,25 @@
-.user-cell {
-  display: flex; 
-  align-items: center; 
+.avatar-wrapper {
+  width: 50px; 
+  height: 50px; 
+  overflow: hidden; 
+  border-radius: 50%; 
 }
 
 .avatar {
-  width: 50px; 
-  height: 50px; 
-  margin-right: 10px; 
-border-radius: 50%; 
+  width: 100%;
+  height: 100%;
+  object-fit: cover; 
 }
+
+.user-cell {
+  display: flex;
+  align-items: center;
+}
+
+.username {
+  margin-left: 10px;
+}
+
 
 .user-link {
   display: flex; 
@@ -64,6 +75,11 @@ border-radius: 50%;
 }
 
 .leaderboard-table tbody {
+  font-size: 16px; 
+}
+
+.leaderboard-table tbody {
+  font-size: 25px; 
   font-weight: bold; 
 }
 
@@ -75,3 +91,41 @@ border-radius: 50%;
 .leaderboard-table tbody td {
   background-color: #e1dfe1; 
 }
+
+.toggle-buttons {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  margin: 20px auto 20px auto;
+  border-radius: 50%;
+}
+
+.toggle-buttons button {
+  flex: 1;
+  background-color: #f0f0f0;
+  border: none;
+  border-radius: 20px;
+  padding: 10px 0; 
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s, color 0.3s, transform 0.3s;
+  margin: 0 5px; 
+}
+
+.toggle-buttons button.active {
+  background-color: #4b6076;
+  color: white;
+  font-weight: bold;
+}
+
+.toggle-buttons button:hover {
+  color: white;
+  transform: scale(1.05);
+}
+
+.toggle-buttons button:focus {
+  outline: none;
+  box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+}
+
+
