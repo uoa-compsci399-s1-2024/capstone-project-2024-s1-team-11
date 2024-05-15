@@ -4,6 +4,7 @@
     height: 250px;
     border-radius: 50%;
     margin-bottom: 20px;
+    margin-left: auto;
   }
   
   .greeting {
@@ -22,18 +23,19 @@
     background-color: var(--green);
     color: white;
     border: none;
-    border-radius: 5px;
     cursor: pointer;
   }
   
   .badges-section {
     margin-bottom: 20px;
     padding: 20px; 
+    background-color: aliceblue;
   }
   
   .rocks-section {
     margin-bottom: 20px;
     padding: 20px; 
+    background-color: aliceblue;
   }
   
   
@@ -74,18 +76,17 @@
     cursor: pointer;
   }
   
-  #profile ul {
+  ul {
     list-style-type: none;
     padding: 0;
   }
   
-  #profile li {
+  li {
     margin-bottom: 5px;
   }
   
   .rounded-border1 {
     background-color: #ffd900;
-    border: 1px solid #ccc; 
     border-radius: 10px; 
     padding: 10px; 
     margin-bottom: 20px; 
@@ -94,7 +95,6 @@
 
   .rounded-border2 {
     background-color: #ff6961;
-    border: 1px solid #ccc; 
     border-radius: 10px; 
     padding: 10px; 
     margin-bottom: 20px; 
@@ -108,16 +108,6 @@
     list-style: none; 
   }
   
-
-  .list-container ul li::before {
-    content: ""; 
-    display: block; 
-    width: 50px; 
-    height: 50px; 
-    background-color: #ccc;
-    border-radius: 10px; 
-    margin-bottom: 10px; 
-  }
   
   
   .list-container ul li span {
@@ -137,19 +127,8 @@
     border-radius: 15px; 
   }
 
-  .rock-item {
-    display: inline-block;
-    width: 100px; 
-    height: 100px; 
-    background-color: #ccc; 
-    margin: 5px; 
-    line-height: 100px;
-    text-align: center; 
-    border-radius: 15px; 
-  }
-
   body {
-  background-color: #ffffff; 
+  background-color: aliceblue; 
 }
 .badge-square:hover {
     transform: scale(1.1); 
