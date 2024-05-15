@@ -16,10 +16,10 @@ export default function ErrorPage() {
         <p>
           <i>{error.statusText || error.message}</i>
         </p>
+      <Link to="/"><div className="btn">Back to Home</div></Link>
       </article>
-      <div className="side-padding">
-      <Link to="/"><div className="action-button">Back to Home</div></Link>
-      </div></main>
+
+      </main>
       <Footer />
     </>
   );

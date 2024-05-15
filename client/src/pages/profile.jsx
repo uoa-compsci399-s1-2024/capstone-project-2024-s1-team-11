@@ -50,7 +50,7 @@ const ProfilePage = () => {
       <>
         <Header/>
         <main>
-        <article className='side-padding top-padding'>
+        <article className='side-padding top-padding' id='profile'>
 
           <div className="profile-container">
             <img src="/avatar-00.jpg" alt="Profile Picture" className="profile-picture"/>

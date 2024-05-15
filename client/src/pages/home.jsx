@@ -72,7 +72,7 @@ const HomePage = () => {
               </svg>
             </span>
             <div className='txt-overlay'>
-              <p>What is maths rocks introduction paragraph ed eatur repeliqui vele ctorro ga. Num qui oditatio demquia quo earchite volo.</p>
+              <p>Maths Rocks is all about sharing knowledge, getting outdoors and searching for rocks, and above all else, encouraging a love of maths!</p>
               <Link to={`/about`}><button className='btn'>LEARN MORE</button></Link >
             </div>
           </section>
@@ -80,13 +80,11 @@ const HomePage = () => {
             <h2>Browse maths topics</h2>
             <div className="rock-grid">
               {topics.slice(0, 4).map((topic) => (
-                <div key={topic.topic_id}>
-                  <img src={topic.imageUri} alt={topic.title} height="120"/>
-                  <h3>{topic.title}</h3>
-                  <Link to={'/rocks/' + topic.topic_id}>
-                    <button className='btn'>Learn More</button>
-                  </Link>
-                </div>
+                <Link to={'/rocks/' + topic.topic_id} className="rock-grid-item">
+                <div className='rock-grid-img' style={{backgroundImage: `url(${topic.imageUri})`}}></div>
+                <h3>{topic.title}</h3>
+                <button className='btn'>Learn More</button>
+                </Link >
               ))}
             </div>
           </section>
