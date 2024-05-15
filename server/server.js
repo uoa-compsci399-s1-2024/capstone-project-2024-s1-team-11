@@ -1,9 +1,10 @@
+// Import external libraries.
 const express = require("express");
 const cors = require("cors");
 const session = require("express-session");
+
+// Import content-related routes.
 const topicsRouter = require("./routes/topics");
-const registrationRouter = require("./routes/auth/register");
-const loginRouter = require("./routes/auth/login");
 const leaderboardRouter = require("./routes/leaderboard");
 const profileRouter = require("./routes/profile");
 const rocksRouter = require("./routes/rocks");
@@ -11,14 +12,25 @@ const userRouter = require("./routes/user");
 const addRockRouter = require("./routes/addRock");
 const checkCollectionRouter = require("./routes/checkCollection");
 const giveBadgeRouter = require("./routes/giveBadge");
+
+// Import authentication-related routes.
+const registrationRouter = require("./routes/auth/register");
+const loginRouter = require("./routes/auth/login");
 const {router: authorizationRouter} = require("./routes/auth/authorization")
+
+// Import content-management-system-related routes.
 const usersReportRouter = require("./routes/content-management/usersReport")
 
-
+// Import repository.
 const Repository = require("./repository/repository");
+const populateDb = require("./database-utils/populate-db")
 
+
+// Entry point of the server script.
 async function start_server(){
-    await Repository.getRepoInstance(); // Sync the database.
+    const repo = await Repository.getRepoInstance(); // Sync the database.
+    await populateDb(repo);
+
     const app = express();
     app.use(cors());
     app.use(session({secret: 'secret', saveUninitialized: false, resave: false}));
