@@ -319,6 +319,12 @@ class Repository {
         } catch (e) { console.error(e); }
     }
 
+    async getAllAvatars(){
+        try {
+            return await Avatar.findAll();
+        } catch (e) { console.log(e); }
+    }
+
     async getAllAvatarCount(){
         try {
             return (await Avatar.findAndCountAll()).count;

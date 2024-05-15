@@ -4,6 +4,7 @@ const authenticate = require("./auth/authenticate");
 const Repository = require('../repository/repository');
 
 const router = express.Router();
+
 router.use(express.json());
 router.use(authenticate);
 
@@ -95,9 +96,10 @@ router.put('/email', async (req, res) => {
 
         res.json({ success: true });
         } catch (error) {
-        console.error('Error updating email:', error);
-        res.status(500).json({ error: 'Internal server error' });
-    }
+            console.error('Error updating email:', error);
+            return res.status(500).json({ error: 'Internal server error' });
+        }
 });
+
 
 module.exports = router;
