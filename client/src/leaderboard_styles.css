@@ -64,11 +64,6 @@ border-radius: 50%;
 }
 
 .leaderboard-table tbody {
-  font-size: 16px; 
-}
-
-.leaderboard-table tbody {
-  font-size: 25px; 
   font-weight: bold; 
 }
 

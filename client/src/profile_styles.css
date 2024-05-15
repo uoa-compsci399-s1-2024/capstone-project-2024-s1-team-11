@@ -74,12 +74,12 @@
     cursor: pointer;
   }
   
-  ul {
+  #profile ul {
     list-style-type: none;
     padding: 0;
   }
   
-  li {
+  #profile li {
     margin-bottom: 5px;
   }
   

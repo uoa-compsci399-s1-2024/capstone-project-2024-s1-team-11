@@ -13,7 +13,7 @@ const EditProfileModal = ({ onClose }) => {
   const [selectedAvatar, setSelectedAvatar] = useState(null);
   const [avatarIndex, setAvatarIndex] = useState(0);
 
-  const avatars = ["avatar_00.jpg", "avatar_01.jpg", "avatar_02.jpg"]; 
+  const avatars = ["avatar-00.jpg", "avatar-01.jpg", "avatar-02.jpg"]; 
 
   const handleTabClick = (tab) => {
     setActiveTab(tab);
