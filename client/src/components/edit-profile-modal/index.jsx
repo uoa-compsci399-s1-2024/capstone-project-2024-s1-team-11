@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Cookies from 'js-cookie';
 import API from '../../../api';
 import './styles.css'; 
@@ -11,9 +11,27 @@ const EditProfileModal = ({ onClose }) => {
   const [newUsername, setNewUsername] = useState('');
   const [newEmail, setNewEmail] = useState('');
   const [selectedAvatar, setSelectedAvatar] = useState(null);
-  const [avatarIndex, setAvatarIndex] = useState(0);
+  const [avatarData, setAvatarData] = useState([]);
+  const [selectedAvatarIndex, setSelectedAvatarIndex] = useState(null); 
 
-  const avatars = ["avatar-00.jpg", "avatar-01.jpg", "avatar-02.jpg"]; 
+  useEffect(() => {
+    const fetchAvatarData = async () => {
+      try {
+        let url = API + '/leaderboard/avatars';
+        
+        const response = await fetch(url);
+        if (!response.ok) {
+          throw new Error('Failed to fetch avatar data');
+        }
+        const data = await response.json();
+        setAvatarData(data);
+      } catch (error) {
+        console.error('Error fetching avatar data:', error);
+      }
+    };
+
+    fetchAvatarData();
+  }, []);
 
   const handleTabClick = (tab) => {
     setActiveTab(tab);
@@ -59,12 +77,8 @@ const EditProfileModal = ({ onClose }) => {
     }
   };
 
-  const handleNextAvatar = () => {
-    setAvatarIndex((avatarIndex + 1) % avatars.length);
-  };
-
-  const handlePrevAvatar = () => {
-    setAvatarIndex((avatarIndex - 1 + avatars.length) % avatars.length);
+  const handleAvatarClick = (avatarId) => {
+    setSelectedAvatar(avatarId);
   };
 
   return (
@@ -109,9 +123,21 @@ const EditProfileModal = ({ onClose }) => {
           )}
           {activeTab === 'avatar' && (
             <div className="avatar-selection">
-              <button onClick={handlePrevAvatar}>Previous</button>
-              <img src={avatars[avatarIndex]} alt="Avatar" className="avatar-image" />
-              <button onClick={handleNextAvatar}>Next</button>
+              <form onSubmit={handleSubmit}>
+                <ul className="avatar-grid">
+                {avatarData.map((entry) => (
+                  <li key={entry.avatar_id}>
+                    <div 
+                      className={`avatar ${selectedAvatar === entry.avatar_id ? 'selected' : ''}`}
+                      onClick={() => handleAvatarClick(entry.avatar_id)}
+                    >
+                      <img src={entry.imageUri} alt={`Avatar ${entry.avatar_id}`} />
+                    </div>
+                  </li>
+                ))}
+                </ul>
+                <button type="submit">Save</button>
+              </form>
             </div>
           )}
         </div>
