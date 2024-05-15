@@ -7,10 +7,8 @@ export default function LoginForm({formFunction}) {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const [statusMsg, setStatusMsg] = useState('');
-    const [isLogged, setIsLogged] = useState(false);
-
+    const [isLogged, setIsLogged] = useState(Cookies.get('username')!==undefined);
     const handleLogin = async (e) => {
-        setIsLogged(false);
         e.preventDefault();
 
         let res = await fetch(API + '/login',
@@ -35,21 +33,21 @@ export default function LoginForm({formFunction}) {
     return (
     <>
     <main>
-        { !Cookies.get('username') &&
+        { (Cookies.get('username')===undefined || !isLogged) &&
             <section className='login-form'>
                 <h1>Sign in</h1>
                 <form onSubmit={handleLogin}>
-                    <label name="username">Username
-                        <input name="username" type='text' value={username}
+                    <label name="username">
+                        <input name="username" type='text' value={username} placeholder="Username"
                                onChange={(e) => setUsername(e.target.value)}></input>
                     </label>
                     <p><a href="#">Forgot username?</a></p>
-                    <label name="password">Password
-                        <input name="password" type='password' value={password}
+                    <label name="password">
+                        <input name="password" type='password' value={password} placeholder="Password"
                                onChange={(e) => setPassword(e.target.value)}></input>
                     </label>
                     <p><a href="#">Forgot password?</a></p>
-                    <button type='submit' className='btn'>login</button>
+                    <button type='submit' className='btn'>log in</button>
                 </form>
                 <p>{statusMsg}</p>
                 <section className='register-btn'>
@@ -58,7 +56,7 @@ export default function LoginForm({formFunction}) {
                 </section>
             </section>
         }
-        { (Cookies.get('username') || isLogged) &&
+        { (Cookies.get('username')!==undefined && isLogged) &&
             <section className='login-success-msg'>
                 <p>Welcome back,<br></br> {Cookies.get('username')}!</p>
             </section>

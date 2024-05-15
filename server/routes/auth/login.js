@@ -10,8 +10,7 @@ router.use(express.json());
 
 router.post('/', async (req, res) => {
     try{
-        const username = req.body.username;
-        const password = req.body.password;
+        const [username, password] = [req.body.username, req.body.password];
         const repo = await Repository.getRepoInstance();
         let user = await repo.getUserByUsername(username);
         if (user !== null && await bcrypt.compare(password, user.password)){
