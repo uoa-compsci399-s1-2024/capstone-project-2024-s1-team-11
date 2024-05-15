@@ -254,18 +254,18 @@ input, select, textarea {
 
 .rocks {
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
+  gap: 20px;
+  padding-bottom: 20px;
 }
 
 .dropDownMenu {
-  padding-right: auto;
-  padding-left: 0;
-  width: 180px;
+  width: 50%;
 }
 
 .searchBar {
-  padding-left: 10px;
+  width: 50%;
 }
 
 #rocksList {
@@ -425,6 +425,13 @@ label {
   }
 }
 
+/* small laptop styles */
+@media only screen and (min-width: 900px) {
+      .home .section2 .txt-overlay {
+          margin-top: 100px;
+      }
+  }
+
 /* desktop styles */
 @media only screen and (min-width: 1200px) {
   .main-logo-container {
@@ -434,8 +441,8 @@ label {
   .home .section2 .txt-overlay {
     padding: var(--border-padding) 30px;
     margin-top: 190px;
-    margin-left: 10%;
-    margin-right: 10%;
+    margin-left: 8%;
+    margin-right: 8%;
   }
   .floating-btn2 {
     bottom: -130px;
@@ -453,6 +460,7 @@ label {
   .txt-overlay .btn {
     width: 100%;
     margin-right: 0;
+    margin-bottom: 0;
   }
   article {
     max-width: 1200px;

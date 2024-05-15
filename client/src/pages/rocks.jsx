@@ -25,8 +25,8 @@ const RocksPage = () => {
   useEffect(() => {
     if(topics.length === 0) {
       const randomTopics = [
-        {title: "zero", imageUri: "../maths-rocks-zero.jpg", topic_id: 0}, {title: "one", imageUri: "../maths-rocks-one.jpg", topic_id: 1},
-        {title: "two", imageUri: "../maths-rocks-two.jpg", topic_id: 2}
+        {title: "Zero", imageUri: "../maths-rocks-zero.jpg", topic_id: 0}, {title: "One", imageUri: "../maths-rocks-one.jpg", topic_id: 1},
+        {title: "Two", imageUri: "../maths-rocks-two.jpg", topic_id: 2}
       ]
      setTopics(randomTopics);
     }
@@ -67,10 +67,8 @@ const RocksPage = () => {
       <Header />
         <main>
         <article className='side-padding top-padding'>
-          <div className="pageText">
-            <h1>Rocks</h1>
+            <h1>Maths topics</h1>
             <p>Browse rocks, or search for your favourite maths concept.</p>
-          </div>
           <div className="rocks">
             <form className="dropDownMenu">
               <select name="sortBy" id="sortBy" onChange={(e) => setSortType(e.target.value)}>
@@ -79,23 +77,20 @@ const RocksPage = () => {
                 <option value="number">Numerical</option>
                 </select>
             </form>
-            <label htmlFor="search-form">
-              <input type="search" name="search-form" id="search-form" className="search-input" size="10" onChange={(e) => setQuery(e.target.value)} placeholder="Search..." ></input>
-              
+            <label htmlFor="search-form" className='searchBar'>
+              <input type="search" name="search-form" id="search-form" className="search-input" size="10" onChange={(e) => setQuery(e.target.value)} placeholder="Search..." ></input>      
             </label>
           </div>
-            <section id="rocksList">
+            <section>
+            <div className="rock-grid">
             {search(topics).map((topic) => (
-                <div key={topic.topic_id}>
-                  <img src={topic.imageUri} alt={topic.title} height="120"/>
-                  <h3>{topic.title}</h3>
-                  <Link to={'/rocks/' + topic.topic_id}>
+                  <Link to={'/rocks/' + topic.topic_id} className="rock-grid-item">
+                    <div className='rock-grid-img' style={{backgroundImage: `url(${topic.imageUri})`}}></div>
+                    <h3>{topic.title}</h3>
                     <button className='btn'>Learn More</button>
-                  </Link>
-                </div>
+                  </Link >
               ))}
-
-
+              </div>
             </section>
           </article>
         </main>
