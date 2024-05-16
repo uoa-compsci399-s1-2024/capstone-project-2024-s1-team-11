@@ -1,12 +1,26 @@
 import mathsRocksLogo from '/maths-rocks-logo.svg';
 import Header from '../components/header';
 import Footer from '../components/footer';
-import TopicCards from '../components/topic';
+import API from '../../api.js'
 import { Link } from "react-router-dom";
 import { useState, useEffect } from 'react';
 
+const HomePage = () => {
+  const [topics, setTopics] = useState([]);
 
-export default function HomePage() {
+  useEffect(() => {
+    const fetchTopics = async () => {
+        const fetchPromise = await fetch(API + '/topics');
+        const streamPromise = await fetchPromise.json();
+        const data = Object.entries(streamPromise);
+        let output = data.map((obj, i) => ({...obj[1], indexID: i}));
+        setTopics(output);
+    };
+    fetchTopics();
+
+  }, []);
+
+
   const [scrollY, setScrollY] = useState(0);
   const [imageSize, setImageSize] = useState(100)
   const [showHeader, setShowHeader] = useState(false)
@@ -58,14 +72,20 @@ export default function HomePage() {
               </svg>
             </span>
             <div className='txt-overlay'>
-              <p>What is maths rocks introduction paragraph ed eatur repeliqui vele ctorro ga. Num qui oditatio demquia quo earchite volo.</p>
+              <p>Maths Rocks is all about sharing knowledge, getting outdoors and searching for rocks, and above all else, encouraging a love of maths!</p>
               <Link to={`/about`}><button className='btn'>LEARN MORE</button></Link >
             </div>
           </section>
           <section className='section3 side-padding top-padding'>
             <h2>Browse maths topics</h2>
             <div className="rock-grid">
-              <TopicCards />
+              {topics.slice(0, 12).map((topic) => (
+                <Link to={'/topic/' + topic.topic_id} className="rock-grid-item">
+                <div className='rock-grid-img' style={{backgroundImage: `url(${API + "/images/rocks/" + topic.imageUri})`}}></div>
+                <h3>{topic.title}</h3>
+                <button className='btn'>Learn More</button>
+                </Link >
+              ))}
             </div>
           </section>
         </main>
@@ -74,3 +94,4 @@ export default function HomePage() {
     </>
   );
 }
+export default HomePage;

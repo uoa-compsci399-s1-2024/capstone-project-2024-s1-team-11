@@ -14,15 +14,14 @@ export default function PrivacyPage() {
             <h1>Math Rocks Privacy Policy</h1> 
             <h2>1. About this Privacy Policy</h2>
             <p>This Privacy Policy applies to your access to or use of our websites, applications, and other services.</p>
-            <p>During the registration process for our products and services and in other registration forms, we will indicate the types of personal information you must provide and the types of personal information we request. You may choose not to submit the information we request, but that may limit or prevent Math Rock from providing you with the Services.</p>
+            <p>During the registration process for our products and services and in other registration forms, we will indicate the types of personal information you must provide and the types of personal information we request. You may choose not to submit the information we request, but that may limit or prevent Math Rocks from providing you with the Services.</p>
             <h2>2. Information We Collect</h2>
             <p>We collect information about you in three ways: directly from what you enter, from third-party sources, and with the help of automated technologies.</p>
             <h3>2.1 Data you provide to us</h3>
             <p>The types of personal information we collect directly from you, depending on how you interact with us and the Services, may include:</p>
             <ul>
-              <li>Contact details, such as your name, email address, postal address, social media aliases, and phone number;</li>
+              <li>Contact details, such as your provided username, email address, and region;</li>
               <li>Account login credentials, such as username and password, password hints, and similar security information;</li>
-              <li>Other account registration and profile information, such as job title, educational/professional background and qualifications, and photographs;</li>
               <li>Comments, feedback, and other information that you provide to us, such as search query data and questions, or information you send to customer support;</li>
               <li>Interests and communication preferences.</li>
             </ul>
@@ -68,38 +67,26 @@ export default function PrivacyPage() {
             <p>Where we rely on your consent to process personal information, you have the right to withdraw your consent at any time, and you may have the right to object to our processing of personal information where we are exercising our legitimate interests.</p>
             <h2>6. Data Retention</h2>
             <p>We will retain your personal information for as long as necessary to provide the Services, complete the transactions you have requested, or for other necessary purposes, such as to comply with legal obligations, maintain business and financial records, resolve disputes, maintain security, detect and prevent fraud and abuse, and enforce agreements. If you access the Services through a subscription managed or sponsored by your organization, we will retain your organization's contact information for continued communication with you after your organization terminates your subscription.</p>
-
             <h2>7. Data Security</h2>
             <p>We will implement a variety of technical and organisational measures to ensure a level of security appropriate to the risk to the personal information we process. These measures are designed to ensure the integrity, confidentiality, and availability of personal information.</p>
-
             <h2>8. Children's Privacy</h2>
-            <p>We do not knowingly collect information from children under the age of 14.</p>
-
+            <p>We have limited the information we collect to a chosen username, email address and region.</p>
             <h2>9. Accessing and Updating Your Information</h2>
-          
-              <h3>9.1 Your Account</h3>
-      
-            <p>
-              The Service may allow registered users to directly access and review their account information at any time and to make corrections or updates after logging in. It is the user's responsibility to keep such information up to date. Registered users may also close their accounts directly through the Service or by contacting the Service's customer support department.
-            </p>
-
+            <h3>9.1 Your Account</h3>
+            <p>The Service may allow registered users to directly access and review their account information at any time and to make corrections or updates after logging in. It is the user's responsibility to keep such information up to date. Registered users may also close their accounts directly through the Service or by contacting the Service's customer support department.</p>
             <h3>9.2 Your Rights</h3>
-            <p>
-              In accordance with applicable privacy and data protection laws, you have the right, free of charge, to:
-            </p>
+            <p>In accordance with applicable privacy and data protection laws, you have the right, free of charge, to:</p>
             <ul>
               <li>Access to your personal information;</li>
               <li>To correct or erase your personal information;</li>
               <li>Restrict or object to our processing of your personal information;</li>
               <li>Portability of your personal information.</li>
             </ul>
-            
             <h2>10. Changes</h2>
             <p>We may update this Privacy Policy from time to time. We will post any changes on this page along with the updated revision date. Once we make any material changes, we will notify you through the Service or otherwise.</p>
             <h2>11. Contact Information</h2>
             <p>If you have any questions, comments, complaints or requests about this Privacy Policy or our handling of your information, please <Link to={`/contact`}>contact us</Link>. </p>
-        
-            </article>
+          </article>
         </main>
         <Footer />
     </>

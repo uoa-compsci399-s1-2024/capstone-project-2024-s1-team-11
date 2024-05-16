@@ -16,6 +16,7 @@ const ProfilePage = () => {
   const [showEditModal, setShowEditModal] = useState(false);
 
   useEffect(() => {
+    console.log(user_id);
     if (user_id) {
       const fetchUserData = async () => {
         try {
@@ -49,15 +50,13 @@ const ProfilePage = () => {
   return (
       <>
         <Header/>
+        {userData &&
         <main>
-        <article className='side-padding top-padding'>
+        <article className='side-padding top-padding' id='profile'>
 
           <div className="profile-container">
-          {userData && userData.avatar ? (
-    <img src={`/` + userData.avatar} alt="Profile Picture" className="profile-picture" />
-) : (
-    <img src="/avatar-00.jpg" alt="Default Profile Picture" className="profile-picture" />
-)}
+            <img src={API + "/images/avatars/" + userData.avatar_imageUri} alt="Profile Picture" className="profile-picture"/>
+          
             <p className="greeting">{userData ? `Hi, ${userData.username}!` : 'Hi, Username!'}</p>
             <p>{userData ? userData.district : 'Auckland'}</p>
             <div className="buttons-section">
@@ -72,7 +71,7 @@ const ProfilePage = () => {
             <div className="rounded-border1">
               <ul className="list-container">
                 {userData && userData.badges && userData.badges.map(badge => (
-                    <li key={badge.badge_id} className="badge-square">{badges.badge_title}</li>
+                    <li key={badge.badge_id} className="badge-square">{badge.badge_title}</li>
                 ))}
               </ul>
             </div>
@@ -105,6 +104,7 @@ const ProfilePage = () => {
           </div>
           </article>
         </main>
+        }
         <Footer/>
         {showEditModal && <EditProfileModal onClose={() => setShowEditModal(false)} />}
       </>

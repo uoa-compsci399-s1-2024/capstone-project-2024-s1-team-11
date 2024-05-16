@@ -17,7 +17,10 @@ Badge.init(
         },
         badge_description: {
             type: DataTypes.TEXT
-        } 
+        },
+        badge_imageUri: {
+            type: DataTypes.STRING
+        }
     },
     { 
         sequelize,

@@ -14,24 +14,7 @@ const EditProfileModal = ({ onClose }) => {
   const [avatarData, setAvatarData] = useState([]);
   const [selectedAvatarIndex, setSelectedAvatarIndex] = useState(null); 
 
-  useEffect(() => {
-    const fetchAvatarData = async () => {
-      try {
-        let url = API + '/leaderboard/avatars';
-        
-        const response = await fetch(url);
-        if (!response.ok) {
-          throw new Error('Failed to fetch avatar data');
-        }
-        const data = await response.json();
-        setAvatarData(data);
-      } catch (error) {
-        console.error('Error fetching avatar data:', error);
-      }
-    };
-
-    fetchAvatarData();
-  }, []);
+  const avatars = ["avatar-00.jpg", "avatar-01.jpg", "avatar-02.jpg"]; 
 
   const handleTabClick = (tab) => {
     setActiveTab(tab);

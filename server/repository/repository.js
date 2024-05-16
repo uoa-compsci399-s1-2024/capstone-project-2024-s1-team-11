@@ -19,6 +19,7 @@ class Repository {
         } catch (e){ console.error(e); }
     }
 
+
     // CRUD operations for Maths Topics
     async getTopicsCount(){
         try{
@@ -46,7 +47,14 @@ class Repository {
             // Search the topic in our database to check whether the same topic already exists. Only add the topic if it does not already exist.
             let topic_data = await Topic.findByPk(topic.topic_id);
             if (topic_data === null) {
-                await Topic.build({ topic_id: topic.topic_id, title: topic.title, description: topic.description}).save();}
+                await Topic.build({
+                    topic_id: topic.topic_id,
+                    title: topic.title,
+                    description: topic.description,
+                    imageUri: topic.imageUri,
+                    metaTitle: topic.metaTitle,
+                    metaDescription: topic.metaDescription
+                }).save();}
         } catch (e) { console.error(e); }
     }
 
@@ -67,6 +75,7 @@ class Repository {
             }
         }catch (e) { console.log(e); }
     }
+
 
     // CRUD operations for Maths Rock.
     async getRocksCount(){
@@ -124,6 +133,7 @@ class Repository {
         } catch (e) { console.error(e); }
     }
 
+
     // CRUD operations for Badges
     async getAllBadges(){
         try {
@@ -133,6 +143,16 @@ class Repository {
                 badges_map.set(badges[i].badge_id, badges[i]);
             } return badges_map;
         }catch (e){ console.error(e); }
+    }
+
+    async addBadge(badge){
+        try {
+            await Badge.build({
+                badge_title: badge.badge_title,
+                badge_description: badge.badge_description,
+                badge_imageUri: badge.badge_imageUri
+            }).save();
+        } catch (e){ console.error(e); }
     }
 
     // CRUD operations for Users
@@ -186,6 +206,14 @@ class Repository {
         } catch (e) { console.error(e); }
     }
 
+    async getUserAvatar(user_id){
+        const user = await User.findByPk(user_id);
+        const avatar_id = user.avatar_id;
+        if (avatar_id !== null) {
+            return await Avatar.findByPk(avatar_id);
+        } return null;
+    }
+    
     async addRockToUserCollection(user_id, rock_id){
         try {
             let user = await User.findByPk(user_id);
@@ -275,6 +303,32 @@ class Repository {
             console.error(e);
             return false;
         }
+    }
+
+
+    // CRUD Operations for Avatar
+    async addAvatar(avatar_image_name){
+        try {
+            await Avatar.build({imageUri: avatar_image_name}).save();
+        } catch (e) { console.error(e); }
+    }
+
+    async getAvatar(avatar_id){
+        try {
+            return await Avatar.findByPk(avatar_id);
+        } catch (e) { console.error(e); }
+    }
+
+    async getAllAvatars(){
+        try {
+            return await Avatar.findAll();
+        } catch (e) { console.log(e); }
+    }
+
+    async getAllAvatarCount(){
+        try {
+            return (await Avatar.findAndCountAll()).count;
+        } catch (e) { console.error(e); }
     }
 
 }

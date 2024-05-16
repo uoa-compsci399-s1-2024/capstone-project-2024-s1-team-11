@@ -4,6 +4,7 @@ import TopImage from '../components/top-image';
 import React, { useState, useEffect } from 'react';
 import { Link, useParams, useLocation } from "react-router-dom";
 import Cookies from "js-cookie";
+import API from '../../api.js'
 
 
 export default function RockTopicPage() {
@@ -19,14 +20,14 @@ export default function RockTopicPage() {
     if (rock_id) {
       const fetchRockInfo = async () => {
         try {
-          const response = await fetch(`http://localhost:5000/rocks/${rock_id}`);
+          const response = await fetch(API + `/rocks/${rock_id}`);
           if (!response.ok) {
             throw new Error('Failed to fetch rock information');
           }
           const data = await response.json();
           setRock(data);
 
-          const topicResponse = await fetch(`http://localhost:5000/topics/${data.topic_id}`);
+          const topicResponse = await fetch(API + `/topics/${data.topic_id}`);
           if (!topicResponse.ok) {
             throw new Error('Failed to fetch topic information');
           }
@@ -44,7 +45,7 @@ export default function RockTopicPage() {
   const fetchCollectionInfo = async () => {
     try {
       const username = Cookies.get('username');
-      const userResponse = await fetch(`http://localhost:5000/user/${username}`);
+      const userResponse = await fetch(API + `/user/${username}`);
       if (!userResponse.ok) {
         throw new Error('Failed to fetch user information');
       }
@@ -53,7 +54,7 @@ export default function RockTopicPage() {
       console.log(userData.user_id);
 
       let res = await fetch(
-        `http://localhost:5000/checkCollection`,
+        API + `/checkCollection`,
         {
           method: 'POST',
           headers: {'Content-Type': 'application/json'},
@@ -79,7 +80,7 @@ export default function RockTopicPage() {
 
   async function handleAddToCollection() {
     let res = await fetch(
-      `http://localhost:5000/addRock`,
+      API + `/addRock`,
       {
         method: 'POST',
         headers: {'Content-Type': 'application/json'},
@@ -90,7 +91,7 @@ export default function RockTopicPage() {
       alert("Rock added to your collection!");
 
       await fetch(
-        `http://localhost:5000/giveBadge`,
+        API + `/giveBadge`,
         {
           method: 'POST',
           headers: {'Content-Type': 'application/json'},
@@ -102,7 +103,17 @@ export default function RockTopicPage() {
     <>
       <Header />
         <main>
-          <TopImage />
+
+        {topic && topic.title && (
+              <>
+                {topic && topic.title && (
+                  <>
+                    <TopImage imgUri={topic.imageUri} />
+                  </>
+                )}
+              </>
+            )}
+
           <article className='side-padding'>
             {rock && rock.rock_name && (
               <>
@@ -133,8 +144,6 @@ export default function RockTopicPage() {
                 )}
               </>
             )}
-            <h2>Rock hunting tips</h2>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Delectus at quis, esse, similique voluptatem aperiam facilis, corrupti numquam aspernatur nostrum iste dicta quod explicabo possimus? Nulla, molestiae quidem. Assumenda porro similique, odio quis impedit provident totam mollitia repellendus officiis voluptas ipsum nobis reprehenderit nisi odit quisquam voluptatum perspiciatis. Harum, beatae.</p>
             <Link to={`/rocks`}><button className='btn'>LEARN COOL MATHS CONCEPTS!</button></Link >
             <Link to={`/about`}><button className='btn'>ROCK FINDING TIPS</button></Link >
 

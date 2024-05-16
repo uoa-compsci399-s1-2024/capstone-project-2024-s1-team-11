@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import Header from '../components/header';
 import Footer from '../components/footer';
 import '../leaderboard_styles.css';
+import API from '../../api.js'
 
 const Leaderboard = () => {
   const [leaderboardData, setLeaderboardData] = useState([]);
@@ -10,7 +11,7 @@ const Leaderboard = () => {
   useEffect(() => {
     const fetchLeaderboardData = async () => {
       try {
-        let url = 'http://localhost:5000/leaderboard';
+        let url = API + '/leaderboard';
         if (monthly) {
           url += '/monthly';
         }

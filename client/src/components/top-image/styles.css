@@ -2,7 +2,8 @@
     position: relative;
     height: 40vh;
     overflow: hidden;
-    object-fit: cover;
+    background-size: cover;
+    background-position: center;
 }
 
 .top-image img {
