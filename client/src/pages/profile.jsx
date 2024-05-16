@@ -16,6 +16,7 @@ const ProfilePage = () => {
   const [showEditModal, setShowEditModal] = useState(false);
 
   useEffect(() => {
+    console.log(user_id);
     if (user_id) {
       const fetchUserData = async () => {
         try {
@@ -49,6 +50,7 @@ const ProfilePage = () => {
   return (
       <>
         <Header/>
+        {userData &&
         <main>
         <article className='side-padding top-padding' id='profile'>
 
@@ -69,7 +71,7 @@ const ProfilePage = () => {
             <div className="rounded-border1">
               <ul className="list-container">
                 {userData && userData.badges && userData.badges.map(badge => (
-                    <li key={badge.badge_id} className="badge-square">{badges.badge_title}</li>
+                    <li key={badge.badge_id} className="badge-square">{badge.badge_title}</li>
                 ))}
               </ul>
             </div>
@@ -102,6 +104,7 @@ const ProfilePage = () => {
           </div>
           </article>
         </main>
+        }
         <Footer/>
         {showEditModal && <EditProfileModal onClose={() => setShowEditModal(false)} />}
       </>
