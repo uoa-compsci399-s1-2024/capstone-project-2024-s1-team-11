@@ -17,6 +17,7 @@ import RockTopicPage from './pages/rock-topic';
 import Leaderboard from './pages/leaderboard';
 import ProfilePage from './pages/profile';
 import CmsPage from './pages/cms';
+import TopicPage from './pages/topic';
 
 const router = createBrowserRouter([
   {
@@ -55,6 +56,10 @@ const router = createBrowserRouter([
   {
     path: "rocks/:rock_id",
     element: <RockTopicPage />,
+  },
+  {
+    path: "topic/:topic_id",
+    element: <TopicPage />,
   },
   {
     path: "/cms",

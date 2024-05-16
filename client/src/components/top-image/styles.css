@@ -3,6 +3,7 @@
     height: 40vh;
     overflow: hidden;
     background-size: cover;
+    background-position: center;
 }
 
 .top-image img {

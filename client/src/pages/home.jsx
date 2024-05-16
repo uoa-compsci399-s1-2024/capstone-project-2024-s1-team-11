@@ -79,9 +79,9 @@ const HomePage = () => {
           <section className='section3 side-padding top-padding'>
             <h2>Browse maths topics</h2>
             <div className="rock-grid">
-              {topics.slice(0, 4).map((topic) => (
-                <Link to={'/rocks/' + topic.topic_id} className="rock-grid-item">
-                <div className='rock-grid-img' style={{backgroundImage: `url(${topic.imageUri})`}}></div>
+              {topics.slice(0, 12).map((topic) => (
+                <Link to={'/topic/' + topic.topic_id} className="rock-grid-item">
+                <div className='rock-grid-img' style={{backgroundImage: `url(${API + "/images/rocks/" + topic.imageUri})`}}></div>
                 <h3>{topic.title}</h3>
                 <button className='btn'>Learn More</button>
                 </Link >
