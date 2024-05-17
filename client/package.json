@@ -12,6 +12,7 @@
   "dependencies": {
     "-": "^0.0.1",
     "@emailjs/browser": "^4.3.3",
+    "axios": "^1.6.8",
     "emailjs-com": "^3.2.0",
     "js-cookie": "^3.0.5",
     "localforage": "^1.10.0",

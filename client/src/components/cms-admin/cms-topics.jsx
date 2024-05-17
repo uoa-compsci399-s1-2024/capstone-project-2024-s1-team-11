@@ -2,12 +2,15 @@ import { useState } from 'react';
 import Hamburger from '../Hamburger';
 import './styles.css'
 import TextEditor from './text-editor';
+import API from '../../../api.js'
+import {useNavigate} from "react-router-dom";
+
 
 function EditTopic({close}) {
   return (
     <>
         <h2>View or edit topic details</h2>
-        <form>
+        <form method="POST"  action={API + "/manageTopics/editTopic"}>
           <label name="heading">Topic heading
             <input type="text" name="heading" id='heading' />
           </label>
@@ -34,26 +37,52 @@ function EditTopic({close}) {
 
 function AddTopic({close}) {
 
+  const [title, setTitle] = useState("");
+  const [text, setText] = useState("");
+  const [imageFile, setImageFile] = useState(null);
+  const [metatitle, setMetatitle] = useState("");
+  const [metadesc, setMetadesc] = useState("");
+  const navigate = useNavigate();
+
+  const handleImageUpload = (e) => {
+    setImageFile(e.target.files[0])
+  }
+
+  async function handleSubmit() {
+    const formData = new FormData();
+    formData.append("topic_image", imageFile);
+    formData.append("title", title);
+    formData.append("text", text);
+    formData.append("metatitle", metatitle);
+    formData.append("metadesc", metadesc);
+    const res = await fetch(API + "/manageTopics/addTopic", {
+      method: "POST",
+      body: formData
+    })
+    const next_link = (await res.json()).next;
+    navigate(next_link);
+  }
+
   return (
     <>
         <h2>Add a new topic</h2>
         <form>
-          <label name="heading">Page heading
-            <input type="text" name="heading" id='heading' />
+          <label name="topic_title">Add a topic title
+            <input type="text" name="topic_title" id='topic_title' value={title} onChange={(e) => setTitle(e.target.value)}/>
           </label>
-          <label name="filename">Choose a main image
-            <input type="file" id="myFile" name="filename" />
+          <label name="topic_image">Upload a main image
+            <input type="file" id="topic_image" name="topic_image" onChange={handleImageUpload}/>
           </label>
           <label name="texteditor">Add the page text
-            <TextEditor />
+            <TextEditor setText={setText}/>
           </label>  
           <label name="metatitle">Meta title (this is for ranking on google)
-            <input type="text" name="metatitle" id='metatitle' />
+            <input type="text" name="metatitle" id='metatitle' value={metatitle} onChange={(e) => setMetatitle(e.target.value)}/>
           </label>
           <label name="metadesc">Meta description (this is a short summary for ranking on google)
-            <input type="text" name="metadesc" id='metadesc' />
+            <input type="text" name="metadesc" id='metadesc' value={metadesc} onChange={(e) => setMetadesc(e.target.value)}/>
           </label>
-          <button type='submit' className='btn'>Submit</button>
+          <button type="button" className='btn' onClick={handleSubmit}>Submit</button>
         </form>
     </>
   )}

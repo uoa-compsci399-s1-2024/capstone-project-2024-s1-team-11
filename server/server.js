@@ -19,10 +19,11 @@ const avatarsRouter = require("./routes/avatars");
 // Import authentication-related routes.
 const registrationRouter = require("./routes/auth/register");
 const loginRouter = require("./routes/auth/login");
-const {router: authorizationRouter} = require("./routes/auth/authorization")
+const {router: authorizationRouter} = require("./routes/auth/authorization");
 
 // Import content-management-system-related routes.
-const usersReportRouter = require("./routes/content-management/usersReport")
+const usersReportRouter = require("./routes/content-management/usersReport");
+const manageTopicRouter = require("./routes/content-management/manageTopics");
 
 // Import repository.
 const Repository = require("./repository/repository");
@@ -52,7 +53,9 @@ async function start_server(){
     app.use("/api/registration", registrationRouter);
     app.use("/api/login", loginRouter);
     app.use("/api/authorization", authorizationRouter);
+
     app.use("/api/usersReport", usersReportRouter)
+    app.use("/api/manageTopics", manageTopicRouter)
     app.listen(5000, () => {console.log("Server started on port 5000.")});
 }
 

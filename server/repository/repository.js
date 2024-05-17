@@ -44,17 +44,15 @@ class Repository {
 
     async addTopic(topic){
         try {
-            // Search the topic in our database to check whether the same topic already exists. Only add the topic if it does not already exist.
-            let topic_data = await Topic.findByPk(topic.topic_id);
-            if (topic_data === null) {
-                await Topic.build({
-                    topic_id: topic.topic_id,
-                    title: topic.title,
-                    description: topic.description,
-                    imageUri: topic.imageUri,
-                    metaTitle: topic.metaTitle,
-                    metaDescription: topic.metaDescription
-                }).save();}
+            const max_id = await Topic.max("topic_id");
+            return await Topic.create({
+                topic_id: max_id + 1,
+                title: topic.title,
+                description: topic.description,
+                imageUri: topic.imageUri,
+                metaTitle: topic.metaTitle,
+                metaDescription: topic.metaDescription
+            });
         } catch (e) { console.error(e); }
     }
 

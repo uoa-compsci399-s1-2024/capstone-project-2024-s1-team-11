@@ -2,11 +2,12 @@ import { useState } from "react";
 import ReactQuill from "react-quill";
 import 'react-quill/dist/quill.snow.css';
 
-const TextEditor = () => {
+const TextEditor = ({setText}) => {
 
     //state to handle the changes in text editor
     const [content, setContent] = useState('')
     console.log(content)
+
     const modules = {
         toolbar: [
             [{ 'header': [1, 2, 3, 4, 5, 6, false] }],
@@ -25,8 +26,8 @@ const TextEditor = () => {
                 formats={['header', 'bold', 'italic', 'underline', 'strike', 'blockquote', 'list', 'bullet', 'indent', 'link', 'image', 'video']}
                 placeholder="Write something amazing..."
                 modules={modules}
-                onChange={setContent}
                 value={content}
+                onChange={(text) => {setContent(text); setText(text)}}
             />
 
 
