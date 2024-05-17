@@ -2,7 +2,7 @@ import '../components/cms-admin/styles.css'
 import Header from '../components/header';
 import Footer from '../components/footer';
 import CmsPages from '../components/cms-admin/cms-pages';
-import CmsTopics from '../components/cms-admin/cms-topics';
+import CmsTopicsMain from '../components/cms-admin/cms-topics-main.jsx';
 import CmsRocks from '../components/cms-admin/cms-rocks';
 import CmsUsers from '../components/cms-admin/cms-users';
 import authorization from "../utils/auth.jsx";
@@ -27,7 +27,7 @@ export default function CmsPage() {
     useEffect(() => {
         const authorize = async () => {
             if (! await authorization(user_id, username, signature)){
-                navigate("/");
+                navigate("/add-topic");
             }
         }; authorize();
     });
@@ -51,7 +51,7 @@ export default function CmsPage() {
             </ul>
            </div>
            {display.pages ? <CmsPages /> : null}
-           {display.topics ? <CmsTopics /> : null}
+           {display.topics ? <CmsTopicsMain /> : null}
            {display.rocks ? <CmsRocks /> : null}
            {display.users ? <CmsUsers /> : null}
           </article>

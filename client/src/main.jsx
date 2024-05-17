@@ -18,6 +18,8 @@ import Leaderboard from './pages/leaderboard';
 import ProfilePage from './pages/profile';
 import CmsPage from './pages/cms';
 import TopicPage from './pages/topic';
+import AddTopic from "./components/cms-admin/cms-topics-add.jsx";
+import EditTopic from "./components/cms-admin/cms-topics-edit.jsx";
 
 const router = createBrowserRouter([
   {
@@ -64,6 +66,14 @@ const router = createBrowserRouter([
   {
     path: "/cms",
     element: <CmsPage />,
+  },
+  {
+    path: "/cms/add-topic",
+    element: <AddTopic />,
+  },
+  {
+    path: "/cms/edit-topic/:topic_id",
+    element: <EditTopic />,
   }
 ]);
 
