@@ -37,7 +37,7 @@ export default function CmsPage() {
       <Header />
         <main>
             <article className='side-padding  top-padding'>
-           <h1>Content management system</h1>
+           <h1>Content Management System💻</h1>
            <div className='cms-nav'>
             <ul>
                 <li onClick={() => setDisplay({pages: true, topics: false, rocks: false, users: false})}

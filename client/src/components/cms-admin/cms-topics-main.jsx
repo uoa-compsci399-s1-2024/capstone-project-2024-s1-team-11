@@ -21,15 +21,14 @@ export default function CmsTopicsMain() {
   return (
     <>
       <h2>Maths topics</h2>
-      <p>This table shows all the maths topic pages.</p>
       <button className='btn' onClick={() => {
         navigate("/cms/add-topic")
       }}>Add new topic +</button>
       <table>
         <tbody>
         <tr>
-          <th>Topic id</th>
-          <th>Title (H1 tag)</th>
+          <th>Topic ID</th>
+          <th>Title</th>
           <th></th>
         </tr>
         {topicsList !== null && topicsList.map((topic) => (
