@@ -20,6 +20,7 @@ import CmsPage from './pages/cms';
 import TopicPage from './pages/topic';
 import AddTopic from "./components/cms-admin/cms-topics-add.jsx";
 import EditTopic from "./components/cms-admin/cms-topics-edit.jsx";
+import DeleteTopic from "./components/cms-admin/cms-topics-delete.jsx";
 
 const router = createBrowserRouter([
   {
@@ -74,7 +75,11 @@ const router = createBrowserRouter([
   {
     path: "/cms/edit-topic/:topic_id",
     element: <EditTopic />,
-  }
+  },
+  {
+    path: "/cms/delete-topic/:topic_id",
+    element: <DeleteTopic />,
+  },
 ]);
 
 ReactDOM.createRoot(document.getElementById('root')).render(

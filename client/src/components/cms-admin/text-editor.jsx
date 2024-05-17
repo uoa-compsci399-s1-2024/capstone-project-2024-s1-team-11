@@ -32,7 +32,6 @@ const TextEditor = ({setText}) => {
 
 
             <div>
-                <h2>Edward this is what we would export I think (Helen)</h2>
                 <div dangerouslySetInnerHTML={{ __html: content }}></div>
             </div>
         </div>

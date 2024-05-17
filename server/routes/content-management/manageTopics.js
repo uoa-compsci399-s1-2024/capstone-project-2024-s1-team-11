@@ -55,4 +55,14 @@ router.post("/editTopic",upload.single("topic_image"), async (req, res) => {
     } catch (e) {console.error(e); }
 })
 
+router.post("/deleteTopic", upload.none(), async (req, res) => {
+    try {
+        const topic_id = req.body.topic_id;
+        console.log(topic_id)
+        const repo = await Repository.getRepoInstance();
+        await repo.deleteTopic(topic_id.valueOf());
+        return res.status(201).json();
+    } catch (e) {console.error(e); }
+})
+
 module.exports = router;
