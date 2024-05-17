@@ -20,19 +20,6 @@ const RocksPage = () => {
 
   }, []);
 
-  
-  //placeholder data
-  useEffect(() => {
-    if(topics.length === 0) {
-      const randomTopics = [
-        {title: "Zero", imageUri: API + "/images/rocks/" + "maths-rocks-zero.jpg", topic_id: 0},
-        {title: "One", imageUri: API + "/images/rocks/" + "maths-rocks-one.jpg", topic_id: 1},
-        {title: "Two", imageUri: API + "/images/rocks/" + "maths-rocks-two.jpg", topic_id: 2}
-      ]
-     setTopics(randomTopics);
-    }
-  }, [topics]);
-
   //search bar function
   const [query, setQuery] = useState("");
 
