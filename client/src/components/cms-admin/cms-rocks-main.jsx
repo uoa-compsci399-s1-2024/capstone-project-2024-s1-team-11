@@ -17,20 +17,18 @@ export default function CmsRocksMain() {
       const rocks = await response.json();
       const rocks_list = Object.keys(rocks).map((key) => rocks[key])
       setRocksList(rocks_list)
-      console.log(rocks_list)
     }
 
     const fetchTopics = async () => {
       const response = await fetch(API + "/topics");
       const topics = await response.json();
       setTopicsMap(topics);
-      console.log(topics)
     }
 
     fetchRocks();
     fetchTopics();
   }, [])
-  
+
   return (
     <>
       <h2>Rocks</h2>

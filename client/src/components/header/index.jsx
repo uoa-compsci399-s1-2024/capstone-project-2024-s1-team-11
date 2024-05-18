@@ -6,8 +6,23 @@ import { useState, useEffect } from 'react';
 import { useNavigate } from "react-router-dom";
 import Modal from '../modal';
 import Cookies from "js-cookie";
+import authorization from "../../utils/auth.jsx";
 
 function Navigation() {
+    const [isAuthorized, setIsAuthorized] = useState(false);
+    const user_id = Cookies.get("user_id");
+    const username = Cookies.get("username");
+    const signature = Cookies.get("signature");
+
+    useEffect(() => {
+        const authorize = async () => {
+            if (await authorization(user_id, username, signature)){
+                setIsAuthorized(true);
+            }
+        }
+        authorize();
+    });
+
   return (
     <>
     <ul>
@@ -18,6 +33,7 @@ function Navigation() {
         <li><NavLink to={`/contact`}>Contact Us</NavLink></li>
         <li><NavLink to={`/privacy-policy`}>Privacy Policy</NavLink></li>
         <li><NavLink to={`/profile`}>My Profile</NavLink></li>
+        {isAuthorized && <li><NavLink to={`/cms`}>Content Management</NavLink></li>}
     </ul>
     </>
   )

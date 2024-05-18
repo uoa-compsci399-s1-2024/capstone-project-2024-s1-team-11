@@ -27,7 +27,6 @@ export default function EditRock() {
             const topics = await response.json();
             const topics_list = Object.keys(topics).map((key)=>topics[key]);
             setTopicsList(topics_list);
-            console.log(topics_list[0]);
         }
         fetchRock();
         fetchTopics();

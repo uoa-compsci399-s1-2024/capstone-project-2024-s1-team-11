@@ -13,7 +13,6 @@ export default function DeleteTopic() {
             const res = await fetch(API + `/topics/${topic_id}`)
             const topic = await res.json();
             setTopic(topic);
-            console.log(topic);
         }
         fetchTopic();
     }, [])
