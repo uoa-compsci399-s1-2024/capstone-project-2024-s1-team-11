@@ -102,12 +102,13 @@ export default function CmsRocksMain() {
           <td>{rock.rock_name}</td>
           <td><a href={DOMAIN_NAME + `/rocks/${rock.rock_id}?product_key=${rock.product_key}`} target='_blank'>{DOMAIN_NAME + `/rocks/${rock.rock_id}?product_key=${rock.product_key}`}</a></td>
           <td>
-          <button className='btn' onClick={() => {navigate(`/cms/edit-rock/${rock.rock_id}`)}}>View/Edit</button>
+            <button className='btn' onClick={() => {navigate(`/cms/edit-rock/${rock.rock_id}`)}}>Edit</button>
+            <button className='btn' onClick={() => {navigate(`/cms/delete-rock/${rock.rock_id}`)}}>Delete</button>
           </td>
         </tr>
         ))}
         </tbody>
       </table>
-      </>
+    </>
   );
 }

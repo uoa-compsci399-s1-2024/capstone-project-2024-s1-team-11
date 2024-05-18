@@ -121,7 +121,7 @@ class Repository {
         } catch (e) { console.error(e); }
     }
 
-    async deleteMathsRock(rock_id){
+    async deleteRock(rock_id){
         try {
             let rock = await Rock.findByPk(rock_id);
             if (rock !== null) {

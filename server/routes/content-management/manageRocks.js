@@ -39,4 +39,13 @@ router.post("/editRock",upload.none(), async (req, res) => {
     } catch (e) {console.error(e); }
 })
 
+router.post("/deleteRock", upload.none(), async (req, res) => {
+    try {
+        const rock_id = req.body.rock_id;
+        const repo = await Repository.getRepoInstance();
+        await repo.deleteRock(Number.parseInt(rock_id));
+        return res.status(201).json();
+    } catch (e) {console.error(e); }
+})
+
 module.exports = router;
