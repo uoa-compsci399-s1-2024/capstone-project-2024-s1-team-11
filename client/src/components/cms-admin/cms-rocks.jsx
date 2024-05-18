@@ -1,7 +1,8 @@
 import {useEffect, useState} from 'react';
-import Hamburger from '../Hamburger';
 import './styles.css'
 import API from "../../../api.js";
+import DOMAIN_NAME from "../../../domain-name.js"
+import {useNavigate} from "react-router-dom";
 
 function EditRock({close}) {
   return (
@@ -58,6 +59,7 @@ function AddRock({close}) {
 export default function CmsRocks() {
   const [rocksList, setRocksList] = useState(null);
   const [topicsMap, setTopicsMap] = useState(null);
+  const navigate = useNavigate();
 
   useEffect(() => {
 
@@ -96,12 +98,11 @@ export default function CmsRocks() {
         {rocksList !== null && rocksList.map((rock) => (
         <tr key={rock.rock_id}>
           <td>{rock.rock_id}</td>
-          <td>{topicsMap !== null && topicsMap[rock.rock_id] !== undefined ? topicsMap[rock.rock_id].title: "No associated topic."}</td>
+          <td>{topicsMap !== null && topicsMap[rock.topic_id] !== undefined ? topicsMap[rock.rock_id].title: "No associated topic."}</td>
           <td>{rock.rock_name}</td>
-          <td><a href='http://localhost:5173/rock/1' target='_blank'>http://localhost:5173/rock/1</a></td>
+          <td><a href={DOMAIN_NAME + `/rocks/${rock.rock_id}?product_key=${rock.product_key}`} target='_blank'>{DOMAIN_NAME + `/rocks/${rock.rock_id}?product_key=${rock.product_key}`}</a></td>
           <td>
-          <button className='btn' onClick={() => {
-          }}>View/Edit</button>
+          <button className='btn' onClick={() => {navigate(`/cms/edit-rock/${rock.rock_id}`)}}>View/Edit</button>
           </td>
         </tr>
         ))}

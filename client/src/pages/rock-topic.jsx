@@ -60,10 +60,10 @@ export default function RockTopicPage() {
           headers: {'Content-Type': 'application/json'},
           body: JSON.stringify({ user_id: userData.user_id, rock_id: rock_id })
         });
-      if (res.status == 200) {
+      if (res.status === 200) {
         setCollected(false);
         console.log("rock not in collection");
-      } else if (res.status == 201) {
+      } else if (res.status === 201) {
         setCollected(true);
         console.log("rock already in your collection");
       }
@@ -86,7 +86,7 @@ export default function RockTopicPage() {
         headers: {'Content-Type': 'application/json'},
         body: JSON.stringify({ user_id: user.user_id, rock_id: rock.rock_id })
       });
-    if (res.status == 200){
+    if (res.status === 200){
       console.log("rock added to user collection");
       alert("Rock added to your collection!");
 

@@ -21,6 +21,7 @@ import TopicPage from './pages/topic';
 import AddTopic from "./components/cms-admin/cms-topics-add.jsx";
 import EditTopic from "./components/cms-admin/cms-topics-edit.jsx";
 import DeleteTopic from "./components/cms-admin/cms-topics-delete.jsx";
+import EditRock from "./components/cms-admin/cms-rocks-edit.jsx";
 
 const router = createBrowserRouter([
   {
@@ -64,6 +65,8 @@ const router = createBrowserRouter([
     path: "topic/:topic_id",
     element: <TopicPage />,
   },
+
+  // CMS related pages.
   {
     path: "/cms",
     element: <CmsPage />,
@@ -79,6 +82,10 @@ const router = createBrowserRouter([
   {
     path: "/cms/delete-topic/:topic_id",
     element: <DeleteTopic />,
+  },
+  {
+    path: "/cms/edit-rock/:rock_id",
+    element: <EditRock />,
   },
 ]);
 

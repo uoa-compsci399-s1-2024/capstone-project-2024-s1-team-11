@@ -7,7 +7,7 @@ const Avatar = require('./avatar')
 const Privilege = require('./privilege')
 
 
-Rock.belongsTo(Topic, { foreignKey: 'topic_id' });
+Rock.belongsTo(Topic, { foreignKey: {name: 'topic_id', allowNull: true} });
 
 Rock.belongsToMany(User, { through: 'Users_Rocks', foreignKey: 'rock_id' });
 User.belongsToMany(Rock, { through: 'Users_Rocks', foreignKey: 'user_id' });
