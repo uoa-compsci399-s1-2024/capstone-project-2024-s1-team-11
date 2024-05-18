@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 import API from '../../api.js'
 
 //fetches the data
-const RocksPage = () => {
+const TopicsPage = () => {
   const [topics, setTopics] = useState([]);
 
   useEffect(() => {
@@ -86,4 +86,4 @@ const RocksPage = () => {
     </>
   );
 }
-export default RocksPage;
+export default TopicsPage;

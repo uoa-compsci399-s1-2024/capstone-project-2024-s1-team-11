@@ -28,7 +28,7 @@ function Navigation() {
     <ul>
         <li><NavLink to={`/`}>Home</NavLink></li>
         <li><NavLink to={`/about`}>About Maths Rocks</NavLink></li>
-        <li><NavLink to={`/rocks`}>Maths Topics</NavLink></li>
+        <li><NavLink to={`/topics`}>Maths Topics</NavLink></li>
         <li><NavLink to={`/leaderboard`}>Leaderboard</NavLink></li>
         <li><NavLink to={`/contact`}>Contact Us</NavLink></li>
         <li><NavLink to={`/privacy-policy`}>Privacy Policy</NavLink></li>

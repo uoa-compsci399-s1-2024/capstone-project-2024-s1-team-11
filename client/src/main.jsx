@@ -12,7 +12,7 @@ import ErrorPage from "./error-page";
 import AboutPage from './pages/about';
 import ContactPage from './pages/contact';
 import PrivacyPage from './pages/privacy';
-import RocksPage from './pages/rocks';
+import RocksPage from './pages/topics.jsx';
 import RockTopicPage from './pages/rock-topic';
 import Leaderboard from './pages/leaderboard';
 import ProfilePage from './pages/profile';
@@ -24,6 +24,7 @@ import DeleteTopic from "./components/cms-admin/cms-topics-delete.jsx";
 import EditRock from "./components/cms-admin/cms-rocks-edit.jsx";
 import AddRock from "./components/cms-admin/cms-rocks-add.jsx";
 import DeleteRock from "./components/cms-admin/cms-rocks-delete.jsx";
+import TopicsPage from "./pages/topics.jsx";
 
 const router = createBrowserRouter([
   {
@@ -56,12 +57,12 @@ const router = createBrowserRouter([
     element: <ProfilePage />,
   },
   {
-    path: "/rocks",
-    element: <RocksPage />,
-  },
-  {
     path: "rocks/:rock_id",
     element: <RockTopicPage />,
+  },
+  {
+    path: "/topics",
+    element: <TopicsPage />,
   },
   {
     path: "topic/:topic_id",

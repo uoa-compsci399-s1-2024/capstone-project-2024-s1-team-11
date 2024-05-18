@@ -61,7 +61,7 @@ const HomePage = () => {
           <div className='main-logo-container'>
             <img src={mathsRocksLogo} alt="Maths Rocks logo" title="Maths Rocks" className={hideLogo ? 'main-logo hide' : 'main-logo'} style={{width: imageSize + "%"}} />
           </div>
-          <Link to={`/rocks`}><button className='floating-btn1'><img src="/rock-icon.svg" alt="An icon of a rock" title="Browse maths topics!" /></button></Link>
+          <Link to={`/topics`}><button className='floating-btn1'><img src="/rock-icon.svg" alt="An icon of a rock" title="Browse maths topics!" /></button></Link>
           <Link to={`/about`}><button className='floating-btn2'><img src="/about-icon.svg" alt="An icon of an information symbol" title="Learn more about Maths Rocks!" /></button></Link>
           <Link to={`/leaderboard`}><button className='floating-btn3'><img src="/leaderboard-icon.svg" alt="An icon of a leaderboard" title="Check out the leaderboard!" /></button></Link>
           </section>
