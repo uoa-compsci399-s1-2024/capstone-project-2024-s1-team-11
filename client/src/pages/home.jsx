@@ -80,7 +80,7 @@ const HomePage = () => {
             <h2>Browse maths topics</h2>
             <div className="rock-grid">
               {topics.slice(0, 12).map((topic) => (
-                <Link to={'/topic/' + topic.topic_id} className="rock-grid-item">
+                <Link to={'/topic/' + topic.topic_id} className="rock-grid-item" key={topic.topic_id}>
                 <div className='rock-grid-img' style={{backgroundImage: `url(${API + "/images/rocks/" + topic.imageUri})`}}></div>
                 <h3>{topic.title}</h3>
                 <button className='btn'>Learn More</button>

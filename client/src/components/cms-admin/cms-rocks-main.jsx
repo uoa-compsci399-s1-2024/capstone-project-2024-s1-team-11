@@ -4,58 +4,7 @@ import API from "../../../api.js";
 import DOMAIN_NAME from "../../../domain-name.js"
 import {useNavigate} from "react-router-dom";
 
-function EditRock({close}) {
-  return (
-    <>
-        <h2>View or edit rock details</h2>
-        <form>
-          <label name="topic">Associated topic
-            <select>
-              <option value="0">Zero</option>
-              <option value="1">One</option>
-              <option value="2">Two</option>
-              <option value="3">Three</option>
-            </select>
-          </label> 
-          <label name="rname">Rock name
-            <input type="text" name="rname" id='rname' value="Zero" />
-          </label>
-          <div className='cms-image'><img src="/maths-rocks-zero.jpg" /></div>
-          <label name="filename">Change the rock image
-            <input type="file" id="myFile" name="filename" />
-          </label>  
-          <button type='submit' className='btn'>Submit</button>
-        </form>
-    </>
-  )}
 
-
-function AddRock({close}) {
-
-  return (
-    <>
-        <h2>Add a new rock</h2>
-        <form>
-          <label name="topic">Select a topic page to associate the rock with
-            <select>
-              <option value="0">Zero</option>
-              <option value="1">One</option>
-              <option value="2">Two</option>
-              <option value="3">Three</option>
-            </select>
-          </label> 
-          <label name="rname">Rock name
-            <input type="text" name="rname" id='rname' />
-          </label>
-          <label name="filename">Rock image
-            <input type="file" id="myFile" name="filename" />
-          </label>  
-          <button type='submit' className='btn'>Submit</button>
-        </form>
-    </>
-  )}
-
-    
 export default function CmsRocksMain() {
   const [rocksList, setRocksList] = useState(null);
   const [topicsMap, setTopicsMap] = useState(null);
@@ -81,6 +30,7 @@ export default function CmsRocksMain() {
     fetchRocks();
     fetchTopics();
   }, [])
+  
   return (
     <>
       <h2>Rocks</h2>
