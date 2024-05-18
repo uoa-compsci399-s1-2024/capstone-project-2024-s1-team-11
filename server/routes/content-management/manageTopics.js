@@ -7,7 +7,7 @@ const storage = multer.diskStorage({
         cb(null, "./images/rocks")
     },
     filename: (req, file, cb) => {
-        cb(null, file.originalname)
+        cb(null, `${Date.now()}-${file.originalname}`)
     }
     }
 )
@@ -21,7 +21,7 @@ router.post("/addTopic",upload.single("topic_image"), async (req, res) => {
         const topic = {
             title: req.body.title !== "" ? req.body.title : "Topic Title Not Yet Assigned",
             description: req.body.text,
-            imageUri: req.file !== undefined ? req.file.originalname : "placeholder.jpg",
+            imageUri: req.file !== undefined ? req.file.filename : "placeholder.jpg",
             metaTitle: req.body.metatitle,
             metaDescription: req.body.metadesc
         }
