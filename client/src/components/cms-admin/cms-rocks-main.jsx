@@ -56,7 +56,7 @@ function AddRock({close}) {
   )}
 
     
-export default function CmsRocks() {
+export default function CmsRocksMain() {
   const [rocksList, setRocksList] = useState(null);
   const [topicsMap, setTopicsMap] = useState(null);
   const navigate = useNavigate();
@@ -85,7 +85,7 @@ export default function CmsRocks() {
     <>
       <h2>Rocks</h2>
       <p>This table shows all rocks that have been loaded to the database.</p>
-      <button className='btn' onClick={() => {}}>Add new rock +</button>
+      <button className='btn' onClick={() => navigate(`/cms/add-rock`)}>Add new rock +</button>
       <table>
         <tbody>
         <tr>

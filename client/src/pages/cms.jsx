@@ -3,7 +3,7 @@ import Header from '../components/header';
 import Footer from '../components/footer';
 import CmsPages from '../components/cms-admin/cms-pages';
 import CmsTopicsMain from '../components/cms-admin/cms-topics-main.jsx';
-import CmsRocks from '../components/cms-admin/cms-rocks';
+import CmsRocksMain from '../components/cms-admin/cms-rocks-main.jsx';
 import CmsUsers from '../components/cms-admin/cms-users';
 import authorization from "../utils/auth.jsx";
 import { useState, useEffect } from "react";
@@ -52,7 +52,7 @@ export default function CmsPage() {
            </div>
            {display.pages ? <CmsPages /> : null}
            {display.topics ? <CmsTopicsMain /> : null}
-           {display.rocks ? <CmsRocks /> : null}
+           {display.rocks ? <CmsRocksMain /> : null}
            {display.users ? <CmsUsers /> : null}
           </article>
         </main>

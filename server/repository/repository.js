@@ -1,5 +1,6 @@
 const sequelize = require('../database-utils/entity-manager');
 const {Topic, Rock, User, Badge, Item, Avatar, Users_Rocks, Users_Badges, Users_Items, Privilege} = require('../models');
+const {max} = require("pg/lib/defaults");
 
 
 class Repository {
@@ -101,15 +102,13 @@ class Repository {
 
     async addRock(rock){
         try{
-            let rock_data = await Rock.findByPk(rock.rock_id);
-            if (rock_data === null){     // Checks whether the same rock already exist in the database.
-                await Rock.build({
-                    rock_id: rock.rock_id,
+            const max_id = await Rock.max("rock_id");
+            return await Rock.create({
+                    rock_id: max_id +1,
                     rock_name: rock.rock_name,
                     product_key: rock.product_key,
                     topic_id: rock.topic_id
-                }).save();
-            }
+                });
         } catch (e) { console.error(e); }
     }
 

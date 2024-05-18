@@ -6,6 +6,19 @@ const Repository = require("../../repository/repository")
 const upload = multer()
 router = express.Router()
 
+router.post("/addRock",upload.none(), async (req, res) => {
+    try {
+        const new_rock = {
+            rock_name: req.body.rockName,
+            topic_id: !isNaN(Number.parseInt(req.body.topicId)) ? Number.parseInt(req.body.topicId) : null,
+            product_key: req.body.productKey
+        }
+
+        const repo = await Repository.getRepoInstance();
+        const rock = await repo.addRock(new_rock);
+        return res.status(201).json({next: "/rocks/" + rock.rock_id});
+    } catch (e) {console.error(e); }
+})
 
 router.post("/editRock",upload.none(), async (req, res) => {
     try {
@@ -16,8 +29,6 @@ router.post("/editRock",upload.none(), async (req, res) => {
             product_key: req.body.newProductKey
         }
 
-        console.log(typeof(req.body.newTopicId.valueOf()));
-        console.log(typeof("1".valueOf()));
         const repo = await Repository.getRepoInstance();
         const rock = await repo.getRock(updated_rock.rock_id);
         for (let key in updated_rock){

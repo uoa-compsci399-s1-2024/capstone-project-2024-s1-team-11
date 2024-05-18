@@ -22,6 +22,7 @@ import AddTopic from "./components/cms-admin/cms-topics-add.jsx";
 import EditTopic from "./components/cms-admin/cms-topics-edit.jsx";
 import DeleteTopic from "./components/cms-admin/cms-topics-delete.jsx";
 import EditRock from "./components/cms-admin/cms-rocks-edit.jsx";
+import AddRock from "./components/cms-admin/cms-rocks-add.jsx";
 
 const router = createBrowserRouter([
   {
@@ -82,6 +83,10 @@ const router = createBrowserRouter([
   {
     path: "/cms/delete-topic/:topic_id",
     element: <DeleteTopic />,
+  },
+  {
+    path: "/cms/add-rock",
+    element: <AddRock />,
   },
   {
     path: "/cms/edit-rock/:rock_id",

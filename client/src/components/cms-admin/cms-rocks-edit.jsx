@@ -21,7 +21,6 @@ export default function EditRock() {
             setRock(rock);
             setNewRockName(rock.rock_name);
             setNewProductKey(rock.product_key);
-            console.log(rock.topic_id);
         }
         const fetchTopics = async () => {
             const response = await fetch(API + "/topics");
@@ -55,7 +54,7 @@ export default function EditRock() {
                 <form>
                     <label name="topic">Change Associated Topic
                         <select defaultValue={rock.topic_id}
-                                onChange={(e) => {setSelectedTopicId(e.target.value); console.log(e.target.value)}}>
+                                onChange={(e) => setSelectedTopicId(e.target.value)}>
                             <option key={-1} value={null}>No Associated Topic</option>
                             {topicsList.map((topic) => (
                                 <option key={topic.topic_id} value={topic.topic_id}>{topic.title}</option>
