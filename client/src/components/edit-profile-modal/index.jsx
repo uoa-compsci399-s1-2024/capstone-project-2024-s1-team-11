@@ -2,7 +2,6 @@ import React, {useEffect, useState} from 'react';
 import Cookies from 'js-cookie';
 import API from '../../../api';
 import './styles.css';
-import {useNavigate} from "react-router-dom";
 
 
 const EditProfileModal = ({ onClose }) => {
@@ -12,14 +11,12 @@ const EditProfileModal = ({ onClose }) => {
   const signature = Cookies.get("signature");
 
   // States for setting username and email.
-  const [newUsername, setNewUsername] = useState('');
+  const [newAlias, setNewAlias] = useState('');
   const [newEmail, setNewEmail] = useState('');
 
   // States for setting user avatar.
   const [avatarsList, setAvatarsList] = useState([]);
   const [avatarIndex, setAvatarIndex] = useState(0);
-
-  const navigate = useNavigate();
 
   // Edit-Profile-Modal state.
   const [activeTab, setActiveTab] = useState('username');
@@ -34,32 +31,32 @@ const EditProfileModal = ({ onClose }) => {
       fetchAvatars();
   }, []);
 
+  // Handler for opening a modal for editing either alias, email, password, avatar.
   const handleTabClick = (tab) => {
     setActiveTab(tab);
   };
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    try {
-      const data = {
-        user_id: user_id,
-        username: username,
-        signature: signature
-      };
-
-      const response = await fetch(API + `/profile/${activeTab}`,
-      {
-        method: 'PUT',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(data),
-      });
-    } catch (error) {
-      console.error(`Error updating ${activeTab}:`, error.message);
+  // Handler for submitting new alias.
+  const handleSubmitAlias = async () => {
+    const data = {
+      user_id: user_id,
+      username: username,
+      signature: signature,
+      alias: newAlias
+    };
+    const response = await fetch(API + "/profile/setAlias", {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(data),
+    })
+    if (response.status === 201){
+      window.location.reload();
     }
-  };
+  }
 
+  // Handlers for browsing and selecting avatars.
   const handleNextAvatar = () => {
     setAvatarIndex((avatarIndex + 1) % avatarsList.length);
   };
@@ -114,14 +111,14 @@ const EditProfileModal = ({ onClose }) => {
         </div>
         <div className="tab-content">
           {activeTab === 'username' && (
-            <form onSubmit={handleSubmit}>
-              <label>New Username:</label>
-              <input type="text" value={newUsername} onChange={(e) => setNewUsername(e.target.value)} />
+            <form onSubmit={handleSubmitAlias}>
+              <label>New Alias:</label>
+              <input type="text" value={newAlias} onChange={(e) => setNewAlias(e.target.value)} />
               <button type="submit">Save</button>
             </form>
           )}
           {activeTab === 'email' && (
-            <form onSubmit={handleSubmit}>
+            <form onSubmit={()=>{}}>
               <label>New Email:</label>
               <input type="email" value={newEmail} onChange={(e) => setNewEmail(e.target.value)} />
               <button type="submit">Save</button>

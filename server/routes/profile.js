@@ -52,30 +52,20 @@ router.post('/', async (req, res) => {
     }
 });
 
-router.put('/username', async (req, res) => {
+router.put('/setAlias', async (req, res) => {
     try {
-    const { user_id, newUsername } = req.body;
-
-    const repo = await Repository.getRepoInstance();
-
-
-    const existingUser = await repo.getUserByUsername(newUsername);
-    if (existingUser) {
-        return res.status(400).json({ error: 'Username already exists' });
-    }
-
-    const user = await repo.getUser(user_id);
-    if (!user) {
-        return res.status(404).json({ error: 'User not found' });
-    }
-
-    user.username = newUsername;
-    await repo.updateUser(user);
-
-    res.json({ success: true });
+        const { user_id, alias } = req.body;
+        const repo = await Repository.getRepoInstance();
+        const user = await repo.getUser(user_id);
+        if (!user) {
+            return res.status(404).json({ error: 'User not found' });
+        }
+        user.alias = alias;
+        await repo.updateUser(user);
+        return res.json({ success: true });
     } catch (error) {
-    console.error('Error updating username:', error);
-    res.status(500).json({ error: 'Internal server error' });
+        console.error('Error updating username:', error);
+        return res.status(500).json({ error: 'Internal server error' });
     }
 });
 

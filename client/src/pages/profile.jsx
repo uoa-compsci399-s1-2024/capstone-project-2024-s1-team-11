@@ -58,7 +58,7 @@ const ProfilePage = () => {
           <div className="profile-container">
             <img src={API + "/images/avatars/" + userData.avatar_imageUri} alt="Profile Picture" className="profile-picture"/>
           
-            <p className="greeting">{userData ? `Hi, ${userData.username}!` : 'Hi, Username!'}</p>
+            <p className="greeting">{userData ? `Hi, ${userData.alias}!` : 'Hi, User Alias!'}</p>
             <p>{userData ? userData.district : 'Auckland'}</p>
             <div className="buttons-section">
               <button className="profile-button" onClick={handleEditProfile}>Edit profile</button>
