@@ -1,5 +1,6 @@
 const express = require('express');
-const { User, Users_Rocks, Users_Badges, Rock, Badge, Avatar} = require('../models'); 
+const bcrypt = require("bcrypt");
+const { User, Users_Rocks, Users_Badges, Rock, Badge, Avatar} = require('../models');
 const authenticate = require("./auth/authenticate");
 const Repository = require('../repository/repository');
 
@@ -62,33 +63,40 @@ router.put('/setAlias', async (req, res) => {
         }
         user.alias = alias;
         await repo.updateUser(user);
-        return res.json({ success: true });
+        return res.status(201).json({ message: "Alias is updated!" });
     } catch (error) {
         console.error('Error updating username:', error);
         return res.status(500).json({ error: 'Internal server error' });
     }
 });
 
-router.put('/email', async (req, res) => {
+router.put('/setEmail', async (req, res) => {
     try {
-        const { user_id, newEmail } = req.body;
-        const existingEmail = await User.findOne({ where: { email: newEmail } });
+        const { user_id, newEmail, password } = req.body;
+
+        const repo = await Repository.getRepoInstance();
+
+        const existingEmail = await repo.getUserByEmail(newEmail);
         if (existingEmail) {
-            return res.status(400).json({ error: 'Email already exists' });
+            return res.status(400).json({ error: 'This email already registered.' });
         }
-        const user = await User.findByPk(user_id);
+        const user = await repo.getUser(user_id);
         if (!user) {
             return res.status(404).json({ error: 'User not found' });
         }
-
-        user.email = newEmail;
-        await user.save();
-
-        res.json({ success: true });
-        } catch (error) {
-            console.error('Error updating email:', error);
-            return res.status(500).json({ error: 'Internal server error' });
+        const isPasswordCorrect = await bcrypt.compare(password, user.password);
+        if (isPasswordCorrect){
+            user.email = newEmail;
+            await repo.updateUser(user);
+            return res.status(201).json({ message: "Email is updated!" });
         }
+        else{
+            return res.status(201).json({ error: "Incorrect password, email is not changed."})
+        }
+    }catch (error) {
+        console.error('Error updating email:', error);
+        return res.status(500).json({ error: 'Internal server error' });
+    }
 });
 
 router.put('/setAvatar', async (req, res) => {

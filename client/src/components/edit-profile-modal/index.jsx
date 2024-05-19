@@ -12,7 +12,15 @@ const EditProfileModal = ({ onClose }) => {
 
   // States for setting username and email.
   const [newAlias, setNewAlias] = useState('');
+
+  // States for changing email
+  // User will be asked for password when changing email, for security reasons.
   const [newEmail, setNewEmail] = useState('');
+  const [password, setPassword] = useState('');
+
+  // States for changing password.
+  const [oldPassword, setOldPassword] = useState('');
+  const [newPassword, setNewPassword] = useState('');
 
   // States for setting user avatar.
   const [avatarsList, setAvatarsList] = useState([]);
@@ -45,6 +53,27 @@ const EditProfileModal = ({ onClose }) => {
       alias: newAlias
     };
     const response = await fetch(API + "/profile/setAlias", {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(data),
+    })
+    if (response.status === 201){
+      window.location.reload();
+    }
+  }
+
+  // Handler for submitting new email.
+  const handleSubmitEmail = async () => {
+    const data = {
+      user_id: user_id,
+      username: username,
+      signature: signature,
+      newEmail: newEmail,
+      password: password
+    };
+    const response = await fetch(API + "/profile/setEmail", {
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json',
@@ -94,19 +123,19 @@ const EditProfileModal = ({ onClose }) => {
             className={activeTab === 'username' ? 'active' : ''}
             onClick={() => handleTabClick('username')}
           >
-            Edit Username
+            ✏️Edit Alias
           </button>
           <button
             className={activeTab === 'email' ? 'active' : ''}
             onClick={() => handleTabClick('email')}
           >
-            Edit Email
+            ✏️Edit Email
           </button>
           <button
             className={activeTab === 'avatar' ? 'active' : ''}
             onClick={() => handleTabClick('avatar')}
           >
-            Select Avatar
+            🦊Select Avatar
           </button>
         </div>
         <div className="tab-content">
@@ -118,11 +147,13 @@ const EditProfileModal = ({ onClose }) => {
             </form>
           )}
           {activeTab === 'email' && (
-            <form onSubmit={()=>{}}>
-              <label>New Email:</label>
-              <input type="email" value={newEmail} onChange={(e) => setNewEmail(e.target.value)} />
-              <button type="submit">Save</button>
-            </form>
+              <form onSubmit={handleSubmitEmail}>
+                <label>New Email:</label>
+                <input type="email" value={newEmail} onChange={(e) => setNewEmail(e.target.value)}/>
+                <label>Enter Password:</label>
+                <input type="password" value={password} onChange={(e) => setPassword(e.target.value)}/>
+                <button type="submit">Save</button>
+              </form>
           )}
           {activeTab === 'avatar' && (
               <div className="avatar-selection">

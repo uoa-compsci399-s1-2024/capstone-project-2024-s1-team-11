@@ -56,15 +56,17 @@ const ProfilePage = () => {
         <article className='side-padding top-padding' id='profile'>
 
           <div className="profile-container">
-            <img src={API + "/images/avatars/" + userData.avatar_imageUri} alt="Profile Picture" className="profile-picture"/>
-          
+            <img src={API + "/images/avatars/" + userData.avatar_imageUri} alt="Profile Picture"
+                 className="profile-picture"/>
+
             <p className="greeting">{userData ? `Hi, ${userData.alias}!` : 'Hi, User Alias!'}</p>
-            <p>{userData ? userData.district : 'Auckland'}</p>
+            <p>🌏District - {userData ? userData.district : 'Auckland'}</p>
+            <p>✉️Email - {userData ? userData.email : 'No email associated to this account.'}</p>
             <div className="buttons-section">
-              <button className="profile-button" onClick={handleEditProfile}>Edit profile</button>
+              <button className="profile-button" onClick={handleEditProfile}>✏️Edit profile</button>
             </div>
 
-            <p>Total rocks found: {userData ? userData.rock_count : '0'}</p>
+            <p>Total rocks found: {userData ? userData.rock_count : '0'}🪨</p>
           </div>
 
           <div className="badges-section">

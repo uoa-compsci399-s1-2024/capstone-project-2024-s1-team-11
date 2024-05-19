@@ -46,7 +46,7 @@ export default function CmsRocksMain() {
         {rocksList !== null && rocksList.map((rock) => (
         <tr key={rock.rock_id}>
           <td>{rock.rock_id}</td>
-          <td>{topicsMap !== null && topicsMap[rock.topic_id] !== undefined ? topicsMap[rock.rock_id].title: "No associated topic."}</td>
+          <td>{topicsMap !== null && topicsMap[rock.topic_id] !== undefined ? topicsMap[rock.topic_id].title: "No associated topic."}</td>
           <td>{rock.rock_name}</td>
           <td><a href={DOMAIN_NAME + `/rocks/${rock.rock_id}?product_key=${rock.product_key}`} target='_blank'>{DOMAIN_NAME + `/rocks/${rock.rock_id}?product_key=${rock.product_key}`}</a></td>
           <td>
