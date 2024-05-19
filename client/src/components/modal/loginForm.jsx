@@ -47,7 +47,7 @@ export default function LoginForm({formFunction}) {
                                onChange={(e) => setPassword(e.target.value)}></input>
                     </label>
                     <p><a href="#">Forgot password?</a></p>
-                    <button type='submit' className='btn'>log in</button>
+                    <button type='submit' className='btn'>🔑log in</button>
                 </form>
                 <p>{statusMsg}</p>
                 <section className='register-btn'>

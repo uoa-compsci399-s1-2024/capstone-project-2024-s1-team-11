@@ -74,7 +74,9 @@ const ProfilePage = () => {
             <div className="rounded-border1">
               <ul className="list-container">
                 {userData && userData.badges && userData.badges.map(badge => (
-                    <li key={badge.badge_id} className="badge-square">{badge.badge_title}</li>
+                    <li key={badge.badge_id} className="badge-square">
+                      <img src={API + `/images/badges/${badge.badge_imageUri}`} alt="Badge Image"/>
+                    </li>
                 ))}
               </ul>
             </div>

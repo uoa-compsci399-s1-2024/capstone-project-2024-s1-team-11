@@ -67,7 +67,7 @@ function LoginBtn() {
       <div className="login-nav-btn">
         {Cookies.get('username') === undefined && isLogged === false &&
         <button onClick={() => { setModalOpen(!modalOpen); }}>
-          Log in <br></br>or Join <span className='triangle'></span>
+            🔑Log In /<br></br>/📜Sign Up <span className='triangle'></span>
         </button>}
         {Cookies.get('username') !== undefined && isLogged === true &&
         <button onClick={() => { 
@@ -78,7 +78,7 @@ function LoginBtn() {
           navigate("/");
 
           }}>
-          Log out <span className='triangle'></span>
+            ↪️Log out <span className='triangle'></span>
         </button>}
         <div className={modalOpen ? 'open-modal' : ''}>
           <Modal close={handleState} formFunction={handleFormState} formState={displayLoginForm} />

@@ -117,7 +117,7 @@ const EditProfileModal = ({ onClose }) => {
     <section className='profile-modal-overlay'>
       <section className='profile-modal'>          
         <h1>Edit Profile</h1>
-        <button className="close-btn" onClick={onClose}>Close</button>
+        <button className="close-btn" onClick={onClose}>❌</button>
         <div className="tab-navigation">
           <button
             className={activeTab === 'username' ? 'active' : ''}
