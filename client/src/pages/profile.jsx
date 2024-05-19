@@ -97,14 +97,14 @@ const ProfilePage = () => {
           <div className="profile-container">
             <div className="action-buttons">
               <div className="button-container">
-                <button onClick={() => navigate('/leaderboard')} className="action-button">View the Leaderboard
+                <button onClick={() => navigate('/leaderboard')} className="action-button">🏆Leaderboard
                 </button>
               </div>
               <div className="button-container">
-                <button onClick={() => navigate('/rocks')} className="action-button">View All Rocks</button>
+                <button onClick={() => navigate('/topics')} className="action-button">🔍All Topics</button>
               </div>
               <div className="button-container">
-                <button className="action-button">Rock Finding Tips</button>
+                <button onClick={() => navigate('/about')} className="action-button">💡Rock Finding Tips</button>
               </div>
             </div>
           </div>

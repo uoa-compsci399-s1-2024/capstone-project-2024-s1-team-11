@@ -50,6 +50,7 @@ async function getUsersWithRockCount(users) {
     usersWithRockCount.push({
       user_id: user.user_id,
       username: user.username,
+      avatar_id: user.avatar_id,
       rock_count: rocksCount
     });
   }
