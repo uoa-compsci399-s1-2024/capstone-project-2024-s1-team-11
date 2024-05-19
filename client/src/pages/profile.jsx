@@ -87,7 +87,8 @@ const ProfilePage = () => {
             <div className="rounded-border2">
               <ul className="list-container">
                 {userData && userData.rocks && userData.rocks.map(rock => (
-                    <li key={rock.rock_id} className="badge-square">{rock.rock_name}</li>
+                    <li key={rock.rock_id} className="badge-square"><img
+                        src={API + `/images/rocks/${rock.imageUri}`} alt="Rock Image"/></li>
                 ))}
               </ul>
             </div>
