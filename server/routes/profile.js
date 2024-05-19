@@ -101,5 +101,17 @@ router.put('/email', async (req, res) => {
         }
 });
 
-
+router.put('/setAvatar', async (req, res) => {
+    const repo = await Repository.getRepoInstance();
+    try{
+        const {user_id, avatar_id} = req.body
+        const user = await repo.getUser(Number.parseInt(user_id));
+        user.avatar_id = avatar_id;
+        await repo.updateUser(user);
+        return res.status(201).json({message: "Avatar Updated!"})
+    } catch (e) {
+        console.log(e);
+        return res.status(500).json({ error: 'Internal server error' });
+    }
+})
 module.exports = router;

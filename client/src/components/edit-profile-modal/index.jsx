@@ -1,19 +1,38 @@
-import React, { useState } from 'react';
+import React, {useEffect, useState} from 'react';
 import Cookies from 'js-cookie';
 import API from '../../../api';
-import './styles.css'; 
+import './styles.css';
+import {useNavigate} from "react-router-dom";
+
 
 const EditProfileModal = ({ onClose }) => {
+  // Accessing user credentials stored in cookies.
   const user_id = Cookies.get("user_id");
   const username = Cookies.get("username");
   const signature = Cookies.get("signature");
-  const [activeTab, setActiveTab] = useState('username'); 
+
+  // States for setting username and email.
   const [newUsername, setNewUsername] = useState('');
   const [newEmail, setNewEmail] = useState('');
-  const [selectedAvatar, setSelectedAvatar] = useState(null);
+
+  // States for setting user avatar.
+  const [avatarsList, setAvatarsList] = useState([]);
   const [avatarIndex, setAvatarIndex] = useState(0);
 
-  const avatars = ["avatar-00.jpg", "avatar-01.jpg", "avatar-02.jpg"]; 
+  const navigate = useNavigate();
+
+  // Edit-Profile-Modal state.
+  const [activeTab, setActiveTab] = useState('username');
+
+  useEffect(() => {
+    const fetchAvatars = async () =>{
+      const response = await fetch(API + `/avatars`)
+      const avatars = await response.json();
+      const avatarsList = Object.keys(avatars).map((key) => avatars[key]);
+      setAvatarsList(avatarsList);
+    }
+      fetchAvatars();
+  }, []);
 
   const handleTabClick = (tab) => {
     setActiveTab(tab);
@@ -27,15 +46,7 @@ const EditProfileModal = ({ onClose }) => {
         username: username,
         signature: signature
       };
-  
-      if (activeTab === 'username') {
-        data.newUsername = newUsername;
-      } else if (activeTab === 'email') {
-        data.newEmail = newEmail;
-      } else if (activeTab === 'avatar') {
-        data.selectedAvatar = selectedAvatar;
-      }
-  
+
       const response = await fetch(API + `/profile/${activeTab}`,
       {
         method: 'PUT',
@@ -44,28 +55,37 @@ const EditProfileModal = ({ onClose }) => {
         },
         body: JSON.stringify(data),
       });
-  
-      console.log('Response:', response); 
-  
-      if (response.ok) {
-        console.log('PUT request was successful!');
-      } else {
-        console.error('PUT request failed:', response.status);
-      }
-  
-      console.log(`${activeTab} updated successfully!`);
     } catch (error) {
       console.error(`Error updating ${activeTab}:`, error.message);
     }
   };
 
   const handleNextAvatar = () => {
-    setAvatarIndex((avatarIndex + 1) % avatars.length);
+    setAvatarIndex((avatarIndex + 1) % avatarsList.length);
   };
 
   const handlePrevAvatar = () => {
-    setAvatarIndex((avatarIndex - 1 + avatars.length) % avatars.length);
+    setAvatarIndex((avatarIndex - 1 + avatarsList.length) % avatarsList.length);
   };
+
+  const handleSelectAvatar = async () => {
+    const data = {
+      user_id: user_id,
+      username: username,
+      signature: signature,
+      avatar_id: avatarsList[avatarIndex].avatar_id
+    };
+    const response = await fetch(API + "/profile/setAvatar", {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(data),
+    })
+    if (response.status === 201){
+      window.location.reload();
+    }
+  }
 
   return (
     <section className='profile-modal-overlay'>
@@ -108,11 +128,13 @@ const EditProfileModal = ({ onClose }) => {
             </form>
           )}
           {activeTab === 'avatar' && (
-            <div className="avatar-selection">
-              <button onClick={handlePrevAvatar}>Previous</button>
-              <img src={avatars[avatarIndex]} alt="Avatar" className="avatar-image" />
-              <button onClick={handleNextAvatar}>Next</button>
-            </div>
+              <div className="avatar-selection">
+                <button onClick={handlePrevAvatar}>Previous</button>
+                <img src={API + `/images/avatars/${avatarsList[avatarIndex].imageUri}`} alt="Avatar"
+                     className="avatar-image"/>
+                <button onClick={handleNextAvatar}>Next</button> <br></br>
+                <button onClick={handleSelectAvatar}>Set as avatar</button>
+              </div>
           )}
         </div>
       </section>

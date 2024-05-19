@@ -259,7 +259,8 @@ class Repository {
                     username: user.username,
                     password: user.password,
                     email: user.email,
-                    district: user.district
+                    district: user.district,
+                    avatar_id: user.avatar_id
                 });
             }
         } catch (e) { console.error(e); }

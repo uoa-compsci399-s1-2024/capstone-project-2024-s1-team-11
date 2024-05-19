@@ -16,8 +16,8 @@ const ProfilePage = () => {
   const [showEditModal, setShowEditModal] = useState(false);
 
   useEffect(() => {
-    console.log(user_id);
-    if (user_id) {
+
+    if (user_id !== undefined && user_id !== null) {
       const fetchUserData = async () => {
         try {
           const response = await fetch(API + `/profile`,
@@ -37,6 +37,7 @@ const ProfilePage = () => {
       };
       fetchUserData();
     } else{ navigate("/"); }
+
   }, []);
 
   const handleEditProfile = () => {
