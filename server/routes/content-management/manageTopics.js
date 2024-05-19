@@ -4,7 +4,7 @@ const Repository = require("../../repository/repository")
 
 const storage = multer.diskStorage({
     destination: (req, file, cb) => {
-        cb(null, "./images/rocks")
+        cb(null, "./images/topics")
     },
     filename: (req, file, cb) => {
         cb(null, `${Date.now()}-${file.originalname}`)

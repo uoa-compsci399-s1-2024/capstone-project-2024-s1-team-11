@@ -104,15 +104,11 @@ export default function RockTopicPage() {
       <Header />
         <main>
 
-        {topic && topic.title && (
+        {rock && rock.imageUri && (
               <>
-                {topic && topic.title && (
-                  <>
-                    <TopImage imgUri={topic.imageUri} />
-                  </>
-                )}
+                <TopImage imgUri={`${API + "/images/rocks/" + rock.imageUri}`} />
               </>
-            )}
+        )}
 
           <article className='side-padding'>
             {rock && rock.rock_name && (

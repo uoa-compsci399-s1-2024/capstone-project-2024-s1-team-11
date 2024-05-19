@@ -19,6 +19,10 @@ Rock.init(
         product_key: {
             type: DataTypes.STRING,
             allowNull: false
+        },
+        imageUri: {
+            type: DataTypes.STRING,
+            defaultValue: "placeholder.jpg"
         }
     },
     {   sequelize,

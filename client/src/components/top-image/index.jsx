@@ -7,7 +7,7 @@ export default function TopImage({imgUri}) {
   let image = mainimg;
 
   if(imgUri != null) {
-    image = `${API + "/images/rocks/" + imgUri}`;
+    image = imgUri;
   }
 
   return (

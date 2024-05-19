@@ -44,7 +44,7 @@ export default function TopicPage() {
               <>
                 {topic && topic.title && (
                   <>
-                    <TopImage imgUri={topic.imageUri} />
+                    <TopImage imgUri={`${API + "/images/topics/" + topic.imageUri}`} />
                   </>
                 )}
               </>

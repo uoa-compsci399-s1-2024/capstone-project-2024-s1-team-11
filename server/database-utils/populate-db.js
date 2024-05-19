@@ -22,7 +22,7 @@ async function populateDb(repo){
             topic_id: 1,
             title: "Number Zero",
             description: "Number 0 is the smallest natural number.",
-            imageUri: "maths-rocks-zero.jpg",
+            imageUri: "TopicNumberZero.jpg",
             metaTitle: null,
             metaDescription: null
         }
@@ -31,7 +31,7 @@ async function populateDb(repo){
             topic_id: 2,
             title: "Number One",
             description: "Number 1 is the smallest positive integer that can divide any number.",
-            imageUri: "maths-rocks-one.jpg",
+            imageUri: "TopicNumberOne.jpg",
             metaTitle: null,
             metaDescription: null
         }
@@ -40,7 +40,7 @@ async function populateDb(repo){
             topic_id: 3,
             title: "Number Two",
             description: "Number 2 is the only even prime number.",
-            imageUri: "maths-rocks-two.jpg",
+            imageUri: "TopicNumberTwo.jpg",
             metaTitle: null,
             metaDescription: null
         }
@@ -49,7 +49,7 @@ async function populateDb(repo){
             topic_id: 4,
             title: "Number Three",
             description: "Number 3 is the smallest odd prime number.",
-            imageUri: "maths-rocks-three.jpg",
+            imageUri: "TopicNumberThree.jpg",
             metaTitle: null,
             metaDescription: null
         }
@@ -58,33 +58,33 @@ async function populateDb(repo){
 
     // Create initial rocks
     await repo.addRock({
-            rock_id: 1,
-            rock_name: "Rock Zero",
-            product_key: "keyForRockZero",
-            topic_id: 1
-        }
-    );
+        rock_id: 1,
+        rock_name: "Rock Zero",
+        product_key: "keyForRockZero",
+        topic_id: 1,
+        imageUri: "maths-rocks-zero.jpg"
+    });
     await repo.addRock({
-            rock_id: 2,
-            rock_name: "Rock One",
-            product_key: "keyForRockOne",
-            topic_id: 2
-        }
-    );
+        rock_id: 2,
+        rock_name: "Rock One",
+        product_key: "keyForRockOne",
+        topic_id: 2,
+        imageUri: "maths-rocks-one.jpg"
+    });
     await repo.addRock({
-            rock_id: 3,
-            rock_name: "Rock Two",
-            product_key: "keyForRockTwo",
-            topic_id: 3
-        }
-    );
+        rock_id: 3,
+        rock_name: "Rock Two",
+        product_key: "keyForRockTwo",
+        topic_id: 3,
+        imageUri: "maths-rocks-two.jpg"
+    });
     await repo.addRock({
-            rock_id: 4,
-            rock_name: "Rock Three",
-            product_key: "keyForRockThree",
-            topic_id: 4
-        }
-    );
+        rock_id: 4,
+        rock_name: "Rock Three",
+        product_key: "keyForRockThree",
+        topic_id: 4,
+        imageUri: "maths-rocks-three.jpg"
+    });
 
 
     // Create initial badges

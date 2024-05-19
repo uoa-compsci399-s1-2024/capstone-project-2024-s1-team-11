@@ -107,7 +107,8 @@ class Repository {
                     rock_id: max_id +1,
                     rock_name: rock.rock_name,
                     product_key: rock.product_key,
-                    topic_id: rock.topic_id
+                    topic_id: rock.topic_id,
+                    imageUri: rock.imageUri
                 });
         } catch (e) { console.error(e); }
     }
@@ -116,7 +117,7 @@ class Repository {
         try {
             let rock_data = await Rock.findByPk(rock.rock_id);
             if (rock_data !== null) {     // Checks whether the rock exists in the database.
-                rock.save({rock_name: rock.rock_name, product_key: rock.product_key, topic_id: rock.topic_id})
+                rock.save({rock_name: rock.rock_name, product_key: rock.product_key, topic_id: rock.topic_id, imageUri: rock.imageUri})
             }
         } catch (e) { console.error(e); }
     }

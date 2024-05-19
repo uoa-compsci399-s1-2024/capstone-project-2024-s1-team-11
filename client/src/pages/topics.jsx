@@ -73,7 +73,7 @@ const TopicsPage = () => {
             <div className="rock-grid">
             {search(topics).map((topic) => (
                   <Link to={'/topic/' + topic.topic_id} className="rock-grid-item" key={topic.topic_id}>
-                    <div className='rock-grid-img' style={{backgroundImage: `url(${API + "/images/rocks/" + topic.imageUri})`}}></div>
+                    <div className='rock-grid-img' style={{backgroundImage: `url(${API + "/images/topics/" + topic.imageUri})`}}></div>
                     <h3>{topic.title}</h3>
                     <button className='btn'>Learn More</button>
                   </Link >
