@@ -12,7 +12,6 @@ import ErrorPage from "./error-page";
 import AboutPage from './pages/about';
 import ContactPage from './pages/contact';
 import PrivacyPage from './pages/privacy';
-import RocksPage from './pages/topics.jsx';
 import RockTopicPage from './pages/rock-topic';
 import Leaderboard from './pages/leaderboard';
 import ProfilePage from './pages/profile';
