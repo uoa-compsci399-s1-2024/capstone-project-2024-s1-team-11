@@ -21,6 +21,7 @@ const EditProfileModal = ({ onClose }) => {
   // States for changing password.
   const [oldPassword, setOldPassword] = useState('');
   const [newPassword, setNewPassword] = useState('');
+  const [newPasswordRetype, setNewPasswordRetype] = useState('');
 
   // States for setting user avatar.
   const [avatarsList, setAvatarsList] = useState([]);
@@ -28,6 +29,9 @@ const EditProfileModal = ({ onClose }) => {
 
   // Edit-Profile-Modal state.
   const [activeTab, setActiveTab] = useState('username');
+
+  // Error message from server's response.
+  const [errorMessage, setErrorMessage] = useState({type: '', message: ''});
 
   useEffect(() => {
     const fetchAvatars = async () =>{
@@ -61,7 +65,13 @@ const EditProfileModal = ({ onClose }) => {
     })
     if (response.status === 201){
       window.location.reload();
+    }else{
+      setErrorMessage({
+        type: 'alias',
+        message: (await response.json()).error
+      });
     }
+
   }
 
   // Handler for submitting new email.
@@ -82,6 +92,39 @@ const EditProfileModal = ({ onClose }) => {
     })
     if (response.status === 201){
       window.location.reload();
+    }else{
+      setErrorMessage({
+        type: 'email',
+        message: (await response.json()).error
+      });
+    }
+  }
+
+  // Handler for submitting new password.
+  const handleSubmitPassword = async () => {
+    const data = {
+      user_id: user_id,
+      username: username,
+      signature: signature,
+      newEmail: newEmail,
+      oldPassword: oldPassword,
+      newPassword: newPassword,
+      newPasswordRetype: newPasswordRetype
+    };
+    const response = await fetch(API + "/profile/setPassword", {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(data),
+    })
+    if (response.status === 201){
+      window.location.reload();
+    }else{
+      setErrorMessage({
+        type: 'password',
+        message: (await response.json()).error
+      });
     }
   }
 
@@ -110,6 +153,11 @@ const EditProfileModal = ({ onClose }) => {
     })
     if (response.status === 201){
       window.location.reload();
+    }else {
+      setErrorMessage({
+        type: 'avatar',
+        message: (await response.json()).error
+      });
     }
   }
 
@@ -120,39 +168,59 @@ const EditProfileModal = ({ onClose }) => {
         <button className="close-btn" onClick={onClose}>❌</button>
         <div className="tab-navigation">
           <button
-            className={activeTab === 'username' ? 'active' : ''}
-            onClick={() => handleTabClick('username')}
+              className={activeTab === 'alias' ? 'active' : ''}
+              onClick={() => handleTabClick('alias')}
           >
             ✏️Edit Alias
           </button>
           <button
-            className={activeTab === 'email' ? 'active' : ''}
-            onClick={() => handleTabClick('email')}
+              className={activeTab === 'email' ? 'active' : ''}
+              onClick={() => handleTabClick('email')}
           >
             ✏️Edit Email
           </button>
           <button
-            className={activeTab === 'avatar' ? 'active' : ''}
-            onClick={() => handleTabClick('avatar')}
+              className={activeTab === 'password' ? 'active' : ''}
+              onClick={() => handleTabClick('password')}
+          >
+            🔐Change Password
+          </button>
+          <button
+              className={activeTab === 'avatar' ? 'active' : ''}
+              onClick={() => handleTabClick('avatar')}
           >
             🦊Select Avatar
           </button>
         </div>
         <div className="tab-content">
-          {activeTab === 'username' && (
-            <form onSubmit={handleSubmitAlias}>
-              <label>New Alias:</label>
-              <input type="text" value={newAlias} onChange={(e) => setNewAlias(e.target.value)} />
-              <button type="submit">Save</button>
+          {activeTab === 'alias' && (
+              <form onSubmit={handleSubmitAlias}>
+                <label>New Alias:</label>
+                <input type="text" value={newAlias} onChange={(e) => setNewAlias(e.target.value)} />
+                <button type="submit">Save</button>
+                {errorMessage.type==='alias' && <p><span style={{color: "red"}}>{errorMessage.message}</span></p>}
             </form>
           )}
           {activeTab === 'email' && (
-              <form onSubmit={handleSubmitEmail}>
+              <form>
                 <label>New Email:</label>
                 <input type="email" value={newEmail} onChange={(e) => setNewEmail(e.target.value)}/>
                 <label>Enter Password:</label>
                 <input type="password" value={password} onChange={(e) => setPassword(e.target.value)}/>
-                <button type="submit">Save</button>
+                <button type="button" onClick={handleSubmitEmail}>Save</button>
+                {errorMessage.type==='email' && <p><span style={{color: "red"}}>{errorMessage.message}</span></p>}
+              </form>
+          )}
+          {activeTab === 'password' && (
+              <form>
+                <label>Old Password:</label>
+                <input type="password" value={oldPassword} onChange={(e) => setOldPassword(e.target.value)}/>
+                <label>New Password:</label>
+                <input type="password" value={newPassword} onChange={(e) => setNewPassword(e.target.value)}/>
+                <label>Re-enter New Password:</label>
+                <input type="password" value={newPasswordRetype} onChange={(e) => setNewPasswordRetype(e.target.value)}/>
+                <button type="button" onClick={handleSubmitPassword}>Save</button>
+                {errorMessage.type==='password' && <p><span style={{color: "red"}}>{errorMessage.message}</span></p>}
               </form>
           )}
           {activeTab === 'avatar' && (
@@ -162,6 +230,7 @@ const EditProfileModal = ({ onClose }) => {
                      className="avatar-image"/>
                 <button onClick={handleNextAvatar}>Next</button> <br></br>
                 <button onClick={handleSelectAvatar}>Set as avatar</button>
+                {errorMessage.type==='avatar' && <p><span style={{color: "red"}}>{errorMessage.message}</span></p>}
               </div>
           )}
         </div>

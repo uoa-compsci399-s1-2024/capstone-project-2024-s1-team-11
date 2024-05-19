@@ -7,11 +7,13 @@ const Repository = require('../repository/repository');
 const router = express.Router();
 
 router.use(express.json());
+
+// Authenticate the users before they could access their profile page.
 router.use(authenticate);
 
+// Route for fetching user data, to render profile page.
 router.post('/', async (req, res) => {
     try {
-        console.log(req.body);
         const user_id = req.body.user_id;
         const repo = await Repository.getRepoInstance();
         const user = await repo.getUser(user_id.valueOf());
@@ -53,6 +55,7 @@ router.post('/', async (req, res) => {
     }
 });
 
+// Route for changing users' alias.
 router.put('/setAlias', async (req, res) => {
     try {
         const { user_id, alias } = req.body;
@@ -70,6 +73,7 @@ router.put('/setAlias', async (req, res) => {
     }
 });
 
+// Route for changing users' email.
 router.put('/setEmail', async (req, res) => {
     try {
         const { user_id, newEmail, password } = req.body;
@@ -78,7 +82,7 @@ router.put('/setEmail', async (req, res) => {
 
         const existingEmail = await repo.getUserByEmail(newEmail);
         if (existingEmail) {
-            return res.status(400).json({ error: 'This email already registered.' });
+            return res.status(400).json({ error: 'This email is already registered.' });
         }
         const user = await repo.getUser(user_id);
         if (!user) {
@@ -91,7 +95,7 @@ router.put('/setEmail', async (req, res) => {
             return res.status(201).json({ message: "Email is updated!" });
         }
         else{
-            return res.status(201).json({ error: "Incorrect password, email is not changed."})
+            return res.status(403).json({ error: "Incorrect password."})
         }
     }catch (error) {
         console.error('Error updating email:', error);
@@ -99,6 +103,58 @@ router.put('/setEmail', async (req, res) => {
     }
 });
 
+// Route for changing user's password.
+router.put('/setPassword', async (req, res) => {
+
+    //Helper method for validating password strength.
+    function validate_password(password){
+        const SPECIAL_CHAR = /[!@#$%^&*()_+<>?]/;
+        const DIGITS = /[0123456789]/;
+        const LOWERCASE = /[abcdefghijklmnopqrstuvwxyz]/;
+        const UPPERCASE =  /[ABCDEFGHIJKLMNOPQRSTUVWXYZ]/;
+
+        return SPECIAL_CHAR.test(password) && DIGITS.test(password) && LOWERCASE.test(password) && UPPERCASE.test(password) && password.length >= 8;
+    }
+
+    try {
+        const { user_id, oldPassword, newPassword, newPasswordRetype } = req.body;
+
+        const repo = await Repository.getRepoInstance();
+        const user = await repo.getUser(user_id);
+
+        if (!user) {
+            return res.status(404).json({ error: 'User not found' });
+        }
+
+        if (newPassword !== newPasswordRetype) {
+            return res.status(403).json({ error: 'The new password you have retyped does not match the new password.' });
+        }
+
+        const isPasswordCorrect = await bcrypt.compare(oldPassword, user.password);
+        if (isPasswordCorrect){
+            if (validate_password(newPassword)) {
+                const salt = await bcrypt.genSalt(10)
+                user.password = await bcrypt.hash(newPassword, salt);
+                user.salt = salt;
+                await repo.updateUser(user);
+                return res.status(201).json({message: "Password updated successfully!"});
+            }else{
+                return res.status(403).json(
+                    { error: 'New password must contains digits, uppercase, lowercase and special characters.' }
+                );
+            }
+        }
+        else{
+            return res.status(403).json({ error: "Incorrect old password."})
+        }
+
+    }catch (error) {
+        console.error('Error updating password:', error);
+        return res.status(500).json({ error: 'Internal server error' });
+    }
+});
+
+// Route for changing user's avatar.
 router.put('/setAvatar', async (req, res) => {
     const repo = await Repository.getRepoInstance();
     try{

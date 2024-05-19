@@ -256,8 +256,10 @@ class Repository {
             let user_data = await User.findOne({where: {user_id: user.user_id}});
             if (user_data !== null) {
                 await user.save({
+                    user_id: user.user_id,
                     username: user.username,
                     password: user.password,
+                    salt: user.salt,
                     email: user.email,
                     district: user.district,
                     avatar_id: user.avatar_id
