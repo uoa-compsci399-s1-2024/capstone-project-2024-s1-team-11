@@ -3,15 +3,27 @@ const multer = require("multer")
 const Repository = require("../../repository/repository")
 
 
-const upload = multer()
+// This is for handling image upload.
+const storage = multer.diskStorage({
+        destination: (req, file, cb) => {
+            cb(null, "./images/rocks")
+        },
+        filename: (req, file, cb) => {
+            cb(null, `${Date.now()}-${file.originalname}`)
+        }
+    }
+)
+const upload = multer({storage: storage})
+
 router = express.Router()
 
-router.post("/addRock",upload.none(), async (req, res) => {
+router.post("/addRock",upload.single("rock_image"), async (req, res) => {
     try {
         const new_rock = {
             rock_name: req.body.rockName,
             topic_id: !isNaN(Number.parseInt(req.body.topicId)) ? Number.parseInt(req.body.topicId) : null,
-            product_key: req.body.productKey
+            product_key: req.body.productKey,
+            imageUri: req.file !== undefined ? req.file.filename : "placeholder.jpg"
         }
 
         const repo = await Repository.getRepoInstance();
@@ -20,13 +32,14 @@ router.post("/addRock",upload.none(), async (req, res) => {
     } catch (e) {console.error(e); }
 })
 
-router.post("/editRock",upload.none(), async (req, res) => {
+router.post("/editRock",upload.single("rock_image"), async (req, res) => {
     try {
         const updated_rock = {
             rock_id: req.body.rock_id.valueOf(),
             rock_name: req.body.newRockName,
             topic_id: !isNaN(Number.parseInt(req.body.newTopicId)) ? Number.parseInt(req.body.newTopicId) : null,
-            product_key: req.body.newProductKey
+            product_key: req.body.newProductKey,
+            imageUri: req.file !== undefined ? req.file.filename : "placeholder.jpg"
         }
 
         const repo = await Repository.getRepoInstance();

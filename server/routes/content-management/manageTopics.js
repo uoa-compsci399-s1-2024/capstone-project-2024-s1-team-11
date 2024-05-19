@@ -2,6 +2,8 @@ const express = require("express")
 const multer = require("multer")
 const Repository = require("../../repository/repository")
 
+
+// This is for handling image upload.
 const storage = multer.diskStorage({
     destination: (req, file, cb) => {
         cb(null, "./images/topics")
@@ -11,7 +13,6 @@ const storage = multer.diskStorage({
     }
     }
 )
-
 const upload = multer({storage: storage})
 
 router = express.Router()

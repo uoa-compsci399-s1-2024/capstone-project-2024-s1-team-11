@@ -9,8 +9,8 @@ export default function AddRock() {
     const [rockName, setRockName] = useState("");
     const [productKey, setProductKey] = useState("");
     const [topicId, setTopicId] = useState(null);
-
     const [topicsList, setTopicsList] = useState(null);
+    const [imageFile, setImageFile] = useState(null);
 
     useEffect(() => {
         const fetchTopics = async () => {
@@ -22,11 +22,16 @@ export default function AddRock() {
         fetchTopics();
     }, [])
 
+    const handleImageUpload = (e) => {
+        setImageFile(e.target.files[0])
+    }
+
     async function handleSubmit() {
         const formData = new FormData();
         formData.append("rockName", rockName);
         formData.append("productKey", productKey);
         formData.append("topicId", topicId);
+        formData.append("rock_image", imageFile);
         const res = await fetch(API + "/manageRocks/addRock", {
             method: "POST",
             body: formData
@@ -50,17 +55,17 @@ export default function AddRock() {
                                 ))}
                             </select>
                         </label>
-                        <label name="rname">Change Rock Name
+                        <label name="rname">Add a Rock Name
                             <input type="text" name="rname" id='rname' value={rockName}
                                    onChange={(e) => setRockName(e.target.value)}
                             />
                         </label>
-                        <label name="product_key">Change Product Key</label>
+                        <label name="product_key">Add a Product Key</label>
                         <input type="text" name="product_key" id="product_key" value={productKey}
                                onChange={(e) => setProductKey(e.target.value)}
                         />
-                        <label name="filename">Rock image
-                            <input type="file" id="myFile" name="filename"/>
+                        <label name="rock_image">Rock image
+                            <input type="file" id="rock_image" name="rock_image" onChange={handleImageUpload}/>
                         </label>
                         <button type='button' className='btn' onClick={handleSubmit}>Submit</button>
                     </form>
