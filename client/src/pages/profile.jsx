@@ -44,10 +44,6 @@ const ProfilePage = () => {
     setShowEditModal(true); 
   };
 
-  useEffect(() => {
-    console.log('showEditModal:', showEditModal);
-  }, [showEditModal]);
-
   return (
       <>
         <Header/>
@@ -90,8 +86,9 @@ const ProfilePage = () => {
             <div className="rounded-border2">
               <ul className="list-container">
                 {userData && userData.rocks && userData.rocks.map(rock => (
-                    <li key={rock.rock_id} className="badge-square"><img
-                        src={API + `/images/rocks/${rock.imageUri}`} alt="Rock Image"/></li>
+                    <li key={rock.rock_id} className="rock-item">
+                      <img src={API + `/images/rocks/${rock.imageUri}`} alt="Rock Image"/>
+                    </li>
                 ))}
               </ul>
             </div>

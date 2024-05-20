@@ -1,6 +1,7 @@
 import API from '../../../api';
 import { useState } from 'react';
 import Cookies from 'js-cookie';
+import {useNavigate} from "react-router-dom";
 
 
 export default function LoginForm({formFunction}) {
@@ -8,6 +9,7 @@ export default function LoginForm({formFunction}) {
     const [password, setPassword] = useState('');
     const [statusMsg, setStatusMsg] = useState('');
     const [isLogged, setIsLogged] = useState(Cookies.get('username')!==undefined);
+    const navigate = useNavigate();
     const handleLogin = async (e) => {
         e.preventDefault();
 
@@ -26,6 +28,9 @@ export default function LoginForm({formFunction}) {
             Cookies.set('user_id', data.user_id);
             Cookies.set('signature', data.signature);
             setIsLogged(true);
+            setTimeout(function(){
+                window.location.reload();
+            }, 1000);
         }
         setStatusMsg(data.message);
     }
@@ -58,7 +63,7 @@ export default function LoginForm({formFunction}) {
         }
         { (Cookies.get('username')!==undefined && isLogged) &&
             <section className='login-success-msg'>
-                <p>Welcome back,<br></br> {Cookies.get('username')}!</p>
+                <p>🦊Welcome back,<br></br> {Cookies.get('username')}!</p>
             </section>
         }
     </main>

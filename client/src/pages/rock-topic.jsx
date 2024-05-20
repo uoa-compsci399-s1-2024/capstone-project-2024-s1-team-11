@@ -97,6 +97,11 @@ export default function RockTopicPage() {
           headers: {'Content-Type': 'application/json'},
           body: JSON.stringify({ user_id: user.user_id })
         });
+
+      setTimeout(function(){
+        window.location.reload();
+      }, 500);
+
     }
   }
   return (
