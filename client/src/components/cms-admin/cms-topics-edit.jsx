@@ -46,29 +46,31 @@ export default function EditTopic() {
 
     return (
         <>
-            <h2>View or edit topic details</h2>
-            { topic !== null &&
-            <form>
-                <label name="heading">Topic heading
-                    <input type="text" name="heading" id='heading' value={title} onChange={(e) => setTitle(e.target.value)}/>
-                </label>
-                <label >Current main image
-                    <div className='cms-image'><img src={API + `/images/topics/${topic.imageUri}`} /></div>
-                </label>
-                <label name="topic_image">Change the main image
-                    <input type="file" id="topic_image" name="topic_image" onChange={handleImageUpload}/>
-                </label>
-                <label name="texteditor">Update the page text
-                    <TextEditor setText={setText}/>
-                </label>
-                <label name="metatitle">Meta title (this is for ranking on google)
-                    <input type="text" name="metatitle" id='metatitle' value={metatitle} onChange={(e) => setMetatitle(e.target.value)}/>
-                </label>
-                <label name="metadesc">Meta description (this is a short summary for ranking on google)
-                    <input type="text" name="metadesc" id='metadesc' value={metadesc} onChange={(e) => setMetadesc(e.target.value)}/>
-                </label>
-                <button type='button' className='btn' onClick={handleSubmit}>Submit</button>
-            </form>
-            }
+            <div className="cms-topic">
+                <h2>View or edit topic details</h2>
+                { topic !== null &&
+                    <form>
+                        <label name="heading">Topic heading
+                            <input type="text" name="heading" id='heading' value={title} onChange={(e) => setTitle(e.target.value)}/>
+                        </label>
+                        <label >Current main image
+                            <div className='cms-image'><img src={API + `/images/topics/${topic.imageUri}`} /></div>
+                        </label>
+                        <label name="topic_image">Change the main image
+                            <input type="file" id="topic_image" name="topic_image" onChange={handleImageUpload}/>
+                        </label>
+                        <label name="texteditor">Update the page text
+                            <TextEditor setText={setText}/>
+                        </label>
+                        <label name="metatitle">Meta title (this is for ranking on google)
+                            <input type="text" name="metatitle" id='metatitle' value={metatitle} onChange={(e) => setMetatitle(e.target.value)}/>
+                        </label>
+                        <label name="metadesc">Meta description (this is a short summary for ranking on google)
+                            <input type="text" name="metadesc" id='metadesc' value={metadesc} onChange={(e) => setMetadesc(e.target.value)}/>
+                        </label>
+                        <button type='button' className='btn' onClick={handleSubmit}>Submit</button>
+                    </form>
+                }
+            </div>
         </>
     )}
