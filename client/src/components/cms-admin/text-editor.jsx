@@ -8,8 +8,10 @@ const TextEditor = ({setText}) => {
     const [content, setContent] = useState('')
     console.log(content)
 
+
     const modules = {
         toolbar: [
+            [{'header': [false]}],
             [{'header': '1'}, {'header': '2'}],
             ['bold', 'italic', 'underline', 'strike', 'blockquote'],
             [{ 'list': 'ordered' }, { 'list': 'bullet' },
