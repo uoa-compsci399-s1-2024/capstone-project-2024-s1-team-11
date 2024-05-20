@@ -217,7 +217,15 @@ class Repository {
             let user = await User.findByPk(user_id);
             let rock = await Rock.findByPk(rock_id);
             if (user !== null && rock !== null) {
-                await Users_Rocks.findOrCreate({where: {user_id: user_id, rock_id: rock_id}});
+                const collectionRecord = await Users_Rocks.findOne({where: {user_id: user_id, rock_id: rock_id}});
+                if (collectionRecord === null){
+                    const currentDate = new Date();
+                    const day = currentDate.getDate();
+                    const month = currentDate.getMonth() + 1;
+                    const year = currentDate.getFullYear();
+                    const timestamp = `${year.toString()}-${month.toString()}-${day.toString()}`;
+                    await Users_Rocks.create({user_id: user_id, rock_id: rock_id, collectedAt: timestamp});
+                }
             }
         } catch (e) { console.error(e); }
     }

@@ -84,7 +84,7 @@ const Leaderboard = () => {
                        alt="Avatar" className="avatar"/>
                   <span className="username">{user.alias}</span>
                 </td>
-                <td style={{textAlign: 'center' }}>{user.rock_count}🪨</td>
+                <td style={{textAlign: 'center' }}>💎{user.rock_count}</td>
               </tr>
             ))}
           </tbody>

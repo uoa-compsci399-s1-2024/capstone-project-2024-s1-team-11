@@ -1,12 +1,14 @@
 const express = require('express');
 const { User, Users_Rocks } = require('../models');
 const Repository = require("../repository/repository");
+const Sequelize = require("sequelize");
+
 
 const router = express.Router();
 
 router.get('/monthly', async (req, res) => {
   try {
-    const top20Users = await getUsersWithRockCount();
+    const top20Users = await getUsersWithRockCount(true);
     return res.json(top20Users);
   } catch (error) {
     console.error('Error fetching users:', error);
@@ -16,8 +18,7 @@ router.get('/monthly', async (req, res) => {
 
 router.get('/', async (req, res) => {
   try {
-    const users = await User.findAll();
-    const top20Users = await getUsersWithRockCount();
+    const top20Users = await getUsersWithRockCount(false);
     return res.json(top20Users);
   } catch (error) {
     console.error('Error fetching users:', error);
@@ -26,16 +27,33 @@ router.get('/', async (req, res) => {
 });
 
 // Helper method for retrieving users and their rocks count.
-async function getUsersWithRockCount() {
+async function getUsersWithRockCount(isMonthly) {
   const repo = await Repository.getRepoInstance();
 
-  // Retrieve every user's user id and the number of rocks they have collected.
-  // This result is ordered in descending order.
-  const usersRocksCount = await Users_Rocks.findAll({
-    attributes:['user_id', [repo.sequelize.fn('COUNT', repo.sequelize.col('user_id')), 'rocks_count']],
-    group: 'user_id',
-    order: [['rocks_count', 'DESC']]
-  });
+  let usersRocksCount;
+
+  if (isMonthly) {
+    const currentDate = new Date();
+    const currentMonth = currentDate.getMonth() + 1;
+    const currentYear = currentDate.getFullYear();
+    const year_month = `${currentYear}-${currentMonth}`;
+
+    // Retrieve every user's user id and the number of rocks they have collected within the current month.
+    // This result is ordered in descending order.
+     usersRocksCount = await Users_Rocks.findAll({
+      attributes: ['user_id', [repo.sequelize.fn('COUNT', repo.sequelize.col('user_id')), 'rocks_count']],
+      where: {collectedAt: {[Sequelize.Op.substring]: `%${year_month}`}},
+      group: 'user_id',
+      order: [['rocks_count', 'DESC']]
+    });
+  } else{
+    // Retrieve every user's user id and the number of rocks they have collected of all time.
+    usersRocksCount = await Users_Rocks.findAll({
+      attributes: ['user_id', [repo.sequelize.fn('COUNT', repo.sequelize.col('user_id')), 'rocks_count']],
+      group: 'user_id',
+      order: [['rocks_count', 'DESC']]
+    });
+  }
 
   // Extract the first 20 user ids from the above query.
   const top20_users_ids = []

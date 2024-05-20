@@ -12,11 +12,11 @@ router.post('/', async (req, res) => {
 
     const repo = await Repository.getRepoInstance();
     try {
-        repo.addRockToUserCollection(user_id, rock_id);
-        res.status(200).json({ message: 'Rock added to collection successfully' });
+        await repo.addRockToUserCollection(user_id, rock_id);
+        return res.status(200).json({ message: 'Rock added to collection successfully' });
     } catch (error) {
         console.error('Error adding rock to collection:', error);
-        res.status(500).json({ error: 'Failed to add rock to collection' });
+        return res.status(500).json({ error: 'Failed to add rock to collection' });
     }
 })
 

@@ -1,4 +1,5 @@
 const sequelize = require('../database-utils/entity-manager');
+const { DataTypes} = require('sequelize');
 const Topic = require('./topic');
 const Rock = require('./rock');
 const User = require('./user');
@@ -9,7 +10,12 @@ const Privilege = require('./privilege')
 
 Rock.belongsTo(Topic, { foreignKey: {name: 'topic_id', allowNull: true} });
 
-const Users_Rocks = sequelize.define('Users_Rocks', {}, { timestamps: true})
+const Users_Rocks = sequelize.define('Users_Rocks',
+    {
+        collectedAt: {
+            type: DataTypes.STRING
+        }
+    })
 Rock.belongsToMany(User, { through: 'Users_Rocks', foreignKey: 'rock_id' });
 User.belongsToMany(Rock, { through: 'Users_Rocks', foreignKey: 'user_id' });
 

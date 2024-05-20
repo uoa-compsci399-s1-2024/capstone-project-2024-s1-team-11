@@ -69,7 +69,7 @@ const ProfilePage = () => {
               <button className="profile-button" onClick={handleEditProfile}>✏️Edit profile</button>
             </div>
 
-            <p>Total rocks found: {userData ? userData.rock_count : '0'}🪨</p>
+            <p>Total rocks found: 💎{userData ? userData.rock_count : '0'}</p>
           </div>
 
           <div className="badges-section">
