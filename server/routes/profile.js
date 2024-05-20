@@ -32,7 +32,7 @@ router.post('/', async (req, res) => {
             badges_list.push(badge);
         }
 
-        let avatar_imageUri = "avatar-00.jpg";
+        let avatar_imageUri = "default_avatar.jpg";
         if (user_avatar !== null) {
             avatar_imageUri = user_avatar.imageUri;
         }

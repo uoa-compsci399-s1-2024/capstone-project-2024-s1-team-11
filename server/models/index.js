@@ -9,6 +9,7 @@ const Privilege = require('./privilege')
 
 Rock.belongsTo(Topic, { foreignKey: {name: 'topic_id', allowNull: true} });
 
+const Users_Rocks = sequelize.define('Users_Rocks', {}, { timestamps: true})
 Rock.belongsToMany(User, { through: 'Users_Rocks', foreignKey: 'rock_id' });
 User.belongsToMany(Rock, { through: 'Users_Rocks', foreignKey: 'user_id' });
 
@@ -20,7 +21,6 @@ User.belongsTo(Avatar, { foreignKey: 'avatar_id' });
 User.hasOne(Privilege, {foreignKey: 'user_id'});
 Privilege.belongsTo(User, {foreignKey: 'user_id'});
 
-const Users_Rocks = sequelize.models.Users_Rocks;
 const Users_Badges = sequelize.models.Users_Badges;
 
 module.exports = {Topic, Rock, User, Badge, Avatar, Users_Rocks, Users_Badges, Privilege};

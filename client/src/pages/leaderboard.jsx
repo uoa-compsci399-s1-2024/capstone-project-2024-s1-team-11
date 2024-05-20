@@ -21,6 +21,7 @@ const Leaderboard = () => {
           throw new Error('Failed to fetch leaderboard data');
         }
         const data = await response.json();
+        console.log(data);
         setLeaderboardData(data);
       } catch (error) {
         console.error('Error fetching leaderboard data:', error);
@@ -76,8 +77,12 @@ const Leaderboard = () => {
                     : `🏅${index + 1}`}
                 </td>
                 <td className="user-cell">
-                  <img src={API + `/images/avatars/${avatarsMap.get(user.avatar_id)}`} alt="Avatar" className="avatar"/>
-                  <span className="username">{user.username}</span>
+                  <img
+                      src={user.avatar_id !== null ?
+                        API + `/images/avatars/${avatarsMap.get(user.avatar_id)}` :
+                        API + `/images/avatars/default_avatar.jpg`}
+                       alt="Avatar" className="avatar"/>
+                  <span className="username">{user.alias}</span>
                 </td>
                 <td style={{textAlign: 'center' }}>{user.rock_count}🪨</td>
               </tr>

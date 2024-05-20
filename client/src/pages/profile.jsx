@@ -56,7 +56,10 @@ const ProfilePage = () => {
         <article className='side-padding top-padding' id='profile'>
 
           <div className="profile-container">
-            <img src={API + "/images/avatars/" + userData.avatar_imageUri} alt="Profile Picture"
+            <img src={userData.avatar_imageUri !== null ?
+                API + `/images/avatars/${userData.avatar_imageUri}` :
+                API + `/images/avatars/default_avatar.jpg`}
+                 alt="Profile Picture"
                  className="profile-picture"/>
 
             <p className="greeting">{userData ? `Hi, ${userData.alias}!` : 'Hi, User Alias!'}</p>

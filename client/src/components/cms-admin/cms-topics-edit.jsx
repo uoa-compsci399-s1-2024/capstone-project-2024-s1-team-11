@@ -53,7 +53,7 @@ export default function EditTopic() {
                     <input type="text" name="heading" id='heading' value={title} onChange={(e) => setTitle(e.target.value)}/>
                 </label>
                 <label >Current main image
-                    <div className='cms-image'><img src={API + `/images/rocks/${topic.imageUri}`} /></div>
+                    <div className='cms-image'><img src={API + `/images/topics/${topic.imageUri}`} /></div>
                 </label>
                 <label name="topic_image">Change the main image
                     <input type="file" id="topic_image" name="topic_image" onChange={handleImageUpload}/>
