@@ -111,3 +111,9 @@ table {
   .cms-image {
     width: 200px;
   }
+
+  .cms-topic {
+      width: 950px;
+      height: auto;
+      padding: 30px 40px;
+  }
