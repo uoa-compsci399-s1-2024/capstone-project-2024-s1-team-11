@@ -145,7 +145,7 @@ export default function RockTopicPage() {
                 )}
               </>
             )}
-            <Link to={`/rocks`}><button className='btn'>LEARN COOL MATHS CONCEPTS!</button></Link >
+            <Link to={`/topics`}><button className='btn'>LEARN COOL MATHS CONCEPTS!</button></Link >
             <Link to={`/about`}><button className='btn'>ROCK FINDING TIPS</button></Link >
 
           </article>
