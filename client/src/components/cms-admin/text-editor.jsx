@@ -11,8 +11,7 @@ const TextEditor = ({setText}) => {
 
     const modules = {
         toolbar: [
-            [{'header': [false]}],
-            [{'header': '1'}, {'header': '2'}],
+            [{ 'header': [1, 2, 3, 4, 5, 6, false] }],
             ['bold', 'italic', 'underline', 'strike', 'blockquote'],
             [{ 'list': 'ordered' }, { 'list': 'bullet' },
             { 'indent': '-1' }, { 'indent': '+1' }],
@@ -32,10 +31,6 @@ const TextEditor = ({setText}) => {
                 onChange={(text) => {setContent(text); setText(text)}}
             />
 
-
-            <div>
-                <div dangerouslySetInnerHTML={{ __html: content }}></div>
-            </div>
         </div>
     );
 };

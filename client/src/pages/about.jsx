@@ -22,7 +22,7 @@ export default function AboutPage() {
             <p>We have hidden rocks around Auckland.</p>
             <p>Share your finds with your friends, get together a group of friends and go rock hunting, and remember to hide the rocks again for someone else to find.</p>
             <p>Happy rock hunting everyone!</p>
-            <Link to={`/rocks`}><button className='btn'>LEARN COOL MATHS CONCEPTS!</button></Link >
+            <Link to={`/topics`}><button className='btn'>LEARN COOL MATHS CONCEPTS!</button></Link >
           </article>
         </main>
         <Footer />

@@ -56,6 +56,7 @@ export default function EditRock() {
     return (
         <>{(rock !== null && topicsList !== null) &&
             <>
+                <div className="cms-topic">
                 <h2>Edit Rock Details</h2>
                 <form>
                     <label name="topic">Change Associated Topic
@@ -82,6 +83,7 @@ export default function EditRock() {
                     </label>
                     <button type='button' className='btn' onClick={handleSubmit}>Submit</button>
                 </form>
+                </div>
             </>
         }
         </>

@@ -67,7 +67,7 @@ function LoginBtn() {
       <div className="login-nav-btn">
         {Cookies.get('username') === undefined && isLogged === false &&
         <button onClick={() => { setModalOpen(!modalOpen); }}>
-            🔑Log In /<br></br>/ 📜Sign Up <span className='triangle'></span>
+            Log In /<br></br>Sign Up <span className='triangle'></span>
         </button>}
         {Cookies.get('username') !== undefined && isLogged === true &&
         <button onClick={() => { 

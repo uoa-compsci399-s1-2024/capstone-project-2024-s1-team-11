@@ -44,6 +44,7 @@ export default function AddRock() {
         <>
             {topicsList !== null &&
                 <>
+                    <div className="cms-topic">
                     <h2>Add a new rock</h2>
                     <form>
                         <label name="topic">Select an Associated Topic page
@@ -69,6 +70,7 @@ export default function AddRock() {
                         </label>
                         <button type='button' className='btn' onClick={handleSubmit}>Submit</button>
                     </form>
+                    </div>
                 </>
             }
             </>

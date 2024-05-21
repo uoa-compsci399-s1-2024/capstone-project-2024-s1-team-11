@@ -117,3 +117,11 @@ table {
       height: auto;
       padding: 30px 40px;
   }
+
+  .quill {
+    margin-bottom: 20px;
+  }
+
+  .ql-editor {
+    min-height: 200px;
+  }

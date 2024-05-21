@@ -59,9 +59,8 @@ export default function EditTopic() {
                         <label name="topic_image">Change the main image
                             <input type="file" id="topic_image" name="topic_image" onChange={handleImageUpload}/>
                         </label>
-                        <label name="texteditor">Update the page text
-                            <TextEditor setText={setText}/>
-                        </label>
+                        <label name="texteditor">Update the page text</label>
+                        <TextEditor setText={setText}/>
                         <label name="metatitle">Meta title (this is for ranking on google)
                             <input type="text" name="metatitle" id='metatitle' value={metatitle} onChange={(e) => setMetatitle(e.target.value)}/>
                         </label>

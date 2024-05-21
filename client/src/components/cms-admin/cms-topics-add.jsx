@@ -42,9 +42,8 @@ export default function AddTopic() {
                     <label name="topic_image">Upload a main image <span style={{color: "purple"}}>(🌟 A default image will be displayed if no image is uploaded.)</span>
                         <input type="file" id="topic_image" name="topic_image" onChange={handleImageUpload}/>
                     </label>
-                    <label name="texteditor">Add the page text
-                        <TextEditor setText={setText}/>
-                    </label>
+                    <label name="texteditor">Add the page text</label>
+                    <TextEditor setText={setText}/>
                     <label name="metatitle">Meta title <span style={{color: "purple"}}>(🌟 This is for ranking on google.)</span>
                         <input type="text" name="metatitle" id='metatitle' value={metatitle} onChange={(e) => setMetatitle(e.target.value)}/>
                     </label>
