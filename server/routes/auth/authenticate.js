@@ -2,6 +2,7 @@ const bcrypt = require("bcrypt");
 const express = require("express");
 const SECRET_KEY = require("../../utils/secretKeyGenerator");
 
+
 async function authenticate(req, res, next) {
     try {
         if (req.body !== undefined && req.body.username !== undefined && req.body.signature !== undefined) {

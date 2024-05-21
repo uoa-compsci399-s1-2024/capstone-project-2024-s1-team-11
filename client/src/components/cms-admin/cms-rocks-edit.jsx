@@ -4,6 +4,8 @@ import API from "../../../api.js";
 import DOMAIN_NAME from "../../../domain-name.js"
 import {useNavigate, useParams} from "react-router-dom";
 import { Link } from "react-router-dom";
+import Cookies from "js-cookie";
+import authorization from "../../utils/auth.jsx";
 
 
 export default function EditRock() {
@@ -16,6 +18,23 @@ export default function EditRock() {
     const [newRockName, setNewRockName] = useState("");
     const [newProductKey, setNewProductKey] = useState("");
     const [imageFile, setImageFile] = useState(null);
+
+    // Redirect unauthorized user to homepage.
+    const [isAuthorized, setIsAuthorized] = useState(false);
+    const user_id = Cookies.get("user_id");
+    const username = Cookies.get("username");
+    const signature = Cookies.get("signature");
+
+    useEffect(() => {
+        const authorize = async () => {
+            if (! await authorization(user_id, username, signature)){
+                navigate("/");
+            } else{
+                setIsAuthorized(true);
+            }
+        }
+        authorize();
+    }, []);
 
     useEffect(()=>{
         const fetchRock = async () => {
@@ -42,6 +61,9 @@ export default function EditRock() {
 
     async function handleSubmit(){
         const formData = new FormData();
+        formData.append("user_id", user_id);
+        formData.append("username", username);
+        formData.append("signature", signature);
         formData.append("rock_id", rock.rock_id)
         formData.append("newTopicId", selectedTopicId);
         formData.append("newRockName", newRockName);
@@ -56,7 +78,7 @@ export default function EditRock() {
     }
 
     return (
-        <>{(rock !== null && topicsList !== null) &&
+        <>{(rock !== null && topicsList !== null && isAuthorized) &&
             <>
                 <div className="cms-topic">
                 <h2>Edit Rock Details</h2>

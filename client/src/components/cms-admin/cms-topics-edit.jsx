@@ -4,6 +4,8 @@ import TextEditor from "./text-editor.jsx";
 import {useParams} from "react-router-dom";
 import API from "../../../api.js";
 import { Link } from "react-router-dom";
+import Cookies from "js-cookie";
+import authorization from "../../utils/auth.jsx";
 
 export default function EditTopic() {
     const { topic_id } = useParams();
@@ -14,6 +16,23 @@ export default function EditTopic() {
     const [metatitle, setMetatitle] = useState("");
     const [metadesc, setMetadesc] = useState("");
     const navigate = useNavigate();
+
+    // Redirect unauthorized user to homepage.
+    const [isAuthorized, setIsAuthorized] = useState(false);
+    const user_id = Cookies.get("user_id");
+    const username = Cookies.get("username");
+    const signature = Cookies.get("signature");
+
+    useEffect(() => {
+        const authorize = async () => {
+            if (! await authorization(user_id, username, signature)){
+                navigate("/");
+            } else{
+                setIsAuthorized(true);
+            }
+        }
+        authorize();
+    }, []);
 
     useEffect(()=> {
         const fetchTopic = async () => {
@@ -31,6 +50,10 @@ export default function EditTopic() {
 
     async function handleSubmit() {
         const formData = new FormData();
+        formData.append("user_id", user_id);
+        formData.append("username", username);
+        formData.append("signature", signature);
+
         formData.append("topic_id", topic_id)
         formData.append("topic_image", imageFile);
         formData.append("title", title);
@@ -47,6 +70,7 @@ export default function EditTopic() {
 
     return (
         <>
+            {isAuthorized &&
             <div className="cms-topic">
                 <h2>View or edit topic details</h2>
                 { topic !== null &&
@@ -73,5 +97,6 @@ export default function EditTopic() {
                     </form>
                 }
             </div>
+            }
         </>
     )}

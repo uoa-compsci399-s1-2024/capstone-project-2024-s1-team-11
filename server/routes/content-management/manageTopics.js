@@ -1,6 +1,8 @@
 const express = require("express")
 const multer = require("multer")
 const Repository = require("../../repository/repository")
+const authenticate = require("../auth/authenticate");
+const {authorize} = require("../auth/authorization");
 
 
 // This is for handling image upload.
@@ -16,8 +18,7 @@ const storage = multer.diskStorage({
 const upload = multer({storage: storage})
 
 router = express.Router()
-
-router.post("/addTopic",upload.single("topic_image"), async (req, res) => {
+router.post("/addTopic",upload.single("topic_image"), authenticate, authorize, async (req, res) => {
     try {
         const topic = {
             title: req.body.title !== "" ? req.body.title : "Topic Title Not Yet Assigned",
@@ -33,7 +34,7 @@ router.post("/addTopic",upload.single("topic_image"), async (req, res) => {
     } catch (e) {console.error(e); }
 })
 
-router.post("/editTopic",upload.single("topic_image"), async (req, res) => {
+router.post("/editTopic",upload.single("topic_image"), authenticate, authorize, async (req, res) => {
     try {
         const updated_topic = {
             topic_id: req.body.topic_id,
@@ -56,7 +57,7 @@ router.post("/editTopic",upload.single("topic_image"), async (req, res) => {
     } catch (e) {console.error(e); }
 })
 
-router.post("/deleteTopic", upload.none(), async (req, res) => {
+router.post("/deleteTopic", upload.none(), authenticate, authorize, async (req, res) => {
     try {
         const topic_id = req.body.topic_id;
         console.log(topic_id)

@@ -20,9 +20,22 @@ const Leaderboard = () => {
         if (!response.ok) {
           throw new Error('Failed to fetch leaderboard data');
         }
-        const data = await response.json();
-        console.log(data);
-        setLeaderboardData(data);
+        const top20Users = await response.json();
+
+        // Rank the top 20 users.
+        let rank = 1;
+        for (let i = 0; i < top20Users.length; i++){
+          if (i === 0){
+            top20Users[i].rank = rank;
+          }
+          else if(Number.parseInt(top20Users[i].rock_count) === Number.parseInt(top20Users[i - 1].rock_count)){
+            top20Users[i].rank = rank;
+          } else{
+            rank = rank + 1;
+            top20Users[i].rank = rank;
+          }
+        }
+        setLeaderboardData(top20Users);
       } catch (error) {
         console.error('Error fetching leaderboard data:', error);
       }
@@ -72,9 +85,7 @@ const Leaderboard = () => {
             {leaderboardData.map((user, index) => (
               <tr key={index}>
                 <td>
-                  {index > 0 && user.rock_count === leaderboardData[index - 1].rock_count
-                    ? `🏅${index}`
-                    : `🏅${index + 1}`}
+                  {`🏅${leaderboardData[index].rank}`}
                 </td>
                 <td className="user-cell">
                   <img

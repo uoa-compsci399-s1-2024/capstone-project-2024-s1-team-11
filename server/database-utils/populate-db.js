@@ -2,6 +2,8 @@
 // Since we assume our database should have all the standard avatars,
 // If the db has no avatars, it implies the db is at its first start-up state.
 
+const {Users_Rocks} = require("../models");
+
 async function populateDb(repo){
 
     if (await repo.getAllAvatarCount() !== 0){
@@ -112,6 +114,86 @@ async function populateDb(repo){
             badge_imageUri: "badge-20.png"
         }
     )
+
+    // Create fake user accounts.
+    await repo.addUser(
+        {
+            username: "BillyTheCat",
+            alias: "Billy",
+            password: "$2b$10$TznkfGPUvXpsDD/zEXRuGuqgIkSh8vtgx0pqnwcA0z.0QUHZe.2Za",
+            salt:"$2b$10$TznkfGPUvXpsDD/zEXRuGuqgIkSh8vtgx0pqnwcA0z",
+            avatar_id: 23,
+            email: "fakeemail1@email.com",
+            district: "Auckland City"
+        }
+    )
+    await repo.addUser(
+        {
+            username: "TommyTheCat",
+            alias: "TommyTheCat",
+            password: "$2b$10$TznkfGPUvXpsDD/zEXRuGuqgIkSh8vtgx0pqnwcA0z.0QUHZe.2Za",
+            salt:"$2b$10$TznkfGPUvXpsDD/zEXRuGuqgIkSh8vtgx0pqnwcA0z",
+            avatar_id: 23,
+            email: "fakeemail2@email.com",
+            district: "Auckland City"
+        }
+    )
+    // Manukau City
+    await repo.addUser(
+        {
+            username: "Spongebob",
+            alias: "Spongebob",
+            password: "$2b$10$TznkfGPUvXpsDD/zEXRuGuqgIkSh8vtgx0pqnwcA0z.0QUHZe.2Za",
+            salt:"$2b$10$TznkfGPUvXpsDD/zEXRuGuqgIkSh8vtgx0pqnwcA0z",
+            avatar_id: 2,
+            email: "fakeemail3@email.com",
+            district: "Manukau City"
+        }
+    )
+    await repo.addUser(
+        {
+            username: "Squidward",
+            alias: "Squidward",
+            password: "$2b$10$TznkfGPUvXpsDD/zEXRuGuqgIkSh8vtgx0pqnwcA0z.0QUHZe.2Za",
+            salt:"$2b$10$TznkfGPUvXpsDD/zEXRuGuqgIkSh8vtgx0pqnwcA0z",
+            avatar_id: 7,
+            email: "fakeemail4@email.com",
+            district: "Manukau City"
+        }
+    )
+    await repo.addUser(
+        {
+            username: "PatrickStar",
+            alias: "Patrick",
+            password: "$2b$10$TznkfGPUvXpsDD/zEXRuGuqgIkSh8vtgx0pqnwcA0z.0QUHZe.2Za",
+            salt:"$2b$10$TznkfGPUvXpsDD/zEXRuGuqgIkSh8vtgx0pqnwcA0z",
+            avatar_id: 8,
+            email: "fakeemail5@email.com",
+            district: "Manukau City"
+        }
+    )
+    // Add rocks to the fake users.
+    // Add to Billy the Cat
+    await Users_Rocks.create({user_id: 1, rock_id: 1, collectedAt: "2024-4-1"});
+    await Users_Rocks.create({user_id: 1, rock_id: 2, collectedAt: "2024-4-1"});
+    await Users_Rocks.create({user_id: 1, rock_id: 3, collectedAt: "2024-4-1"});
+    await Users_Rocks.create({user_id: 1, rock_id: 4, collectedAt: "2024-4-1"});
+
+    // Add to Tommy the Cat
+    await Users_Rocks.create({user_id: 2, rock_id: 1, collectedAt: "2024-4-1"});
+    await Users_Rocks.create({user_id: 2, rock_id: 2, collectedAt: "2024-4-1"});
+    await Users_Rocks.create({user_id: 2, rock_id: 3, collectedAt: "2024-4-1"});
+    await Users_Rocks.create({user_id: 2, rock_id: 4, collectedAt: "2024-5-1"});
+
+    // Add to Spongebob
+    await Users_Rocks.create({user_id: 3, rock_id: 1, collectedAt: "2024-4-1"});
+    await Users_Rocks.create({user_id: 3, rock_id: 2, collectedAt: "2024-4-1"});
+    await Users_Rocks.create({user_id: 3, rock_id: 3, collectedAt: "2024-5-1"});
+
+    // Add to Squidward
+    await Users_Rocks.create({user_id: 4, rock_id: 1, collectedAt: "2024-4-1"});
+    await Users_Rocks.create({user_id: 4, rock_id: 2, collectedAt: "2024-5-1"});
+
 
     // Create initial content for about-us and privacy-policy page.
     await repo.addPage({

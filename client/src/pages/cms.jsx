@@ -35,7 +35,7 @@ export default function CmsPage() {
             }
         }
         authorize();
-    });
+    }, []);
 
   return (
     <>

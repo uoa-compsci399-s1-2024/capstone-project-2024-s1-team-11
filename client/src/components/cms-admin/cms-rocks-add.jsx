@@ -2,6 +2,8 @@ import {useEffect, useState} from "react";
 import {useNavigate} from "react-router-dom";
 import API from "../../../api.js";
 import { Link } from "react-router-dom";
+import Cookies from "js-cookie";
+import authorization from "../../utils/auth.jsx";
 
 
 export default function AddRock() {
@@ -12,6 +14,23 @@ export default function AddRock() {
     const [topicId, setTopicId] = useState(null);
     const [topicsList, setTopicsList] = useState(null);
     const [imageFile, setImageFile] = useState(null);
+
+    // Redirect unauthorized user to homepage.
+    const [isAuthorized, setIsAuthorized] = useState(false);
+    const user_id = Cookies.get("user_id");
+    const username = Cookies.get("username");
+    const signature = Cookies.get("signature");
+
+    useEffect(() => {
+        const authorize = async () => {
+            if (! await authorization(user_id, username, signature)){
+                navigate("/");
+            } else{
+                setIsAuthorized(true);
+            }
+        }
+        authorize();
+    }, []);
 
     useEffect(() => {
         const fetchTopics = async () => {
@@ -29,6 +48,10 @@ export default function AddRock() {
 
     async function handleSubmit() {
         const formData = new FormData();
+        formData.append("user_id", user_id);
+        formData.append("username", username);
+        formData.append("signature", signature);
+
         formData.append("rockName", rockName);
         formData.append("productKey", productKey);
         formData.append("topicId", topicId);
@@ -43,7 +66,7 @@ export default function AddRock() {
 
     return (
         <>
-            {topicsList !== null &&
+            {topicsList !== null && isAuthorized &&
                 <>
                     <div className="cms-topic">
                     <h2>Add a new rock</h2>

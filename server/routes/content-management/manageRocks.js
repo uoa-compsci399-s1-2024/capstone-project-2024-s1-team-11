@@ -1,6 +1,8 @@
 const express = require("express")
 const multer = require("multer")
 const Repository = require("../../repository/repository")
+const authenticate = require("../auth/authenticate");
+const {authorize} = require("../auth/authorization");
 
 
 // This is for handling image upload.
@@ -17,7 +19,7 @@ const upload = multer({storage: storage})
 
 router = express.Router()
 
-router.post("/addRock",upload.single("rock_image"), async (req, res) => {
+router.post("/addRock",upload.single("rock_image"), authenticate, authorize, async (req, res) => {
     try {
         const new_rock = {
             rock_name: req.body.rockName,
@@ -32,7 +34,7 @@ router.post("/addRock",upload.single("rock_image"), async (req, res) => {
     } catch (e) {console.error(e); }
 })
 
-router.post("/editRock",upload.single("rock_image"), async (req, res) => {
+router.post("/editRock",upload.single("rock_image"), authenticate, authorize, async (req, res) => {
     try {
         const updated_rock = {
             rock_id: req.body.rock_id.valueOf(),
@@ -52,7 +54,7 @@ router.post("/editRock",upload.single("rock_image"), async (req, res) => {
     } catch (e) {console.error(e); }
 })
 
-router.post("/deleteRock", upload.none(), async (req, res) => {
+router.post("/deleteRock", upload.none(), authenticate, authorize, async (req, res) => {
     try {
         const rock_id = req.body.rock_id;
         const repo = await Repository.getRepoInstance();

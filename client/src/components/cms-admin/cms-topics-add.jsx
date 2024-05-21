@@ -1,8 +1,10 @@
-import {useState} from "react";
+import {useEffect, useState} from "react";
 import {useNavigate} from "react-router-dom";
 import API from "../../../api.js";
 import TextEditor from "./text-editor.jsx";
 import { Link } from "react-router-dom";
+import Cookies from "js-cookie";
+import authorization from "../../utils/auth.jsx";
 
 
 export default function AddTopic() {
@@ -14,12 +16,33 @@ export default function AddTopic() {
     const [metadesc, setMetadesc] = useState("");
     const navigate = useNavigate();
 
+    // Redirect unauthorized user to homepage.
+    const [isAuthorized, setIsAuthorized] = useState(false);
+    const user_id = Cookies.get("user_id");
+    const username = Cookies.get("username");
+    const signature = Cookies.get("signature");
+
+    useEffect(() => {
+        const authorize = async () => {
+            if (! await authorization(user_id, username, signature)){
+                navigate("/");
+            } else{
+                setIsAuthorized(true);
+            }
+        }
+        authorize();
+    }, []);
+
     const handleImageUpload = (e) => {
         setImageFile(e.target.files[0])
     }
 
     async function handleSubmit() {
         const formData = new FormData();
+        formData.append("user_id", user_id);
+        formData.append("username", username);
+        formData.append("signature", signature);
+
         formData.append("topic_image", imageFile);
         formData.append("title", title);
         formData.append("text", text);
@@ -35,6 +58,7 @@ export default function AddTopic() {
 
     return (
         <>
+            {isAuthorized &&
             <div className="cms-topic">
                 <h2>Add a new topic</h2>
                 <form>
@@ -56,5 +80,6 @@ export default function AddTopic() {
                     <Link to={`/cms`}><button className='btn blue' >Cancel</button></Link>
                 </form>
             </div>
+            }
         </>
     )}
