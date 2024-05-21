@@ -1,7 +1,7 @@
 import {useState} from 'react';
 import Cookies from 'js-cookie';
 import API from '../../../api.js';
-import '../account-settings-modal/styles.css';
+import './styles.css';
 import {useNavigate} from "react-router-dom";
 
 
@@ -160,9 +160,20 @@ const AccountSettingsModal = ({ onClose }) => {
                     {activeTab === 'password' && (
                         <form>
                             <label>Old Password:</label>
-                            <input type="password" value={oldPassword} onChange={(e) => setOldPassword(e.target.value)}/>
+                            <input type="password" value={oldPassword}
+                                   onChange={(e) => setOldPassword(e.target.value)}/>
+
+                            <label>New Password:</label>
+                            <input type="password" value={newPassword}
+                                   onChange={(e) => setNewPassword(e.target.value)}/>
+
+                            <label>Re-enter New Password:</label>
+                            <input type="password" value={newPasswordRetype}
+                                   onChange={(e) => setNewPasswordRetype(e.target.value)}/>
+
                             <button type="button" onClick={handleSubmitPassword}>Save</button>
-                            {errorMessage.type==='password' && <p><span style={{color: "red"}}>{errorMessage.message}</span></p>}
+                            {errorMessage.type === 'password' &&
+                                <p><span style={{color: "red"}}>{errorMessage.message}</span></p>}
                         </form>
                     )}
                     {activeTab === 'delete' && (
