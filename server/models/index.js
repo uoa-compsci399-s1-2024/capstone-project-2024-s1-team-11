@@ -6,6 +6,7 @@ const User = require('./user');
 const Badge = require('./badge');
 const Avatar = require('./avatar')
 const Privilege = require('./privilege')
+const Page = require("./page");
 
 
 Rock.belongsTo(Topic, { foreignKey: {name: 'topic_id', allowNull: true} });
@@ -29,4 +30,4 @@ Privilege.belongsTo(User, {foreignKey: 'user_id'});
 
 const Users_Badges = sequelize.models.Users_Badges;
 
-module.exports = {Topic, Rock, User, Badge, Avatar, Users_Rocks, Users_Badges, Privilege};
+module.exports = {Topic, Rock, User, Badge, Avatar, Users_Rocks, Users_Badges, Privilege, Page};

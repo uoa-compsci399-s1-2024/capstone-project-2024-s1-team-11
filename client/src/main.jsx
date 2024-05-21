@@ -24,6 +24,7 @@ import EditRock from "./components/cms-admin/cms-rocks-edit.jsx";
 import AddRock from "./components/cms-admin/cms-rocks-add.jsx";
 import DeleteRock from "./components/cms-admin/cms-rocks-delete.jsx";
 import TopicsPage from "./pages/topics.jsx";
+import EditPage from "./components/cms-admin/cms-pages-edit.jsx";
 
 const router = createBrowserRouter([
   {
@@ -97,6 +98,10 @@ const router = createBrowserRouter([
     path: "/cms/delete-rock/:rock_id",
     element: <DeleteRock />,
   },
+  {
+    path: "/cms/edit-page/:page_name",
+    element: <EditPage />
+  }
 ]);
 
 ReactDOM.createRoot(document.getElementById('root')).render(

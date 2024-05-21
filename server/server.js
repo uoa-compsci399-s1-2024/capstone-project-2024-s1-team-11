@@ -11,6 +11,9 @@ const addRockRouter = require("./routes/addRock");
 const checkCollectionRouter = require("./routes/checkCollection");
 const giveBadgeRouter = require("./routes/giveBadge");
 
+// Import routes for retrieving static page data, such as privacy and about page.
+const pageRouter = require("./routes/page")
+
 // Import user-related routes.
 const userRouter = require("./routes/user");
 const profileRouter = require("./routes/profile");
@@ -24,7 +27,9 @@ const {router: authorizationRouter} = require("./routes/auth/authorization");
 // Import content-management-system-related routes.
 const usersReportRouter = require("./routes/content-management/usersReport");
 const manageTopicRouter = require("./routes/content-management/manageTopics");
-const manageRockRouter = require("./routes/content-management/manageRocks")
+const manageRockRouter = require("./routes/content-management/manageRocks");
+const managePageRouter = require("./routes/content-management/managePages");
+
 
 // Import repository.
 const Repository = require("./repository/repository");
@@ -47,6 +52,8 @@ async function start_server(){
     app.use("/api/checkCollection", checkCollectionRouter);
     app.use("/api/giveBadge", giveBadgeRouter);
 
+    app.use("/api/pages", pageRouter);
+
     app.use("/api/user", userRouter);
     app.use("/api/profile", profileRouter);
     app.use("/api/avatars", avatarsRouter);
@@ -58,6 +65,7 @@ async function start_server(){
     app.use("/api/usersReport", usersReportRouter);
     app.use("/api/manageTopics", manageTopicRouter);
     app.use("/api/manageRocks", manageRockRouter);
+    app.use("/api/managePages", managePageRouter);
     app.listen(5000, () => {console.log("Server started on port 5000.")});
 }
 

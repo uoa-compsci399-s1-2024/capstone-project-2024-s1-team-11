@@ -2,16 +2,33 @@ import Header from '../components/header';
 import Footer from '../components/footer';
 import TopImage from '../components/top-image';
 import { Link } from "react-router-dom";
+import {useEffect, useState} from "react";
+import API from "../../api.js";
 
 
 export default function PrivacyPage() {
+  const [privacyPage, setPrivacyPage] = useState(null);
+
+  useEffect(() => {
+    const fetchPrivacyPageData = async () => {
+      const response = await fetch(API + `/pages/privacy`);
+      const privacyPage = await response.json();
+      setPrivacyPage(privacyPage)
+    }
+    fetchPrivacyPageData();
+  },[])
+
   return (
     <>
     <Header />
         <main>
           <TopImage />
           <article className='side-padding'>
-            <h1>Math Rocks Privacy Policy</h1> 
+            {privacyPage !== null &&
+                <div dangerouslySetInnerHTML={{__html: privacyPage.content}}/>
+            }
+            {privacyPage == null && <div>
+              <h1>Math Rocks Privacy Policy</h1>
             <h2>1. About this Privacy Policy</h2>
             <p>This Privacy Policy applies to your access to or use of our websites, applications, and other services.</p>
             <p>During the registration process for our products and services and in other registration forms, we will indicate the types of personal information you must provide and the types of personal information we request. You may choose not to submit the information we request, but that may limit or prevent Math Rocks from providing you with the Services.</p>
@@ -86,7 +103,9 @@ export default function PrivacyPage() {
             <p>We may update this Privacy Policy from time to time. We will post any changes on this page along with the updated revision date. Once we make any material changes, we will notify you through the Service or otherwise.</p>
             <h2>11. Contact Information</h2>
             <p>If you have any questions, comments, complaints or requests about this Privacy Policy or our handling of your information, please <Link to={`/contact`}>contact us</Link>. </p>
-          </article>
+            </div>
+            }
+            </article>
         </main>
         <Footer />
     </>
