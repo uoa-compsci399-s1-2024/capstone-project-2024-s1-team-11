@@ -10,7 +10,6 @@ router = express.Router()
 
 router.post("/editPage",upload.none(), authenticate, authorize, async (req, res) => {
     try {
-        console.log("hi")
         const page_name = req.body.page_name;
         const content = req.body.content;
         const page = await Page.findByPk(page_name);

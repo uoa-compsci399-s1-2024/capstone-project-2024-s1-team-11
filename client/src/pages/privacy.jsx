@@ -11,7 +11,7 @@ export default function PrivacyPage() {
 
   useEffect(() => {
     const fetchPrivacyPageData = async () => {
-      const response = await fetch(API + `/pages/privacy`);
+      const response = await fetch(API + `/pages/privacy-policy`);
       const privacyPage = await response.json();
       setPrivacyPage(privacyPage)
     }
