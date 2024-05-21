@@ -51,7 +51,7 @@ export default function EditTopic() {
                 { topic !== null &&
                     <form>
                         <label name="heading">Topic heading
-                            <input type="text" name="heading" id='heading' value={title} onChange={(e) => setTitle(e.target.value)}/>
+                            <input type="text" name="heading" id='heading' value={title} placeholder={topic.title} onChange={(e) => setTitle(e.target.value)}/>
                         </label>
                         <label >Current main image
                             <div className='cms-image'><img src={API + `/images/topics/${topic.imageUri}`} /></div>
@@ -60,7 +60,7 @@ export default function EditTopic() {
                             <input type="file" id="topic_image" name="topic_image" onChange={handleImageUpload}/>
                         </label>
                         <label name="texteditor">Update the page text</label>
-                        <TextEditor setText={setText}/>
+                        <TextEditor setText={setText} desc={topic.description}/>
                         <label name="metatitle">Meta title (this is for ranking on google)
                             <input type="text" name="metatitle" id='metatitle' value={metatitle} onChange={(e) => setMetatitle(e.target.value)}/>
                         </label>

@@ -2,10 +2,13 @@ import { useState } from "react";
 import ReactQuill from "react-quill";
 import 'react-quill/dist/quill.snow.css';
 
-const TextEditor = ({setText}) => {
+const TextEditor = ({setText, desc}) => {
 
     //state to handle the changes in text editor
-    const [content, setContent] = useState('<p>This needs to be content from the DB</>')
+    if (desc == null) {
+        desc = '';
+    }
+    const [content, setContent] = useState(desc)
     console.log(content)
 
 
@@ -25,7 +28,7 @@ const TextEditor = ({setText}) => {
             <ReactQuill
                 theme='snow'
                 formats={['header', 'bold', 'italic', 'underline', 'strike', 'blockquote', 'list', 'bullet', 'indent', 'link', 'image', 'video']}
-                placeholder="Write something amazing..."
+                placeholder="Write some inspiring maths information..."
                 modules={modules}
                 value={content}
                 onChange={(text) => {setContent(text); setText(text)}}
