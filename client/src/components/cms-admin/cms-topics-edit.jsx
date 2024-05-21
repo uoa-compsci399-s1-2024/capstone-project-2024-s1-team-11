@@ -3,6 +3,7 @@ import {useNavigate} from "react-router-dom";
 import TextEditor from "./text-editor.jsx";
 import {useParams} from "react-router-dom";
 import API from "../../../api.js";
+import { Link } from "react-router-dom";
 
 export default function EditTopic() {
     const { topic_id } = useParams();
@@ -51,7 +52,7 @@ export default function EditTopic() {
                 { topic !== null &&
                     <form>
                         <label name="heading">Topic heading
-                            <input type="text" name="heading" id='heading' value={title} onChange={(e) => setTitle(e.target.value)}/>
+                            <input type="text" name="heading" id='heading' value={title} placeholder={topic.title} onChange={(e) => setTitle(e.target.value)}/>
                         </label>
                         <label >Current main image
                             <div className='cms-image'><img src={API + `/images/topics/${topic.imageUri}`} /></div>
@@ -59,9 +60,8 @@ export default function EditTopic() {
                         <label name="topic_image">Change the main image
                             <input type="file" id="topic_image" name="topic_image" onChange={handleImageUpload}/>
                         </label>
-                        <label name="texteditor">Update the page text
-                            <TextEditor setText={setText}/>
-                        </label>
+                        <label name="texteditor">Update the page text</label>
+                        <TextEditor setText={setText} desc={topic.description}/>
                         <label name="metatitle">Meta title (this is for ranking on google)
                             <input type="text" name="metatitle" id='metatitle' value={metatitle} onChange={(e) => setMetatitle(e.target.value)}/>
                         </label>
@@ -69,6 +69,7 @@ export default function EditTopic() {
                             <input type="text" name="metadesc" id='metadesc' value={metadesc} onChange={(e) => setMetadesc(e.target.value)}/>
                         </label>
                         <button type='button' className='btn' onClick={handleSubmit}>Submit</button>
+                        <Link to={`/cms`}><button className='btn blue' >Cancel</button></Link>
                     </form>
                 }
             </div>

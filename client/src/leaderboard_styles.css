@@ -75,3 +75,21 @@ border-radius: 50%;
 .leaderboard-table tbody td {
   background-color: #e1dfe1; 
 }
+
+.toggle-buttons button {
+  background-color: var(--grey);
+  border: 1px solid var(--text);
+  border-radius: 8px;
+  padding: 8px;
+  margin: 8px 8px 8px 0;
+  width: auto;
+  display: inline-block;
+}
+
+.toggle-buttons button:hover {
+  background-image: linear-gradient(var(--green),var(--blue));
+}
+
+.toggle-buttons button.active {
+  background-color: var(--blue);
+}

@@ -1,6 +1,7 @@
 import {useEffect, useState} from "react";
 import {useNavigate} from "react-router-dom";
 import API from "../../../api.js";
+import { Link } from "react-router-dom";
 
 
 export default function AddRock() {
@@ -44,6 +45,7 @@ export default function AddRock() {
         <>
             {topicsList !== null &&
                 <>
+                    <div className="cms-topic">
                     <h2>Add a new rock</h2>
                     <form>
                         <label name="topic">Select an Associated Topic page
@@ -68,7 +70,9 @@ export default function AddRock() {
                             <input type="file" id="rock_image" name="rock_image" onChange={handleImageUpload}/>
                         </label>
                         <button type='button' className='btn' onClick={handleSubmit}>Submit</button>
+                        <Link to={`/cms`}><button className='btn blue' >Cancel</button></Link>
                     </form>
+                    </div>
                 </>
             }
             </>

@@ -2,6 +2,8 @@ import {useState} from "react";
 import {useNavigate} from "react-router-dom";
 import API from "../../../api.js";
 import TextEditor from "./text-editor.jsx";
+import { Link } from "react-router-dom";
+
 
 export default function AddTopic() {
 
@@ -42,9 +44,8 @@ export default function AddTopic() {
                     <label name="topic_image">Upload a main image <span style={{color: "purple"}}>(🌟 A default image will be displayed if no image is uploaded.)</span>
                         <input type="file" id="topic_image" name="topic_image" onChange={handleImageUpload}/>
                     </label>
-                    <label name="texteditor">Add the page text
-                        <TextEditor setText={setText}/>
-                    </label>
+                    <label name="texteditor">Add the page text</label>
+                    <TextEditor setText={setText}/>
                     <label name="metatitle">Meta title <span style={{color: "purple"}}>(🌟 This is for ranking on google.)</span>
                         <input type="text" name="metatitle" id='metatitle' value={metatitle} onChange={(e) => setMetatitle(e.target.value)}/>
                     </label>
@@ -52,6 +53,7 @@ export default function AddTopic() {
                         <input type="text" name="metadesc" id='metadesc' value={metadesc} onChange={(e) => setMetadesc(e.target.value)}/>
                     </label>
                     <button type="button" className='btn' onClick={handleSubmit}>Submit</button>
+                    <Link to={`/cms`}><button className='btn blue' >Cancel</button></Link>
                 </form>
             </div>
         </>

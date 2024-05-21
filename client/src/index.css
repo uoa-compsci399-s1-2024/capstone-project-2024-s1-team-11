@@ -151,6 +151,10 @@ form .btn {
   background-color: var(--yellow) !important;
 }
 
+.red {
+  background-color: var(--red) !important;
+}
+
 svg {
   display: block;
 }
@@ -440,6 +444,12 @@ label {
 @media only screen and (min-width: 900px) {
       .home .section2 .txt-overlay {
           margin-top: 100px;
+      }
+      .home .section1 {
+        height: 45vh;
+      }
+      .home .section2 {
+        height: 55vh;
       }
   }
 
