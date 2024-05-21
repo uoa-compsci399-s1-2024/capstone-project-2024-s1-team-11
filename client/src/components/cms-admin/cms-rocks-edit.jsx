@@ -3,6 +3,8 @@ import './styles.css'
 import API from "../../../api.js";
 import DOMAIN_NAME from "../../../domain-name.js"
 import {useNavigate, useParams} from "react-router-dom";
+import { Link } from "react-router-dom";
+
 
 export default function EditRock() {
     const navigate = useNavigate();
@@ -82,6 +84,7 @@ export default function EditRock() {
                         <input type="file" id="rock_image" name="rock_image" onChange={handleImageUpload}/>
                     </label>
                     <button type='button' className='btn' onClick={handleSubmit}>Submit</button>
+                    <Link to={`/cms`}><button className='btn blue' >Cancel</button></Link>
                 </form>
                 </div>
             </>

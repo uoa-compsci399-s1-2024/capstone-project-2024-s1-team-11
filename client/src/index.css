@@ -151,6 +151,10 @@ form .btn {
   background-color: var(--yellow) !important;
 }
 
+.red {
+  background-color: var(--red) !important;
+}
+
 svg {
   display: block;
 }

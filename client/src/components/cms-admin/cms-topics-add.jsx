@@ -2,6 +2,8 @@ import {useState} from "react";
 import {useNavigate} from "react-router-dom";
 import API from "../../../api.js";
 import TextEditor from "./text-editor.jsx";
+import { Link } from "react-router-dom";
+
 
 export default function AddTopic() {
 
@@ -51,6 +53,7 @@ export default function AddTopic() {
                         <input type="text" name="metadesc" id='metadesc' value={metadesc} onChange={(e) => setMetadesc(e.target.value)}/>
                     </label>
                     <button type="button" className='btn' onClick={handleSubmit}>Submit</button>
+                    <Link to={`/cms`}><button className='btn blue' >Cancel</button></Link>
                 </form>
             </div>
         </>

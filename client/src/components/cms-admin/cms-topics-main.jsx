@@ -37,7 +37,7 @@ export default function CmsTopicsMain() {
               <td>{topic.title}</td>
                 <td>
                     <button className='btn' onClick={() => navigate(`/cms/edit-topic/${topic.topic_id}`)}>Edit</button>
-                    <button className='btn' onClick={() => navigate(`/cms/delete-topic/${topic.topic_id}`)}>Delete</button>
+                    <button className='btn red' onClick={() => navigate(`/cms/delete-topic/${topic.topic_id}`)}>Delete</button>
                 </td>
             </tr>
         ))}

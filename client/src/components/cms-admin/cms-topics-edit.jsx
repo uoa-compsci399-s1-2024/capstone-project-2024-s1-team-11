@@ -3,6 +3,7 @@ import {useNavigate} from "react-router-dom";
 import TextEditor from "./text-editor.jsx";
 import {useParams} from "react-router-dom";
 import API from "../../../api.js";
+import { Link } from "react-router-dom";
 
 export default function EditTopic() {
     const { topic_id } = useParams();
@@ -68,6 +69,7 @@ export default function EditTopic() {
                             <input type="text" name="metadesc" id='metadesc' value={metadesc} onChange={(e) => setMetadesc(e.target.value)}/>
                         </label>
                         <button type='button' className='btn' onClick={handleSubmit}>Submit</button>
+                        <Link to={`/cms`}><button className='btn blue' >Cancel</button></Link>
                     </form>
                 }
             </div>
