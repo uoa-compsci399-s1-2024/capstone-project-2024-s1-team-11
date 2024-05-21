@@ -1,5 +1,5 @@
 const sequelize = require('../database-utils/entity-manager');
-const {Topic, Rock, User, Badge, Item, Avatar, Users_Rocks, Users_Badges, Users_Items, Privilege} = require('../models');
+const {Topic, Rock, User, Badge, Item, Avatar, Users_Rocks, Users_Badges, Users_Items, Privilege, Page} = require('../models');
 const {max} = require("pg/lib/defaults");
 
 
@@ -346,6 +346,13 @@ class Repository {
     async getAllAvatarCount(){
         try {
             return (await Avatar.findAndCountAll()).count;
+        } catch (e) { console.error(e); }
+    }
+
+    // CRUD Operations for Static Pages
+    async addPage(page){
+        try {
+            await Page.build({page_name: page.page_name, title: page.title, content: page.content}).save();
         } catch (e) { console.error(e); }
     }
 

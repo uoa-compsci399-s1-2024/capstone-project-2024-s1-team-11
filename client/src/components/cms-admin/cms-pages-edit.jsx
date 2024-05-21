@@ -34,7 +34,7 @@ export default function EditPage() {
     return (
         <>
             {page &&
-            <div>
+            <div className="cms-topic">
                 <h2>Edit {page.title} Page </h2>
                 <form>
                     <label name="texteditor">Update the page text</label>
