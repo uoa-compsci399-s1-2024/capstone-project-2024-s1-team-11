@@ -5,15 +5,25 @@ import Header from '../components/header';
 import Footer from '../components/footer';
 import '../profile_styles.css';
 import API from '../../api';
-import EditProfileModal from '../components/edit-profile-modal';
+import EditProfileModal from '../components/edit-profile-modal/edit-profile-modal.jsx';
+import AccountSettingsModal from "../components/edit-profile-modal/account-settings.jsx";
 
 const ProfilePage = () => {
   const navigate = useNavigate();
+
+  // User's credentials for authentication.
   const user_id = Cookies.get("user_id");
   const username = Cookies.get("username");
   const signature = Cookies.get("signature");
+
+  // State for storing user's data, for rendering the profile page.
   const [userData, setUserData] = useState(null);
+
+  // State for opening/closing the edit profile modal.
   const [showEditModal, setShowEditModal] = useState(false);
+
+  // State for opening/closing the account setting modal.
+  const [showAccountSettingsModal, setShowAccountSettingsModal] = useState(false);
 
   useEffect(() => {
 
@@ -41,8 +51,14 @@ const ProfilePage = () => {
   }, []);
 
   const handleEditProfile = () => {
-    setShowEditModal(true); 
+    setShowEditModal(true);
+      setShowAccountSettingsModal(false);
   };
+
+    const handleAccountSettings = () => {
+        setShowAccountSettingsModal(true);
+        setShowEditModal(false);
+    };
 
   return (
       <>
@@ -51,27 +67,28 @@ const ProfilePage = () => {
         <main>
         <article className='side-padding top-padding' id='profile'>
 
-          <div className="profile-container">
-            <img src={userData.avatar_imageUri !== null ?
-                API + `/images/avatars/${userData.avatar_imageUri}` :
-                API + `/images/avatars/default_avatar.jpg`}
-                 alt="Profile Picture"
-                 className="profile-picture"/>
+            <div className="profile-container">
+                <img src={userData.avatar_imageUri !== null ?
+                    API + `/images/avatars/${userData.avatar_imageUri}` :
+                    API + `/images/avatars/default_avatar.jpg`}
+                     alt="Profile Picture"
+                     className="profile-picture"/>
 
-            <p className="greeting">{userData ? `Hi, ${userData.alias}!` : 'Hi, User Alias!'}</p>
-            <p>🌏District - {userData ? userData.district : 'Auckland'}</p>
-            <p>✉️Email - {userData ? userData.email : 'No email associated to this account.'}</p>
-            <div className="buttons-section">
-              <button className="profile-button" onClick={handleEditProfile}>✏️Edit profile</button>
+                <p className="greeting">{userData ? `Hi, ${userData.alias}!` : 'Hi, User Alias!'}</p>
+                <p>🌏District - {userData ? userData.district : 'Auckland'}</p>
+                <p>✉️Email - {userData ? userData.email : 'No email associated to this account.'}</p>
+                <div className="buttons-section">
+                    <button className="profile-button" onClick={handleEditProfile}>✏️Edit profile</button>
+                    <button className="profile-button" onClick={handleAccountSettings}>⚙️Account settings</button>
+                </div>
+
+                <p>Total rocks found: 💎{userData ? userData.rock_count : '0'}</p>
             </div>
 
-            <p>Total rocks found: 💎{userData ? userData.rock_count : '0'}</p>
-          </div>
-
-          <div className="badges-section">
-            <h2>Badges</h2>
-            <div className="rounded-border1">
-              <ul className="list-container">
+            <div className="badges-section">
+                <h2>Badges</h2>
+                <div className="rounded-border1">
+                    <ul className="list-container">
                 {userData && userData.badges && userData.badges.map(badge => (
                     <li key={badge.badge_id} className="badge-square">
                       <img src={API + `/images/badges/${badge.badge_imageUri}`} alt="Badge Image"/>
@@ -112,7 +129,8 @@ const ProfilePage = () => {
         </main>
         }
         <Footer/>
-        {showEditModal && <EditProfileModal onClose={() => setShowEditModal(false)} />}
+          {showEditModal && <EditProfileModal onClose={() => setShowEditModal(false)} />}
+          {showAccountSettingsModal && <AccountSettingsModal onClose={() => setShowAccountSettingsModal(false)} />}
       </>
   );
 };

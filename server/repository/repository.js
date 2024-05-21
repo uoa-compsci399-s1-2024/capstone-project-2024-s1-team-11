@@ -204,6 +204,15 @@ class Repository {
         } catch (e) { console.error(e); }
     }
 
+    async deleteUser(user_id){
+        try {
+            const user = await User.findByPk(Number.parseInt(user_id));
+            if (user !== null){
+                await user.destroy();
+            }
+        } catch (e) { console.error(e); }
+    }
+
     async getUserAvatar(user_id){
         const user = await User.findByPk(user_id);
         const avatar_id = user.avatar_id;

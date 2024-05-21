@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import {useEffect, useState} from 'react';
 import Cookies from 'js-cookie';
 import API from '../../../api';
 import './styles.css';
@@ -10,25 +10,16 @@ const EditProfileModal = ({ onClose }) => {
   const username = Cookies.get("username");
   const signature = Cookies.get("signature");
 
-  // States for setting username and email.
+  // States for setting alias
   const [newAlias, setNewAlias] = useState('');
 
-  // States for changing email
-  // User will be asked for password when changing email, for security reasons.
-  const [newEmail, setNewEmail] = useState('');
-  const [password, setPassword] = useState('');
-
-  // States for changing password.
-  const [oldPassword, setOldPassword] = useState('');
-  const [newPassword, setNewPassword] = useState('');
-  const [newPasswordRetype, setNewPasswordRetype] = useState('');
 
   // States for setting user avatar.
   const [avatarsList, setAvatarsList] = useState([]);
   const [avatarIndex, setAvatarIndex] = useState(0);
 
   // Edit-Profile-Modal state.
-  const [activeTab, setActiveTab] = useState('username');
+  const [activeTab, setActiveTab] = useState('');
 
   // Error message from server's response.
   const [errorMessage, setErrorMessage] = useState({type: '', message: ''});
@@ -72,60 +63,6 @@ const EditProfileModal = ({ onClose }) => {
       });
     }
 
-  }
-
-  // Handler for submitting new email.
-  const handleSubmitEmail = async () => {
-    const data = {
-      user_id: user_id,
-      username: username,
-      signature: signature,
-      newEmail: newEmail,
-      password: password
-    };
-    const response = await fetch(API + "/profile/setEmail", {
-      method: 'PUT',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(data),
-    })
-    if (response.status === 201){
-      window.location.reload();
-    }else{
-      setErrorMessage({
-        type: 'email',
-        message: (await response.json()).error
-      });
-    }
-  }
-
-  // Handler for submitting new password.
-  const handleSubmitPassword = async () => {
-    const data = {
-      user_id: user_id,
-      username: username,
-      signature: signature,
-      newEmail: newEmail,
-      oldPassword: oldPassword,
-      newPassword: newPassword,
-      newPasswordRetype: newPasswordRetype
-    };
-    const response = await fetch(API + "/profile/setPassword", {
-      method: 'PUT',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(data),
-    })
-    if (response.status === 201){
-      window.location.reload();
-    }else{
-      setErrorMessage({
-        type: 'password',
-        message: (await response.json()).error
-      });
-    }
   }
 
   // Handlers for browsing and selecting avatars.
@@ -174,18 +111,6 @@ const EditProfileModal = ({ onClose }) => {
             ✏️Edit Alias
           </button>
           <button
-              className={activeTab === 'email' ? 'active' : ''}
-              onClick={() => handleTabClick('email')}
-          >
-            ✏️Edit Email
-          </button>
-          <button
-              className={activeTab === 'password' ? 'active' : ''}
-              onClick={() => handleTabClick('password')}
-          >
-            🔐Change Password
-          </button>
-          <button
               className={activeTab === 'avatar' ? 'active' : ''}
               onClick={() => handleTabClick('avatar')}
           >
@@ -200,28 +125,6 @@ const EditProfileModal = ({ onClose }) => {
                 <button type="submit">Save</button>
                 {errorMessage.type==='alias' && <p><span style={{color: "red"}}>{errorMessage.message}</span></p>}
             </form>
-          )}
-          {activeTab === 'email' && (
-              <form>
-                <label>New Email:</label>
-                <input type="email" value={newEmail} onChange={(e) => setNewEmail(e.target.value)}/>
-                <label>Enter Password:</label>
-                <input type="password" value={password} onChange={(e) => setPassword(e.target.value)}/>
-                <button type="button" onClick={handleSubmitEmail}>Save</button>
-                {errorMessage.type==='email' && <p><span style={{color: "red"}}>{errorMessage.message}</span></p>}
-              </form>
-          )}
-          {activeTab === 'password' && (
-              <form>
-                <label>Old Password:</label>
-                <input type="password" value={oldPassword} onChange={(e) => setOldPassword(e.target.value)}/>
-                <label>New Password:</label>
-                <input type="password" value={newPassword} onChange={(e) => setNewPassword(e.target.value)}/>
-                <label>Re-enter New Password:</label>
-                <input type="password" value={newPasswordRetype} onChange={(e) => setNewPasswordRetype(e.target.value)}/>
-                <button type="button" onClick={handleSubmitPassword}>Save</button>
-                {errorMessage.type==='password' && <p><span style={{color: "red"}}>{errorMessage.message}</span></p>}
-              </form>
           )}
           {activeTab === 'avatar' && (
               <div className="avatar-selection">

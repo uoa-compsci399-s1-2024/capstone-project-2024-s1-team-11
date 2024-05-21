@@ -168,4 +168,26 @@ router.put('/setAvatar', async (req, res) => {
         return res.status(500).json({ error: 'Internal server error' });
     }
 })
+
+// Route for deleting user's account.
+router.delete('/deleteAccount', async (req, res) => {
+    const repo = await Repository.getRepoInstance();
+    try{
+        const {user_id, password} = req.body
+        const user = await repo.getUser(Number.parseInt(user_id));
+        if (user === null){
+            return res.status(404).json({error: "User not found."})
+        }
+        if (await bcrypt.compare(password, user.password)) {
+            await repo.deleteUser(user_id);
+            return res.status(201).json({message: "Account deleted."})
+        } else{
+            return res.status(403).json({error: "Incorrect password"})
+        }
+    } catch (e) {
+        console.log(e);
+        return res.status(500).json({ error: 'Internal server error' });
+    }
+})
+
 module.exports = router;
