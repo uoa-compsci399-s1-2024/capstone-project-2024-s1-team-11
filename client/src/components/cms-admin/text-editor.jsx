@@ -5,7 +5,7 @@ import 'react-quill/dist/quill.snow.css';
 const TextEditor = ({setText}) => {
 
     //state to handle the changes in text editor
-    const [content, setContent] = useState('')
+    const [content, setContent] = useState('<p>This needs to be content from the DB</>')
     console.log(content)
 
 
