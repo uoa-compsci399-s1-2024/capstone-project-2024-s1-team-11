@@ -134,6 +134,7 @@ const EditProfileModal = ({ onClose }) => {
                 <button onClick={handleNextAvatar}>Next</button> <br></br>
                 <button onClick={handleSelectAvatar}>Set as avatar</button>
                 {errorMessage.type==='avatar' && <p><span style={{color: "red"}}>{errorMessage.message}</span></p>}
+                <p><em>Avatars designed by <a href='https://www.freepik.com/' target='_blank'>freepik</a></em></p>
               </div>
           )}
         </div>
