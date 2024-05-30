@@ -45,6 +45,7 @@ Administrative rights are needed to access the CMS. Once logged in as an Admin, 
 
 ![image](https://github.com/uoa-compsci399-s1-2024/capstone-project-2024-s1-team-11/assets/159106252/6d59abb9-977d-4f10-a2d2-2246b6adb683)
 
+![image](https://github.com/uoa-compsci399-s1-2024/capstone-project-2024-s1-team-11/assets/159106252/15a1e844-e31d-4bc4-bc06-3d6a9ef9a570)
 
 ## Usage Examples (if available).
 
