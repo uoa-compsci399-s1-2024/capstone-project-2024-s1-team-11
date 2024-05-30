@@ -22,23 +22,28 @@ Technologies used to build the project (include the languages used, the librarie
 ## Installation Instructions
 
 Instructions on how to install and setup the project (specify all dependencies).
-
+**Prerequisites**
+- Install [Node.js](https://nodejs.org/en/download).
+- Install PostgreSQL and PgAdmin.
+- Create a new database with PostgreSQL, name the database as "maths_rocks".
+  
 **Client Folder (Fronted)**
-
-- Install [Node.js](https://nodejs.org/en/download)
 - In your command line, cd to the *client* folder, then run <code>npm install</code> to install all dependencies.
 - In your command line, run <code>npm run dev</code> to start the project.
 - To end the project type <code>Ctrl + C </code> in your command line.
   
 **Server Folder (Backend)**
-  
+- In the database-utils/config.js file, change the password to your postgreSQL user password.
 - In your command line, cd to the *server* folder, then run: <code>npm install</code> to install all dependencies.
 - In your command line, run <code>npm run devStart</code> to start the project.
 - To end the project type <code>Ctrl + C </code> in your command line.
 
 **Database**
-
-The database is hosted on AWS. To access it .... (Edward can you write instructions for Nicolette?)
+The database is hosted on AWS. Here is how to access it.
+- Install PgAdmin.
+- Register a new connection to the database.
+- Specify the IP address of the AWS virtual machine, currently it is 13.211.213.56, but that might be changed in the future.
+- Specify your PostgreSQL user account, and the password.
 
 **Content Management System (CMS)**
 
@@ -81,6 +86,7 @@ Administrative rights are needed to access the CMS. Once logged in as an Admin, 
 - Main image is a stock photo from [iStock](https://www.istockphoto.com/photo/hand-painted-colorful-stones-and-pens-gm1055477172-282032140)
 - Avatar images designed by [freepik](https://www.freepik.com/)
 - Placeholder rock images created with [Adobe Express](https://new.express.adobe.com/) text-to-image
+- Topic Images (number images) are obtained from Pixels (https://www.pexels.com/)
 
 ### Projects Referred To
 
