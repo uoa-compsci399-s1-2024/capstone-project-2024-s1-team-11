@@ -69,7 +69,7 @@ Administrative rights are needed to access the CMS. Once logged in as an Admin, 
 ## Acknowledgements
 
 ### Tutorials Used
-
+#### Front-end
 - Learning React and how to think in React: https://react.dev/learn
 - React router createBrowserRouter tutoral: https://reactrouter.com/en/main/start/tutorial
 - Learning React: https://youtu.be/5ZdHfJVAY-s?si=OpaMQGt9UGh4AE0P
@@ -77,6 +77,11 @@ Administrative rights are needed to access the CMS. Once logged in as an Admin, 
 - Responsive Navbar in React using React Router: https://www.youtube.com/watch?v=17l6AOc8s10
 - Add Waves, Shapes & Curves to your Website: https://www.youtube.com/shorts/AnP5CPVtO7Y
 - Learn React Router v6 – Full Course: https://www.youtube.com/watch?v=SMq1IQRweDc&t=2450s
+
+#### Back-end
+- Learn JavaScript - Full Course for Beginners: https://www.youtube.com/watch?v=PkZNo7MFNFg
+- Node.js and Express.js - Full Course: https://www.youtube.com/watch?v=Oe421EPjeBE
+#### Deploying the Web-App
 - Understanding the PERN stack: https://www.freecodecamp.org/news/learn-the-pern-stack-full-course/
 - Deploying a PERN stack application to AWS: https://www.youtube.com/watch?si=TUiqcPWXnipddPkW&v=NjYsXuSBZ5U&feature=youtu.be
 - Deploying a PERN stack application to AWS: https://github.com/calvin-puram/AWS-EC2-Demo
