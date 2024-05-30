@@ -10,6 +10,7 @@ A short description of what the project is about. (You may put a link to your fi
 Technologies used to build the project (include the languages used, the libraries and their versions).
 
 - JavaScript
+- Vanilla CSS
 - [React 18.2.66](https://react.dev/) installed with [Vite](https://vitejs.dev/)
 - [React Router](https://reactrouter.com/en/main)
 - [emailjs 4.3.3](https://www.emailjs.com/)
