@@ -81,3 +81,6 @@ Administrative rights are needed to access the CMS. Once logged in as an Admin, 
 ### Projects Referred To
 
 ### People Consulted
+
+### Gantt Chart
+[Jira Gantt Chart](https://exquisitech.atlassian.net/jira/software/projects/KAN/boards/1/timeline?timeline=QUARTERS&shared=&atlOrigin=eyJpIjoiZWFhOWU5YzYwYjhmNGI5MGFmY2FlZTBkYzU4YWIzNWEiLCJwIjoiaiJ9)
