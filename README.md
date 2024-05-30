@@ -22,18 +22,29 @@ Technologies used to build the project (include the languages used, the librarie
 
 Instructions on how to install and setup the project (specify all dependencies).
 
-**Client Folder (React)**
+**Client Folder (Fronted)**
 
 - Install [Node.js](https://nodejs.org/en/download)
 - In your command line, cd to the *client* folder, then run <code>npm install</code> to install all dependencies.
 - In your command line, run <code>npm run dev</code> to start the project.
 - To end the project type <code>Ctrl + C </code> in your command line.
-- 
-**Server Folder**
+  
+**Server Folder (Backend)**
   
 - In your command line, cd to the *server* folder, then run: <code>npm install</code> to install all dependencies.
 - In your command line, run <code>npm run devStart</code> to start the project.
 - To end the project type <code>Ctrl + C </code> in your command line.
+
+**Database**
+
+The database is hosted on AWS. To access it .... (Edward can you write instructions for Nicolette?)
+
+**Content Management System (CMS)**
+
+Administrative rights are needed to access the CMS. Once logged in as an Admin, the CMS can be accessed from the **Content Management** item in the navigation.
+
+![image](https://github.com/uoa-compsci399-s1-2024/capstone-project-2024-s1-team-11/assets/159106252/6d59abb9-977d-4f10-a2d2-2246b6adb683)
+
 
 ## Usage Examples (if available).
 
@@ -48,7 +59,7 @@ Instructions on how to install and setup the project (specify all dependencies).
 - Backend, Frontend: Kelly Williams
 - Backend, Frontend: Jie He 
 
-## Acknowledgements (if any) 
+## Acknowledgements
 
 ### Tutorials Used
 
