@@ -93,7 +93,8 @@ Administrative rights are needed to access the CMS. Once logged in as an Admin, 
 - Main image is a stock photo from [iStock](https://www.istockphoto.com/photo/hand-painted-colorful-stones-and-pens-gm1055477172-282032140)
 - Avatar images designed by [freepik](https://www.freepik.com/)
 - Placeholder rock images created with [Adobe Express](https://new.express.adobe.com/) text-to-image
-- Topic Images (number images) are obtained from Pixels (https://www.pexels.com/)
+- Topic Images (number images) are obtained from [Pexels](https://www.pexels.com/)
+- Favicon generated with [favicon.io](https://favicon.io/)
 
 ### Project Management tool
 [Jira Gantt Chart](https://exquisitech.atlassian.net/jira/software/projects/KAN/boards/1/timeline?timeline=QUARTERS&shared=&atlOrigin=eyJpIjoiZWFhOWU5YzYwYjhmNGI5MGFmY2FlZTBkYzU4YWIzNWEiLCJwIjoiaiJ9)
