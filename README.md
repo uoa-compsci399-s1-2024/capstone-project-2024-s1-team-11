@@ -1,10 +1,10 @@
 # Project Name: Maths Rocks
 
-Project Management tool: 
-
 Deployed Website: http://13.211.213.56/
 
-A short description of what the project is about. (You may put a link to your final report here, after it has been completed).
+Project Report: 
+
+Our project provides Kiwi kids with an engaging educational web application that works in tandem with the real world hobby of searching for painted rocks, making positive associations between maths, treasure hunting, fun and discovery.
 
 ## Technologies Used
 Technologies used to build the project (include the languages used, the libraries and their versions).
@@ -22,6 +22,7 @@ Technologies used to build the project (include the languages used, the librarie
 ## Installation Instructions
 
 Instructions on how to install and setup the project (specify all dependencies).
+
 **Prerequisites**
 - Install [Node.js](https://nodejs.org/en/download).
 - Install PostgreSQL and PgAdmin.
@@ -81,6 +82,7 @@ Administrative rights are needed to access the CMS. Once logged in as an Admin, 
 #### Back-end
 - Learn JavaScript - Full Course for Beginners: https://www.youtube.com/watch?v=PkZNo7MFNFg
 - Node.js and Express.js - Full Course: https://www.youtube.com/watch?v=Oe421EPjeBE
+
 #### Deploying the Web-App
 - Understanding the PERN stack: https://www.freecodecamp.org/news/learn-the-pern-stack-full-course/
 - Deploying a PERN stack application to AWS: https://www.youtube.com/watch?si=TUiqcPWXnipddPkW&v=NjYsXuSBZ5U&feature=youtu.be
@@ -93,9 +95,5 @@ Administrative rights are needed to access the CMS. Once logged in as an Admin, 
 - Placeholder rock images created with [Adobe Express](https://new.express.adobe.com/) text-to-image
 - Topic Images (number images) are obtained from Pixels (https://www.pexels.com/)
 
-### Projects Referred To
-
-### People Consulted
-
-### Gantt Chart
+### Project Management tool
 [Jira Gantt Chart](https://exquisitech.atlassian.net/jira/software/projects/KAN/boards/1/timeline?timeline=QUARTERS&shared=&atlOrigin=eyJpIjoiZWFhOWU5YzYwYjhmNGI5MGFmY2FlZTBkYzU4YWIzNWEiLCJwIjoiaiJ9)
