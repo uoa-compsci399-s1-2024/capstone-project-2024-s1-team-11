@@ -40,7 +40,7 @@ router.post("/editTopic",upload.single("topic_image"), authenticate, authorize, 
             topic_id: req.body.topic_id,
             title: req.body.title !== "" ? req.body.title : null,
             description: req.body.text !== "" ? req.body.text : null,
-            imageUri: req.file !== undefined ? req.file.originalname : null,
+            imageUri: req.file !== undefined ? req.file.filename : null,
             metaTitle: req.body.metatitle !== "" ? req.body.metatitle: null,
             metaDescription: req.body.metadesc !== "" ? req.body.metadesc: null
         }
