@@ -29,7 +29,7 @@ export default function LoginForm({formFunction}) {
             setIsLogged(true);
             setTimeout(function(){
                 window.location.reload();
-            }, 1000);
+            }, 200);
         }
         setStatusMsg(data.message);
     }
