@@ -18,9 +18,9 @@ router.post('/', async (req, res) => {
                 const signature = await bcrypt.hash(username + user.user_id + SECRET_KEY, 10);
                 return res.status(201).json({username: username, user_id: user.user_id, signature: signature});
             }
-            return res.status(401).send({message: 'User not found.'});
+            return res.status(401).send({message: 'Incorrect Password.'});
         }
-        return res.status(401).send({message: 'Unsuccessful Login'});
+        return res.status(401).send({message: 'User not found.'});
     }catch(error){
         console.error(error);
         return res.status(401).send({message: 'Internal Server Error.'});
