@@ -64,8 +64,8 @@ Administrative rights are needed to access the CMS. Once logged in as an Admin, 
 
 ### Use case 1: A user finds a rock and scans the QR code
 - The user is directed to a webpage that displays information about the mathematical concept painted on the rock. 
-- If the user is not logged into the website, they are presented with a "SIGN IN TO COLLECT +” button. Clicking this button gives the user the option to log in or sign up.
-- Once logged in, the button text changes to “ADD TO COLLECTION +”.
+- If the user is not logged into the website, they are presented with a <code>SIGN IN TO COLLECT +</code> button. Clicking this button gives the user the option to log in or sign up.
+- Once logged in, the button text changes to <code>ADD TO COLLECTION +</code>
 - Once clicked, the rock is added to their profile, and badges are awarded if they reach a rock-collecting milestone.
 
 ### Use case 2: A user accesses the website directly through Google search or entering the URL into the search bar
@@ -76,7 +76,7 @@ Users can browse the website to learn about maths concepts, and view the leaderb
 
 In addition to use cases 1 and 2 outlined above, the user can add, amend or delete content on the website.
 
-
+![UML Use-Case diagram](https://github.com/uoa-compsci399-s1-2024/capstone-project-2024-s1-team-11/assets/159106252/d7a5e1bb-dd63-45fc-95aa-9a0a7c03f7bd)
 
 ## Future Plan
 
