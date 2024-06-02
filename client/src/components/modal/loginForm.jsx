@@ -41,16 +41,14 @@ export default function LoginForm({formFunction}) {
             <section className='login-form'>
                 <h1>Sign in</h1>
                 <form onSubmit={handleLogin}>
-                    <label name="username">
+                    <label name="Username">
                         <input name="username" type='text' value={username} placeholder="Username"
                             onChange={(e) => setUsername(e.target.value)}></input>
                     </label>
-                    <p><a href="#">Forgot username?</a></p>
-                    <label name="password">
+                    <label name="Password">
                         <input name="password" type='password' value={password} placeholder="Password"
                             onChange={(e) => setPassword(e.target.value)}></input>
                     </label>
-                    <p><a onClick={()=>{}}>Forgot password?</a></p>
                     <button type='submit' className='btn'>🔑log in</button>
                 </form>
                 <p>{statusMsg}</p>
